@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::RuntimeModel::ReferenceBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_reference_base.html",tooltip="Represents an SCA reference at runtime."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::RuntimeModel::Reference",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_reference.html",tooltip="Represents an SCA reference at runtime."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Trentino::RuntimeModel::Tests::MockReferenceBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_tests_1_1_mock_reference_base.html"];
+}

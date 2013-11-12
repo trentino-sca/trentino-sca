@@ -1,0 +1,58 @@
+package trentino.bindingsca.csoap;
+import "ws_addressing.proto";
+option optimize_for = LITE_RUNTIME;
+message Soap {
+
+	message Header {
+	    optional Addressing addressing =1;
+	}
+
+
+
+	message Body {
+	optional Fault faultMessage =1;
+	optional bytes content=2;
+	
+	}
+	
+	message Fault {
+		optional faultcode Code =1;
+		optional faultreason Reason =2;
+		optional string Node =3;
+		optional string Role =4;
+		//fault details is a protobuf stream that shoulb be decoded by the receiver itself
+		optional bytes Detail = 5;
+	}
+	
+	
+	message faultreason
+	{
+	    repeated string Text =1;
+	}
+	
+	message faultcode {
+		optional faultcodeEnum Value=1;
+		optional subcode Subcode=2;
+	}
+	
+	message subcode {
+		optional string Value = 1;
+		optional subcode Subcode = 2;
+	}
+	
+	enum faultcodeEnum{
+		DataEncodingUnknown =0;
+		MustUnderstand =1;
+		Receiver =2;
+		Sender=3;
+		VersionMismatch=4;
+	}
+	
+	message Envelope {
+	optional Header header =1;
+	optional Body body =2;
+	}
+	
+	required Envelope envelope =1;
+
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="ImplComposite" 
+           xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		       targetNamespace="PropertiesTest">
+
+  <property name="ImplCompositePropertyWithSingleDefaultValue" type="xsd:string" many="false" mustSupply="false">
+    <value>ImplCompositeDefaultValue</value>
+  </property>
+
+  <property name="ImplCompositePropertyWithManyDefaultValues" type="xsd:string" many="true" mustSupply="false">
+    <value>ImplCompositeDefaultValue1</value>
+    <value>ImplCompositeDefaultValue2</value>
+    <value>ImplCompositeDefaultValue3</value>
+  </property>
+
+  <property name="ImplCompositePropertyWithUselesseDefaultValue" type="xsd:string" many="false" mustSupply="true">
+    <value>ImplCompositeNeverUsed</value>
+  </property>
+
+  <property name="ImplCompositePropertyWithNoDefaultValue" type="xsd:string" many="false" mustSupply="true"/>
+
+  <component name="InnerComponentWithValues">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithSingleDefaultValue" 
+              source="$ImplCompositePropertyWithSingleDefaultValue"/>
+    <property name="PropertyWithManyDefaultValues" many="true"
+              source="$ImplCompositePropertyWithManyDefaultValues"/>
+    <property name="PropertyWithUselesseDefaultValue"
+              source="$ImplCompositePropertyWithUselesseDefaultValue"/>
+    <property name="PropertyWithNoDefaultValue"
+              source="$ImplCompositePropertyWithNoDefaultValue"/>
+  </component>
+
+</composite>

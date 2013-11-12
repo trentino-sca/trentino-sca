@@ -1,0 +1,3 @@
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Build/CMakeFiles/ALL_BUILD.dir
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Build/CMakeFiles/LocalCallDataExchange.dir
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Build/CMakeFiles/ZERO_CHECK.dir

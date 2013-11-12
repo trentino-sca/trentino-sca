@@ -1,0 +1,4 @@
+var structcompact__soap_1_1_static_descriptor_initializer__ws__5faddressing__2eproto =
+[
+    [ "StaticDescriptorInitializer_ws_5faddressing_2eproto", "structcompact__soap_1_1_static_descriptor_initializer__ws__5faddressing__2eproto.html#aa705382ff5c9655af584ffa6f442b5ab", null ]
+];

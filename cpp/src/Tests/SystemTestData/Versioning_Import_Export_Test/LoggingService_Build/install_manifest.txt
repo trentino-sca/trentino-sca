@@ -1,0 +1,7 @@
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/lib/LoggingService.lib
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/bin/LoggingService.dll
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/META-INF/Logging.composite
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/META-INF/sca-contribution.xml
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/services/LoggingServiceImpl.componentType
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/services/TrentinoExampleLoggingLoggingService.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/Versioning_Import_Export_Test/LoggingService_Source/../LoggingService/services/TrentinoExampleLoggingLoggingServiceImpl.h

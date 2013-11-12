@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="Deployable"
+           xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		       targetNamespace="InvalidPropertiesTest">
+
+  <property name="EmptyCompositeProperty" type="xsd:string" mustSupply="false"/>
+
+  <component name="ComponentReferencesEmptyCompositeProperty">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <!--@value will be replaced by source="$EmptyCompositeProperty" in the test-->
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+	  <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+  
+  <component name="ComponentReferencesEmptyPropertyFile">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <!--@value will be replaced by file="EmptyPropertyFile.xml" in the test-->
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>    
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+	  <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+
+  <component name="ComponentReferencesNonExistentPropertyFile">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <!--@value will be replaced by file="NonExistentFile" in the test-->
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+    <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+
+  <component name="ComponentReferencesIllFormedPropertyFile">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <!--@value will be replaced by file="IllFormedPropertyFile1.xml" in the test-->
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+    <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+
+  <component name="ComponentNoValueForPropertyWithoutDefaultValue">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+    <!--value="SomeValue" will be replaced by value="" in the test-->
+    <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+
+  <component name="ComponentWithNoErrors">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithUselesseDefaultValue" value="SomeValue"/>
+    <property name="PropertyWithNoDefaultValue" value="SomeValue"/>
+    <property name="OptionalPropertyWithNoDefaultValue" value="SomeValue"/>
+  </component>
+</composite>
+

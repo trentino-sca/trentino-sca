@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "docbook.dtd">
+<chapter>
+	<title>Trentino Introduction</title>
+	<para>
+TRENTINO is an open source platform that enables and simplifies the task of developing and managing SOA based embedded systems by providing a comprehensive infrastructure based on Service Component Architecture (SCA) standard.
+Trentino severely reduces complexity and thus has positive implications on cost during the entire application lifecycle of your product.
+	</para>
+	<section>
+		<title>Enable extensible architectures</title>
+		<para>
+			Trentino has been designed from the ground up to eliminate complexity
+			at both architecture and API levels.
+			It provides the following keys features to the embedded developers
+			<itemizedlist>
+				<listitem>
+					<para> A standard based component model
+					</para>
+				</listitem>
+				<listitem>
+					<para>Plugable communication protocols (SCA Bindings)
+					</para>
+				</listitem>
+				<listitem>
+					<para>A Management and monitoring component for Trentino
+						applications
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>Distributed Service discovery
+					</para>
+				</listitem>
+
+				<listitem>
+					<para>Trentino is non invasive: Minimal API, use of dependency
+						injection. It therefore facilitate the migration of existing C++
+						code base to a Trentino Runtime.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</section>
+
+
+	<section>
+		<title>Lightweight Runtime</title>
+		<para>
+			The main goal of Trentino is to be as lightweight as possible. An empty
+			Trentino runtime has a memory footprint lower than 500 KB.
+
+		</para>
+	</section>
+	<section>
+		<title>Target users</title>
+		<para>
+			Trentino has been designed as generic as possible to be integrated in allmost
+			all kind of embedded applications. The minimal requirements for
+			Trentino is that
+			the embedded device should host an Operating System. The Source code can
+			be compiled for Visual Studio and GCC platforms (including QNX).
+
+		</para>
+		<para>
+			Trentino is licensed under Apache License, Version 2.0. Full commercial
+			support is available from Siemens Corporate Technology.
+			Tooling for Trentino applications are provided.
+		</para>
+	</section>
+	<section>
+		<title>Contribution development process
+		</title>
+		<para>The development of an SCA contribution (see glossary for definitions) is done in four steps:
+			<itemizedlist>
+				<listitem>
+					<para> Develop and test SCA services
+					</para>
+				</listitem>
+				<listitem>
+					<para> Assemble SCA contribution
+					</para>
+				</listitem>				
+				<listitem>
+					<para>Prepare for deployment using Trengen
+					</para>
+				</listitem>
+				<listitem>
+					<para>Deploy on a Trentino runtime
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</section>
+
+<para></para>
+</chapter>

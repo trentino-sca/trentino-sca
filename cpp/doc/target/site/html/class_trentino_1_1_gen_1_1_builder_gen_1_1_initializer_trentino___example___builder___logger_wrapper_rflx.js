@@ -1,0 +1,8 @@
+var class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx =
+[
+    [ "InitializerTrentino_Example_Builder_LoggerWrapperRflx", "class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx.html#a17fb20ba2013af1abd0e46fc0326050d", null ],
+    [ "~InitializerTrentino_Example_Builder_LoggerWrapperRflx", "class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx.html#a38b11177c96cc1e43556d95c4059ec3b", null ],
+    [ "deleteObject", "class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx.html#acc32575fa7dfe9d0de8d40fbd3e6f0be", null ],
+    [ "newObjectNoParam", "class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx.html#af5508ad1a615e3659417f8646b32670d", null ],
+    [ "mmdoHandle", "class_trentino_1_1_gen_1_1_builder_gen_1_1_initializer_trentino___example___builder___logger_wrapper_rflx.html#a97ae179b4745f978d314b589eb6ada4d", null ]
+];

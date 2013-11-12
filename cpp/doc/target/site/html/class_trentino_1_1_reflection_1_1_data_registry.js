@@ -1,0 +1,26 @@
+var class_trentino_1_1_reflection_1_1_data_registry =
+[
+    [ "InstanceReflectObjectPair", "class_trentino_1_1_reflection_1_1_data_registry.html#a78602d39273bace3b56e538dc5bed163", null ],
+    [ "ReflectionObjectPair", "class_trentino_1_1_reflection_1_1_data_registry.html#af0c54e37904f95c87374ecb3fff25653", null ],
+    [ "DataRegistry", "class_trentino_1_1_reflection_1_1_data_registry.html#a51931b6e29a710e08475ad2847652c04", null ],
+    [ "DataRegistry", "class_trentino_1_1_reflection_1_1_data_registry.html#ace349fb64db48b06e957493358fdd5c7", null ],
+    [ "~DataRegistry", "class_trentino_1_1_reflection_1_1_data_registry.html#a2acaa8cc14b5405a4f00b5535a2174e3", null ],
+    [ "constructReflectObject", "class_trentino_1_1_reflection_1_1_data_registry.html#a51a0d267c0e5b94955f01ea71c3654e6", null ],
+    [ "instance", "class_trentino_1_1_reflection_1_1_data_registry.html#aa9b99e72834f2be8e020d6420ddb9a8e", null ],
+    [ "operator=", "class_trentino_1_1_reflection_1_1_data_registry.html#a18d0b39d91dfce40ff52bb9e2284501c", null ],
+    [ "queryReflectObject", "class_trentino_1_1_reflection_1_1_data_registry.html#a5a8c33de9feab9005918b7ed9cc178e6", null ],
+    [ "queryReflectObjectByInstance", "class_trentino_1_1_reflection_1_1_data_registry.html#a751208ca14ca50c8bf3845c92f6d0cfc", null ],
+    [ "reflectObjectAt", "class_trentino_1_1_reflection_1_1_data_registry.html#a695e68f60eb6e6eb0c41646ebc572fc0", null ],
+    [ "reflectObjectCount", "class_trentino_1_1_reflection_1_1_data_registry.html#aaa0fe0d64049e465e0a8c139a0ccf132", null ],
+    [ "registerInstance", "class_trentino_1_1_reflection_1_1_data_registry.html#a5a3d518562b75ab6d88125aad8ac8573", null ],
+    [ "registerReflectObject", "class_trentino_1_1_reflection_1_1_data_registry.html#a0faf97441962f441a66a72bd5a4f7d97", null ],
+    [ "unregisterInstance", "class_trentino_1_1_reflection_1_1_data_registry.html#ae69b6a123a558a61c989605a13d90963", null ],
+    [ "unregisterReflectObject", "class_trentino_1_1_reflection_1_1_data_registry.html#ac4565a6cae8400c24f16c633c2b4656c", null ],
+    [ "ReflectObject", "class_trentino_1_1_reflection_1_1_data_registry.html#a9a36a9a2c75c5f0d68f6322c190d6dc8", null ],
+    [ "Registration", "class_trentino_1_1_reflection_1_1_data_registry.html#a5f03746cca8b9e07a53d8a7af741c84a", null ],
+    [ "mMetaDataChangesMutex", "class_trentino_1_1_reflection_1_1_data_registry.html#a3562ffc90e0cd3aaa7f645e4fc9e159f", null ],
+    [ "mReflectionObjects", "class_trentino_1_1_reflection_1_1_data_registry.html#ad9eed084507a1176c31f89bbd7169376", null ],
+    [ "mReflectObjectsArray", "class_trentino_1_1_reflection_1_1_data_registry.html#a74593af5503c99fa0bb775eaac16c744", null ],
+    [ "mRegInstanceChangesMutex", "class_trentino_1_1_reflection_1_1_data_registry.html#a2faae18544906dc4369ef615c60bfd9c", null ],
+    [ "mRegisteredInstances", "class_trentino_1_1_reflection_1_1_data_registry.html#a3817fac0fb98d8fc193eb6e5552e2b95", null ]
+];

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <includedir>
+        <dir name="3rdparty/x86_windows/vc10/boost_1_44/include/boost/"/>
+        <dir name="3rdparty/x86_windows/vc10/gmock-1.6.0/include/"/>
+        <dir name="3rdparty/sca_api/"/>
+    </includedir>
+    <defines>
+        <define name="BINDINGSCA_EXPORTS BINDINGSCA_IMPORT_EXPORT RUNTIMEMODEL_IMPORT_EXPORT SCAMODEL_IMPORT_EXPORT BINDING_IMPORT_EXPORT"/>
+    </defines>
+    <paths>
+        <dir name="I:/Trentino/trentino/DEV/cpp/src/BindingSCA"/>
+    </paths>
+</project>

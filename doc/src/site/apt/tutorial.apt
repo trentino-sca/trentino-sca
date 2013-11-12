@@ -1,0 +1,450 @@
+                                    ------
+                                    Trentino Getting Started Guide
+                                    ------
+                                    Trentino Team
+                                    ------
+                                    July 2011
+                                    
+
+
+* Introduction
+
+
+** 
+
+========================================================
+
+
+
+
++------------------------------------------+
+usage: trengen -cont <contribution_directory> -outdir <output_directory*> -lib <libname*>
+               -libdirs <directory*> -includedirs <directory*> -d* -v* -rtdir <runtime_directory*>
+               -install_dir <contribution_installation_directory*>
++------------------------------------------+
+	
+	*	-cont <contribution_directory>|<zip_file_of_contribution_directory_tree>: 
+	specifies the root directory of SCA contribution, can be a zip file or a path. 
+	
+	*	-outdir <output_directory*>: 
+	If provided it specifies the output directory for the Trengen generated code. Default is <input_directory>Gen.
+	
+	*	-lib <libname*>:
+	Library names (not path) of the service/component implementations. Names are separated by ';' or ':'. 
+	Default value is the contribution name.
+	
+	*	-libdirs <directory*>:
+	path separator separated list of directories, where libraries containing the service/component implementations are located.
+	Default value is <root> and <root>/lib.
+	
+	*	-includedirs <directory*>:
+	path separator separated list of directories, service and omponent header files are located. 
+	Default values are <root>, <root>/services and <root>/include.
+	
+	*	-d*: 
+	Optional. If provided, Trengen runs in debug mode.
+
+	*	-v*: 
+	Optional. If provided, Trengen shows info logs.
+	
+	*	-rtdir <runtime_directory*>: 
+	specifies the location of the Trentino Runtime. Optional since Trengen tries to resolve the runtime from itself.
+	
+	*	-install_dir <contribution_installation_directory*>: 
+	 Optional. Trengen generates a Cmake file for the generated code. It requires the location where binaries
+	 will be installed as result of a Cmake install. Default value is the 'META-INF' of the <contribution_directory>.
+
++------------------------------------------+
+usage: trengen -gencppitf <path to properties file>.properties> -inc <header file name*> 
+               -outdir <path to output dir*>
++------------------------------------------+
+	
+	*	-gencppitf <path to properties file>.tidl.properties: 
+	The tidl configuration file containing the information about the interface to be generated. The tidl file 
+	is a java resource file.It should contain an entry indicating the location of the interface to be used.
+	If the path is a directory, then all *.tidl.properties files in the given directory will be processed.
+	
+	*	-inc    <header file name*>:
+	name of an optional header file to be included in the generated c++ header file.
+	
+	* 	-outdir <path to output dir*>:
+	The path to the output directory this parameter is optional. The default value is the current directory.
+
+		
+		Trengen outputs the generated code along with a cmake file under the [ContributionName]Gen folder at the same level with the contribution folder. The user should compile the generated code according to the provided CMake. As the result of the compilation of generated code the “sca-contribution.dll”, “sca-contribution.lib”, “sca-contribution.conf “ files are placed under the META-INF folder of the contribution. (For detailed sequence please see section :Compiling and Installing A Sample Contribution)
+
+** Trentino Console
+
+========================================================
+		
+		Trentino’s console is a separate executable tool that lets the user interact with the Trentino Runtime. The Runtime itself is not aware of the existence of the console and offers its functionality over a well- defined interface.  From the user’s point of view the runtime can be controlled by a set of commands offered by the console. On startup the console prints an intro message and changes to the command prompt:
+		
++------------------------------------------+
+----------------------------------------------------------------------
+** TrentinoConsole, TRENTINO's deployment console
+** Copyright (C) Siemens AG, 2012. All rights reserved.
+** TRENTINO is released under the Apache License, Version 2.0
+----------------------------------------------------------------------
+Trentino> 
+
++------------------------------------------+
+ 		
+		The help command can be used to retrieve a list of the supported commands along with a short description: 
+		
++------------------------------------------+
+Trentino> help
+Commands available in this console:
+    boot       - boot the Trentino runtime into the current process
+    shutdown   - unload the Trentino runtime from the current process
+    install    - install, deploy and run a contribution
+    remove     - remove an installed, deployed or running contribution
+    info       - retrieve information about installed entities from the runtime
+    quit, exit - quit from this console
+
+Try commands above with '-h' option for more information
++------------------------------------------+
+
+		Every command except for quit and exit can be called with the –h option to retrieve a more detailed usage description. 
+		
+		The first step for using the Trentino runtime consists in booting it with the help of the boot command.  Once the runtime is booted the install, remove and info commands can be used to interact with it. Using them before booting will issue the “management interface not available” error. The runtime can be unloaded from the current process by using the shutdown command. A graceful shutdown is also performed by using the quit or exit commands (there is no difference between quit and exit) that additionally terminate also the console itself.
+		
+		The install command is responsible for installing, deploying and running a contribution. The installation steps solely loads a contribution into memory without to perform SCA error and consistency checking. Errors issued during the installation process may concern only the non-existence of expected contribution dynamic libraries and configuration files. Wiring and consistency checking is performed in the deployment step. Finally, before the contribution is put in the Running state, all @eagerInit=”true” component implementations are instantiated. Currently all the three steps are executed automatically.
+		
+		The install command expects two arguments: a path to the contribution folder and a contribution base URI under which the contribution is to be installed into the domain. Example:
+		 
++------------------------------------------+
+Trentino> install  C:\conributions\someContribution some.contrib.uri
++------------------------------------------+
+		
+		A contribution can be removed using the remove command. It reverts all the steps performed by the install command and completely removes the contribution from memory. remove expects a contribution base URI as argument. 
+		 
++------------------------------------------+
+Trentino> remove some.contrib.uri
++------------------------------------------+
+
+		The info command is used to retrieve different information about SCA entities available in the runtime. 
+
++------------------------------------------+
+Trentino> info –h
+Retrieve the information about installed entities from the runtime.
+Usage:
+    info [-h] [-s] [-q(b|c|rs)] URI
+    -h    show this message
+    -s    show entities status
+    -q    perform a request by using the following specifiers:
+      b   retrieve contributions
+      c   retrieve components
+      r   retrieve references
+      s   retrieve services
+URI may be one of the following type: contribution base URI, component,
+reference, service. To retrieve a list of all the domain-level
+components leave the URI empty. To retrieve as list of installed contributions
+leave the URI empty.
+
++------------------------------------------+
+		 
+		The –q option is used to specify the kind of entities the information should be retrieved for. The –s option can be used to retrieve additional information about the specified entity, such as its state or in case of references their targets. 
+		
+		Retrieving information about contributions:
+		
+		info –qb will retrieve a list of all contribution available in the runtime info –s –qb additionally shows the contribution states
+
++------------------------------------------+
+Trentino> info –qb
+[contribution]: some.contrib.uri
+[contribution]: other/uri
++------------------------------------------+
+		 
+		It’s also possible to pass a contribution base uri to the info command in order to retrieve information about a specific contribution. Since it’s currently not possible to retrieve other information than the contribution’s state
+		
+		info –qb some.contrib.uri is the same as –qb -s some.contrib.uri
+
++------------------------------------------+
+Trentino> info -qb some.contrib.uri
+[contribution]: some.contrib.uri (Running)
++------------------------------------------+
+		 
+		Retrieving information about available components:
+		
+		info –qc will retrieve a list of all the domain-level components (i.e. components not contained in a composite used as implementation). Components are referenced by their structural URI.
+
++------------------------------------------+
+Trentino> info –qc
+[component]: BuilderComponent
+[component]: LoggerComponent
+[component]: GUIComponent
++------------------------------------------+
+	
+		info –qc some.contrib.uri will retrieve a list of all the components contained in the contribution with the given base URI. 
+
++------------------------------------------+
+Trentino> info -qc some.contrib.uri
+[component]: BuilderComponent/BuilderImplComponent
+[component]: BuilderComponent/LinkerComponent
+[component]: BuilderComponent/CompilerComponent
+[component]: LoggerComponent/SmartLoggerComponent/SmartLogger
+[component]: LoggerComponent/LoggerImpl
+[component]: LoggerComponent/SmartLoggerComponent
+[component]: BuilderComponent
+[component]: LoggerComponent
+[component]: GUIComponent
++------------------------------------------+		 
+	
+		Notice the structural URI style: LoggerComponent/SmartLoggerComponent/SmartLogger for example means that SmartLogger is contained in a composite used as SmartLoggerComponent’s implementation while SmartLoggerComponent itself is contained in a composite used as LoggerComponent’s implementation. 
+		
+		The  -s option can be specified also for components to retrieve their states: info –s –qc some.contrib.uri 
+		
+		Retrieving information about single components:
+		
+		In order to retrieve information about a specific component, the component’s URI must be passed to the info command.
+		
+		The simplest case is as follows:
+		
+		info GUIComponent will do nothing except for showing the passed component URI as output. This can be used to check for the existence of a component: 
+
++------------------------------------------+
+Trentino> info GUIComponent
+[component]: GUIComponent
+Trentino> info nonExisitent
+ERROR - Component with URI 'nonExisitent' not found
+Trentino>
++------------------------------------------+		 
+
+		info –s GUIComponent will additionaly show the component’s state
+
++------------------------------------------+
+Trentino> info -s GUIComponent
+[component]: GUIComponent (Resolved)
++------------------------------------------+
+
+		Adding the –qs, -qr or –qrs options retrieves a list of services, references or service and references, respectively for the given component.
+
++------------------------------------------+
+Trentino> info -qsr LoggerComponent/LoggerImpl
+[component]: LoggerComponent/LoggerImpl
+    [references]:
+        FileLogger
+        ConsoleLogger
+    [services]:
+        Log
++------------------------------------------+	 
+
+		Additionally using the the –s options will retrieve all the possible information for a component:
+
++------------------------------------------+
+Trentino> info -s -qrs BuilderComponent/CompilerComponent
+[component]: BuilderComponent/CompilerComponent (Resolved)
+    [references]:
+        Log (Resolved) -> LoggerComponent#service(Log) LoggerComponent#service(Log)
+    [services]:
+        ExecuteCompiler (Available)
+
++------------------------------------------+	 
+ 
+		The output tells us that CompilerComponent’s reference with the name “Log” is wired twice to the “Log” service implemented by the LoggerComponent. Furthermore CompilerComponent offers an “ExecuteCompiler” service that is in Available state. 
+		
+		Retrieving information about single services and references:
+		
+		In order to retrieve information about a specific service or reference, its structural URIs must be passed as argument. Example:
+
++------------------------------------------+
+Trentino> info -s LoggerComponent/LoggerImpl#reference(FileLogger)
+[references]:
+    FileLogger (Resolved) -> LoggerComponent/SmartLoggerComponent#service(FileLogger)
+Trentino> info  -s BuilderComponent/LinkerComponent#service(ExecuteLinker)
+[services]:
+    ExecuteLinker (Available)
+
++------------------------------------------+	 
+		
+* Installing the Binary Distribution / Creating Binaries from Source Code
+
+	You should have Java 1.6 already installed on your machine. 
+	
+	* Install the JDK software.
+
+    	* Go to http://java.sun.com/javase/downloads/index.jsp.
+
+    	* Select the appropriate JDK software and click Download.
+
+    The JDK software is installed on your computer, for example, at C:\Program Files\Java\jdk1.6.0_02. You can move the JDK software to another location if desired.
+	
+
+** Windows
+
+========================================================
+
+
+	Be sure that your JAVA_HOME environment variable is already set. 
+	
+	* To set JAVA_HOME:
+
+    	* Right click My Computer and select Properties.
+
+    	* On the Advanced tab, select Environment Variables, and then edit JAVA_HOME to point to where the JDK software is located, for example, C:\Program Files\Java\jdk1.6.0_02.
+
+	 Moreover, you should have installed CMake-GUI ( http://www.cmake.org/) and Visual Studio 2010.
+
+	If you want to use binaries of Trentino;
+	Unzip the windows distribution. The unzip folder will be referred as DISTRUBUTION_FOLDER through the documentation. 
+
+	If you want to use source codes of Trentino;
+			* Unzip the source codes.
+		
+		* Open your CMake-GUI
+		
+			* select the Trentino source codes directory for “Where is the source code”
+			
+			* enter some path in the “Where to build the binaries” (e.g. Binaries)
+			
+			* “Configure” your project (select VS 2010)
+			
+			* Finally “generate”. This generates a Trentino.sln under the “binaries” folder.
+			
+		* Open Trentino.sln in VS 2010. Here is what you will see in VS.
+
+[images/GettingStartedGuide/1TrentinoProjectVS2010.JPG] 
+
+		
+		* Build “ALL_BUILD” project on Visual Studio 2010.
+		
+		* Build “INSTALL” project on Visual Studio 2010. Then you will have the binaries in “trentino_x86_windows_0.2-pa” folder.
+
+	Here is the Trentino Binaries directory:
+
+[images/GettingStartedGuide/2TrentinoBinaries.JPG]
+
+	NOTE! If Trentino is build in Release it cannot run contributions build in Debug (holds for business logic and generated code, as well) and vice versa. 
+
+	
+** Linux
+
+========================================================
+
+
+	To be able to install the binary distribution on Linux, following steps need to be followed:
+	
+	[[1]] Let's assume that ~/Work - is my working directory. Create Trentino folder and copy the Trentino source codes in it;
+	
+	[[2]] You should have 'wget' and 'cmake-gui' packages installed, it needs to download the 3rd-party libraries and configure the build;
+	
+	[[3]] Enter to ~/Work/Trentino/DEV/cpp folder and run cmake-gui;
+	
+	[[4]] Set the source code folder to: ~/Work/Trentino/DEV/cpp and build  folder - ~/Work/Trentino/bin
+	
+	[[5]] Press configure button. This stage make takes several minutes due to cmake is going to download and build the 3-rd party libraries;
+	
+	[[6]] After the point 5 finishes press generate buttom;
+	
+	[[7]] Enter to the directory ~/Work/Trentino/bin and run 'make'
+	
+	[[8]] To install the binaries run 'make install'
+
+* Compiling and installing the sample contribution
+
+	Along with the binary distribution, a sample SCA contribution is also provided (both for Linux and Windows platforms). There is a META-INF folder under the BasicCalculator contribution folder. sca-contribution.xml have to be in this directory. This file specifies the composites to be deployed. In the example contribution we have only one deployable (composite) which is named BasicCalculator.composite. 
+ 
+	Short Description of the Sample Contribution:
+ 
+[images/GettingStartedGuide/BasicCalc2.JPG] 
+  
++------------------------------------------+
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+   <deployable composite="BasicCalculatorComposite"/>
+</contribution>
++------------------------------------------+
+ 
+  In SCA a Composite is the unit of deployment. It contains components that in turn expose service which may be called locally or remotely. That way, components actually provide the business logic implementations for the exposed services. The component definition specifies the implementation library to use (a .dll file on Windows and a .so file on Linux) and the implementation header file (which describes the implementation class). Component references to other services can also be specified here. E.g. the Calculator Basiccalculator.composite file contains the following XML:
+
++------------------------------------------+
+<composite name="BasicCalculatorComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+
+  <component name="CalculatorImpl">
+    <implementation.cpp class="CalculatorImpl"	header="TrentinoExampleBasicCalculatorCalculatorImpl.h"scope="composite"
+	library="BasicCalculator" eagerInit="true"/>
+  </component>
+
+  <component name="DividerImpl">
+    <implementation.cpp 
+        class="DividerImpl"
+		header="TrentinoExampleBasicCalculatorDividerImpl.h" scope="composite"
+		library="BasicCalculator" eagerInit="true"/>
+   </component>
+</composite>
++------------------------------------------+
+
+	Components offer their functionality in form of services which can either be used by other components within the same composite or which can be made available for use outside the composite through bindings. Components may also depend on services provided by other components — these dependencies are called References. References can either be linked to services provided by other components in the same composite, or to services provided outside the composite, which can be provided by other composites. 
+	Each component must have a “.componentType” file in the contribution directory. CalculatorImpl.componentType and DividerImpl.componentType are the componentType files. The componenType files describes the services  provided by a component and the references it needs. Each component uses a C++ header file (namely; TrentinoExampleBasicCalculatorDividerImpl.h and TrentinoExampleBasicCalculatorCalculatorImpl.h). On the C++ level, a component is a class and implementing services means inheriting service interfaces (=abstract classes). Each service and reference in components and componentTypes uses a C++ header file as well. DividerImpl.componentType contains the following XML:
+
++------------------------------------------+
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <service name="Divider" >
+<interface.cpp class="Divider"			header="services/TrentinoExampleBasicCalculatorDivider.h"/>
+    </service>
+</componentType>
+
++------------------------------------------+
+
+	For compiling and installing the BasicCalculator contribution, it is assumed that you have already built and installed the Trentino source codes (Or you can directly use Trentino binaries). 
+
+** Windows
+
+========================================================
+
+	
+	[[1]] To compile the Basic Calculator contribution (to build BasicCalculator.dll and BasicCalculator.lib): 
+
+			* Open your CMake-GUI
+			
+			* select the BasicCalculator_Source directory for “source code”
+			
+			* select the BasicCalculator_Build for “binaries”
+			
+			* “Configure” your project (select VS 2010)
+			
+			* Finally “generate”. This generates a BasicCalculator.sln under the “BasicCalculator_Build” folder.
+			
+			* Open BasicCalculator.sln
+			
+			* Build “ALL_BUILD” project on Visual Studio 2010.
+			
+			* Build “INSTALL” project on Visual Studio 2010. Then you will have the SCA artifacts installed in “BasicCalculator” folder (the contents can be seen in the following figure).
+			
+		
+[images/GettingStartedGuide/4BasicCalculatorContribution.JPG] 
+
+	The overall process can be seen below:
+
+[images/GettingStartedGuide/5BasicCalculatorProcess.JPG] 
+
+	[[2]] Open a Command Console on your computer and run the command below
+		
+		trengen -cont C:\TrentinoContributions\BasicCalculator -d 
+
+		Trengen  puts generated code to BasicCalculatorGen.
+
+[images/GettingStartedGuide/6TrengenConsole.JPG] 
+
+	[[3]] Use generated CMake (in BasicCalculatorGen) file in CMake-GUI (configure&generate). You will have BasicCalculatorGen_Build (specified as binary folder in CMake-GUI).
+	
+	[[4]] Build and install the solution under BasicCalculatorGen_Build, so generated sca-contribution.conf, .dll of generated code(sca-contribution.dll) are placed under BasicCalculator/META-INF.
+	
+	[[5]] Open a Command Console on your computer and run the command below
+			
+		Trentinoconsole
+
+		*	Write “boot” for starting the runtime
+		
+		*	Then  write “install C:\TrentinoContributions\BasicCalculator some.uri”
+		
+		*	You have already installed BasicCalculator. Congratulations! :)
+
+[images/GettingStartedGuide/7TrentinoConsoleConsole.JPG] 
+
+
+** Linux
+
+========================================================
+
+	The steps to compile and install Basic Calculator contribution is coming soon...
+	

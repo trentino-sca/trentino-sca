@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section SYSTEM "../sdocbook.dtd">
+<section>
+	<title>Packaging and deployment of Trentino applications</title>
+	<para>This section is about contribution packaging, versioning and
+		modularity
+	</para>
+	<section>
+		<title>Packaging Contributions (applications)</title>
+		<para>
+			A contribution must be a folder with the following structure:
+		</para>
+		<programlisting>
+<![CDATA[		
+				ROOT/
+				 META-INF/
+				   sca-contribution.xml
+				   sca-contribution.dll
+				   sca-contribution.conf
+				 bin/
+				   some_dlls.dll
+				 any_folder_in_root/]]>
+		</programlisting>
+		<para>
+			The META-INF directory and all the sca-contribution.* files are
+			required by the runtime.
+			The default directory containing binaries is
+			/bin folder in the
+			contribution root directory. It is searched by
+			default
+			for binaries. To provide an alternative binary directory, developer
+			should
+			import the directory into the contribution using
+			<emphasis role="bold">import.cpp</emphasis>
+			tag in sca-contribution.xml. For more details see SCA specification
+			section 7.1 (Executable files)
+		</para>
+
+		<note>
+			<para>
+				Note: In the upcomming releases, developer will be able to provide a
+				contribution
+				in ZIP format during installation.
+			</para>
+		</note>
+
+	</section>
+
+	<section>
+		<title>Version and dependencies management</title>
+    <section>
+      <title>User Stories covered</title>
+      <orderedlist>
+				<listitem>
+					<para>
+The administrator wants to label a contribution with a version, 
+so that he explicitely knows which version of a contribution is running on a Runtime. 
+The administrator can therefore query for a contribution version using <emphasis role="strong">info command</emphasis>.
+The administrator can also up/downgrade a contributíon from one version to another one.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+The user wants to import and use services or artifacts from a third party contribution X. Since X migth be updated in the future by the administrator, the user wants to make sure 
+that the application stays consistent event after changes on X. 
+For this purpose the user request that X should have a version number, that is used to identify to correct X to be used. 
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+
+					</para>
+				</listitem>
+
+			</orderedlist>
+    </section>
+    
+       <section>
+      <title>Not covered User Stories</title>
+      <orderedlist>
+				<listitem>
+					<para>
+Multiple version of an application running on the same runtime.
+This is not covered, since a component name should be unique in the Trentino domain.
+					</para>
+				</listitem>
+        <listitem>
+					<para>
+Dependenciey check is not done by the runtime but only during validation and deployment by trengen.
+The runtime will only issue a warning if an application is updated while other applications depends on it. The user is then responsible updating dependent application accordingly.
+					</para>
+				</listitem>
+			</orderedlist>
+    </section>
+      
+		<section>
+			<title>Specifying version</title>
+			<para>
+				For Trentino the version of a contribution is provided in the <emphasis role="bold">version</emphasis> attribute of the contribution.
+				 If no version is provided.
+				The default value
+				<emphasis>0.0.0</emphasis>
+				is
+				assumed. The version uses OSGI format :
+				<emphasis>major.minor.micro.qualifier</emphasis>
+				,
+				where the qualifier part is optional.
+			</para>
+			<example>
+				<title>Example contribution namespace with version</title>
+				<programlisting>
+<![CDATA[<contribution xmlns:dividerNS="http://divider" version="1.0.0">
+...
+</contribution>]]>
+				</programlisting>
+			</example>
+		</section>
+		<section>
+			<title>Declaring and using dependencies </title>
+
+			<para>
+				A contribution can use resources provided by another contributions.
+				A resource is exported by a contribution using
+				<emphasis role="bold">export.cpp</emphasis>
+				tag. Then the exported resource is imported in another
+				contribution
+				using the
+				<emphasis role="bold">import.cpp</emphasis>
+				tag.
+        <inlinemediaobject>
+				<imageobject>
+					<imagedata contentwidth="15cm" scalefit="1"
+						fileref="../images/import_export.png" format="PNG" width="800" />
+				</imageobject>
+			</inlinemediaobject>
+			</para>
+			<example>
+				<title>Example exporting a subdirectory of the "logging" contribution
+					version
+					1.0.0
+				</title>
+				<programlisting language="xml">
+<![CDATA[<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:logging="LoggingServiceNamespace" version="1.0.0">
+   <deployable composite="logging:LoggingServiceComposite"/>
+   <export.cpp name="logging:metadata" path="services" />
+   <export.cpp name="logging:bin" path="bin" />
+</contribution>]]>
+				</programlisting>
+			</example>
+			<example>
+				<title>Example importing a subdirectory of the logging contribution version 1.0.0
+					into
+					calculator contribution version 2.0.0
+				</title>
+				<programlisting language="xml">
+<![CDATA[<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="BasicCalculatorNamespace" version="2.0.0">
+   <deployable composite="sample:BasicCalculatorComposite"/>
+   <import.cpp name="loggingmetadata" location="logging:metadata" version="1.0.0" />
+</contribution>]]>
+				</programlisting>
+			</example>
+      <example>
+        <title>
+          Example using the imported logging service
+        </title>
+        <programlisting language="xml">
+          <![CDATA[ <componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+      <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+	<reference name="LoggingService" multiplicity="1..1" autowire="false" target="LoggingServiceImpl/LoggingService">
+		<interface.cpp class="Trentino::Example::Logging::LoggingService" header="loggingmetadata:TrentinoExampleLoggingLoggingService.h"/>
+	</reference>
+</componentType>]]>
+        </programlisting>
+      </example>
+      <section>
+        <title>Validation of a contribution that depends on other ones</title>
+        <para>
+          Since contribution calculator depends on the logging contribution, we needs to find dependencies during the validation process. For that purpose
+          the user should provide the list of external contributions to Trengen.
+        </para>
+        <example>
+          <title>Validation of Basiccalculator</title>
+          <programlisting language="xml">
+            <![CDATA[
+            Trengen -cont BasicCalculator -ec LoggingService
+            ]]>
+          </programlisting>     
+        </example>
+        <para>
+          The <emphasis>-ec</emphasis> options of Trengen specifies a comma separated list of paths to the contributions on which BasicCalculator depends
+        </para>
+      </section>
+      <section>
+        <title>Error cases</title>
+      		<para>
+        
+				If during installation of contribution calculator, resource with
+				name
+				<emphasis> logging:metadata with version 1.0.0</emphasis>
+				is not available in the runtime, then the deployement of the
+				calculator will fails.
+			</para>
+      </section>
+	
+		</section>
+		<section>
+			<title>Updating a contribution</title>
+			<para>
+				The administrator wants to upgrade a contribution from one version to
+				another.
+				The update command from the console should update a
+				contribution to a
+				new version.
+				The format of the command is a follow:
+				<command>update "path_to_new_version" "contributionname"</command>
+
+			</para>
+			<orderedlist>
+				<listitem>
+					<para>
+						If the new and the old version are the same, Trentino return
+						and
+						error message. "No changes necessary: New version and old
+						version
+						are identical: "version number". Use refresh instead"
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						If the update is sucessfull. Trentino output an informative
+						message
+						with the new and the old version.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						If an error occured during update, Trentino will try to
+						reload the
+						old version of the application and will output an error
+						message
+						saying that it is making a rollback to
+						the old version
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						If the rollback was not successfull, then an error message is
+						shown
+						saying that the rollback is not successful and that admin
+						should
+						rollback manually
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						If a dependency is missing during update, then an error
+						message is printed.
+					</para>
+				</listitem>
+			</orderedlist>
+			<section>
+				<title>Removing a contribution from which other contributions depend
+				</title>
+				<para>
+					If The administrator remove a contribution from which other
+					contributions
+					depends. A warning stating that the
+					contribution
+					is used by other contributions is shown.
+					The list of
+					contributions using exported resources is shown in the
+					output.
+				</para>
+				<para>
+					Internally, absolute paths to resources from removed
+					contributions
+					still
+					exists and are stored in the contributions that
+					uses the
+					dependencies. Therefore dependent contributions
+					will still
+					continue working
+					normally as far as no resource is deleted
+					from the
+					file system.
+				</para>
+			</section>
+		</section>
+
+		<section>
+			<title>Providing dependencies to an executable file</title>
+			<para>
+				In this section, we describe how to specify where the
+				runtime can find all the executables, from which an executable is
+				dependent.
+				<phrase> Dependencies can be specify globally for all executables,
+					or locally by
+					executable. Local specification of dependencies
+					overwrite global
+					specification
+				</phrase>
+
+			</para>
+			<section>
+				<title>Specifying global dependencies at contribution level</title>
+				<para>
+					Deployer can specify a folder that contains all the executables,
+					from which
+					an executable is dependent.
+				</para>
+				<programlisting language="xml">
+<![CDATA[<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:ss="MyNamespace">
+   <deployable composite="ss:MyComposite"/>
+   <import.cpp name="dll-directory" location="../bin" />
+</contribution>]]>
+				</programlisting>
+
+				<para>
+					The tag import.cpp MUST have the name
+					<emphasis role="bold">dll-directory</emphasis>
+					. The required location can be relative to the contribution root
+					folder or absolute.
+					We recommend using a relative value since it is
+					more portable
+				</para>
+				<section>
+					<title>Changing dll-directory at install time</title>
+					<para>
+						In extreme case, the dll-directory might be different from
+						device to
+						device. The deployer still have the possibility to set the
+						dll-directory
+						without having to rebuild the contribution.
+						In the
+						META-INF directory, open the file sca-contribution.conf and
+						add
+						the
+						following line at the end of the file:
+					</para>
+					<programlisting language="text">
+<![CDATA[dir=<absolute/or relative/ path to the/ dll directory >]]>
+					</programlisting>
+					<para>
+						The runtime will not load your contribution if the given
+						directory
+						does
+						not exists.
+					</para>
+				</section>
+			</section>
+		</section>
+	</section>
+
+</section>

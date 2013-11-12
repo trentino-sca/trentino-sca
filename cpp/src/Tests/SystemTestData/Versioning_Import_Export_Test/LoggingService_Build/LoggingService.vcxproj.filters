@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\LoggingService_Source\LoggingServiceImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\LoggingService_Source\services\TrentinoExampleLoggingLoggingService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoggingService_Source\services\TrentinoExampleLoggingLoggingServiceImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\LoggingService_Source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LoggingService_Source\META-INF\sca-contribution.xml">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\LoggingService_Source\META-INF\Logging.composite">
+      <Filter>SCA Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{24D1BE84-AAC2-430D-9F3A-C01CF3E4AF07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{808A3671-D62D-4081-9BD2-3CF06F25E13D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCA Files">
+      <UniqueIdentifier>{0E117941-EE33-475A-A1E7-BE16C9E46228}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

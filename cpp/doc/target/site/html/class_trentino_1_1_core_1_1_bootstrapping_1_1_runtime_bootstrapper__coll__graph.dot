@@ -1,0 +1,44 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Core::Bootstrapping::RuntimeBootstrapper",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::Core::Bootstrapping::BootstrapperBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_core_1_1_bootstrapping_1_1_bootstrapper_base.html",tooltip="Central class to achieve bootstrapping to start/initialize and deinitialize/shutdown corresponding mo..."];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mModules" ,fontname="Helvetica"];
+  Node3 [label="std::vector\< ModulePtr \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" elements" ,fontname="Helvetica"];
+  Node4 [label="boost::intrusive_ptr\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1intrusive__ptr.html"];
+  Node1 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mBootstapper" ,fontname="Helvetica"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mRuntime" ,fontname="Helvetica"];
+  Node5 [label="boost::scoped_ptr\< RuntimeStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node6 [label="Trentino::Utils::Pattern::StaticClass\< TYPE, CONSTRUCTION \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_utils_1_1_pattern_1_1_static_class.html",tooltip="The StaticClass allows you to share data among boundaries if you like. The object wrapped by StaticCl..."];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mLogger" ,fontname="Helvetica"];
+  Node7 [label="boost::scoped_ptr\< LoggerStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mComponentImplementationManager" ,fontname="Helvetica"];
+  Node8 [label="boost::scoped_ptr\< ComponentImplementationManagerStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvoker" ,fontname="Helvetica"];
+  Node9 [label="boost::scoped_ptr\< InvokerStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node10 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mDomain" ,fontname="Helvetica"];
+  Node10 [label="boost::scoped_ptr\< DomainStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node11 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mConfiguration" ,fontname="Helvetica"];
+  Node11 [label="boost::shared_ptr\< const RuntimeConfiguration \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node12 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node12 [label="Trentino::Core::Bootstrapping::RuntimeConfiguration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_core_1_1_bootstrapping_1_1_runtime_configuration.html"];
+  Node13 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" DefaultConfigFilePath" ,fontname="Helvetica"];
+  Node13 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node14 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node15 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mConfiguration" ,fontname="Helvetica"];
+  Node15 [label="Trentino::Utils::Configuration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_utils_1_1_configuration.html"];
+  Node13 -> Node15 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mConfigFilePath" ,fontname="Helvetica"];
+  Node16 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mContributionLoader" ,fontname="Helvetica"];
+  Node16 [label="boost::scoped_ptr\< ContributionLoaderStaticClassPtr \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1scoped__ptr.html"];
+  Node6 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+}

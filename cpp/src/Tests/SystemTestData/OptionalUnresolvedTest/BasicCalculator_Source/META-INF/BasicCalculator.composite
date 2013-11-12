@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicCalculatorComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicCalculatorNamespace">
+
+  <component name="CalculatorImpl">
+ 
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculator" 
+		eagerInit="true"> 
+		  <function name="onInit" init="true" />
+		</implementation.cpp>
+  <reference name="LoggingService" multiplicity="0..1" autowire="false">
+  <interface.cpp class="Trentino::Example::Logging::LoggingService" header="services/TrentinoExampleLoggingLoggingService.h"/>
+  </reference>        
+        
+  </component>
+  
+    <component name="CalculatorImpl2">
+
+        
+  
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculator" 
+		eagerInit="true"> 
+		  <function name="onInit" init="true" />
+		</implementation.cpp>
+
+        <reference name="LoggingService" multiplicity="0..1"  target="LoggingServiceImpl/LoggingService" autowire="false">
+        <interface.cpp class="Trentino::Example::Logging::LoggingService" header="services/TrentinoExampleLoggingLoggingService.h"/>
+        </reference>
+        
+  </component>
+  
+    <component name="CalculatorImpl3">
+
+
+   
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculator" 
+		eagerInit="true"> 
+		  <function name="onInit" init="true" />
+		</implementation.cpp>
+
+            <reference name="LoggingService" multiplicity="0..1"  target="LoggingServiceImpl/LoggingService" autowire="false">
+            <interface.cpp class="Trentino::Example::Logging::LoggingService" header="services/TrentinoExampleLoggingLoggingService.h"/>
+        </reference>        
+        
+        
+  </component>
+  
+  
+ 
+<component name="LoggingServiceImpl">
+    <implementation.cpp
+        class="Trentino::Example::Logging::LoggingServiceImpl"
+		header="TrentinoExampleLoggingLoggingServiceImpl.h"
+		library="BasicCalculator"/>
+   <property name="loggerName" type="string" value="defaultLogger"></property>
+  </component>
+ 
+  
+  
+  
+</composite>

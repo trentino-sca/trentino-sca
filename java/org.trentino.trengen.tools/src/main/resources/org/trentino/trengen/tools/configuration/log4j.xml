@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<!--This is for all projects log output-->
+	<appender name="LogFile" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="Trengen.log"/>
+		<param name="MaxFileSize" value="3MB"/>
+		<param name="MaxBackupIndex" value="60"/>
+		<param name="Append" value="false"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-8p [%-10d{DATE}] %m  -  (%-10F: %M(..) :%L)  %-25c %n"/>
+		</layout>
+  		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+                        <param name="LevelMin" value="info"/>
+        </filter>	
+     </appender>
+
+	
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <!-- param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n"/-->
+      <param name="ConversionPattern" value="%-8p %m   %n"/> 
+    </layout> 
+         <filter class="org.apache.log4j.varia.LevelRangeFilter">
+                        <!-- param name="LevelMax" value="info"/-->
+                          <param name="LevelMin" value="info"/>
+         </filter>
+ </appender>
+
+	<root>
+		<!-- Level value defines the default logger level, for developers, it can be debug or trace, for productive environments it can be higher like error -->
+		<!-- predefined debug levels are  TRACE, DEBUG, INFO, WARN, ERROR and FATAL -->
+		<level value="INFO"/>
+
+		<!-- To direct all applications log messages to one file, uncomment  START  -->
+ 		<appender-ref ref="LogFile"/>
+		<appender-ref ref="console" />
+	</root>
+
+<!-- To direct all applications log messages to different files uncomment  END -->	
+
+<!-- 
+If you need to direct specific modules log messages to specific files, modify the following commented part and add to the xml file.
+-->	
+<!--  	
+	<appender name="<APPANDER-NAME>" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="logs/<LOG-FILE>"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<param name="MaxBackupIndex" value="1"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-25c %-8p [%-10d{DATE}] %m  -  (%-10F: %M(..) :%L) %n"/>
+		</layout>
+	</appender>
+	<logger name="<LOGGER-NAME>">
+		<level value="ALL"/>
+		<appender-ref ref="<APPANDER-NAME>"/>
+	</logger>
+-->
+
+</log4j:configuration>

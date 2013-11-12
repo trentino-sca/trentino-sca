@@ -1,0 +1,5 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:logging="LoggingServiceNamespace" version="1.0.0">
+   <deployable composite="logging:LoggingServiceComposite"/>
+   <export.cpp name="logging:metadata" path="services" />
+   <export.cpp name="logging:bin" path="bin" />
+</contribution>

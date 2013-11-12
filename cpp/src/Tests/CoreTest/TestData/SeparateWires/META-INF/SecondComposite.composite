@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="SecondComposite" 
+		   xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+		   targetNamespace="SeparateWiresTest">
+		   
+	  <component name="SecondCompositeComponentWithNoRef">
+		<implementation.cpp 
+			class="Trentino::Tests::Core::ComponentWithSvc"
+			header="TrentinoTestsCoreComponentWithSvc.h"
+			scope="composite"
+			library="BusinessLogic"/>	
+	 </component> 
+	 
+	 <component name="SecondCompositeComponentWith2Ref">
+		<implementation.cpp 
+			class="Trentino::Tests::Core::ComponentWith2Ref"
+			header="TrentinoTestsCoreComponentWith2Ref.h"
+			scope="composite"
+			library="BusinessLogic"/>	
+	 </component>   
+ 
+</composite>

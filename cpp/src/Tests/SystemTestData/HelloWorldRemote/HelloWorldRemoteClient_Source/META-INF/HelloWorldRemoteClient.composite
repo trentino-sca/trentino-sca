@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="HelloWorldRemoteClientComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="HelloWorldRemoteClientNamespace">
+  <component name="HelloWorldClient">
+    <implementation.cpp
+        class="Trentino::Example::HelloWorldRemote::HelloWorldClientImpl"
+		header="TrentinoExampleHelloWorldRemoteHelloWorldClientImpl.h"
+        scope="composite"
+		library="HelloWorldRemoteClient"
+		eagerInit="true">
+      <function name="callHello" init="true" />
+    </implementation.cpp>
+   <reference name="HelloWorld" multiplicity="0..1">
+		<binding.sca uri="tcp://localhost:5342/HelloWorldImpl/HelloWorld"/>
+    </reference>
+  </component>
+</composite>

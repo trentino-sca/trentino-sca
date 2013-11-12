@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="local" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd2="http://www.w3.org/2001/XMLSchemaT">
+
+<service name="HelloWorldService" promote="MyHelloWorldComponent/HelloWorldService">
+		<binding.sca name="sameName"/>
+    	<binding.sca name="sameName"/>
+</service>
+
+<reference name="compositeRef" promote="MyClientComponent/HelloWorldService" multiplicity="0..1">
+<interface.cpp class="Child" 
+                   header="Child.h"/>
+</reference>
+
+<reference name="compositeRef2" promote="MyClientComponent/HelloWorldService" multiplicity="1..1">
+<interface.cpp class="Ipek" 
+                   header="/Services/Ipek.h"/>
+</reference>
+
+<reference name="compositeRef3" promote="MyClientComponent/HelloWorldService" multiplicity="1..n">
+<interface.cpp class="Ipek" 
+                   header="/Services/Ipek.h"/>
+</reference>
+
+<reference name="compositeRef4" promote="MyClientComponent/HelloWorldService" target="aa" multiplicity="1..1">
+<interface.cpp class="Ipek" 
+                   header="/Services/Ipek.h"/>
+                   <binding.sca name="sameName"/>
+</reference>
+
+  <component name="MyHelloWorldComponent">
+    <implementation.cpp 
+        class="HelloWorldComponent"
+        library="HelloWorldComponent"
+        path="./HelloWorldComponent"
+        header="HelloWorldComponent4srw.h"/>
+	<service name="HelloWorldServiceComp" >
+    <interface.cpp class="HelloWorldService" 
+                   header="/Services/HelloWorldService.h"
+                   callbackHeader="CallBackHeader.h"
+                   callbackClass="CallbackHeaderClass"
+                   remotable="true">
+    <function name="getSomething" exclude ="true"/>
+	<function name="setSomething" exclude="true"/>
+	<callbackFunction name="getSomething" exclude ="true"/>
+	<callbackFunction name="setSomething" exclude="true"/>
+	</interface.cpp>
+    <callback>
+    	<binding.sca name="sameName"/>
+    	<binding.sca name="sameName"/>
+    </callback>
+  </service>
+  </component>
+
+  <component name="MyClientComponent">
+    <implementation.cpp 
+        class="ClientComponent"
+        library="ClientComponent"
+        path="./ClientComponent"
+        header="ClientComponent4srw.h"
+        scope="composite"/>
+     <reference name="HelloWorldService" multiplicity="0..1" target="aa bb">
+     <interface.cpp class="Base" header="Base.h"/>
+     </reference>
+     <reference name="HelloWorldService2" multiplicity="1..1" target="aa bb"/>
+     <reference name="HelloWorldService3" multiplicity="1..n"/>
+     <reference name="HelloWorldService4" target="aa">
+     <binding.sca name="sameName"/>
+     </reference>
+  </component>
+  <!--component name="AccountDataService">
+	<implementation.composite name="local2"/>
+ </component-->
+</composite>

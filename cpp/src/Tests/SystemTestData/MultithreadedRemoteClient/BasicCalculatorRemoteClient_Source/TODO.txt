@@ -1,0 +1,3 @@
+D:\Trentino\trentino\DEV\cpp\3rdparty\x86_windows\vc10\boost_1_44\lib\debug should be added to linker additional directories.
+
+D:\Trentino\trentino\DEV\cpp\3rdparty\x86_windows\vc10\boost_1_44\include should be added to include directories

@@ -1,0 +1,10 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Trentino::Tests::Reflection::TestBaseClassA",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::Tests::Reflection::TestBaseClassSuper",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_tests_1_1_reflection_1_1_test_base_class_super.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Trentino::Tests::Reflection::TestClassMulitpleDerived1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_tests_1_1_reflection_1_1_test_class_mulitple_derived1.html"];
+}

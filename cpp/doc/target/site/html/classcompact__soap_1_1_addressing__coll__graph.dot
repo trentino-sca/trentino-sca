@@ -1,0 +1,23 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compact_soap::Addressing",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" from_\nmessageid_\naction_\nto_" ,fontname="Helvetica"];
+  Node2 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" endpointreference_\nfaultto_\nreplyto_" ,fontname="Helvetica"];
+  Node4 [label="compact_soap::Addressing_EndpointReferenceType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___endpoint_reference_type.html"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" referenceparameters_\nreferenceproperties_" ,fontname="Helvetica"];
+  Node5 [label="compact_soap::Addressing_MultipleAny",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___multiple_any.html"];
+  Node5 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node2 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" porttype_\naddress_" ,fontname="Helvetica"];
+  Node4 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node6 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" servicename_" ,fontname="Helvetica"];
+  Node6 [label="compact_soap::Addressing_ServiceNameType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___service_name_type.html"];
+  Node2 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" portname_" ,fontname="Helvetica"];
+  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+}

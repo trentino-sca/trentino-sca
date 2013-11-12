@@ -1,0 +1,6 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:PreferenceService="PreferenceServiceNamespace" version="1.0.0">
+   <deployable composite="PreferenceService:PreferenceServiceComposite"/>
+   <import.cpp name="dll-directory" location="./bin"/>
+   <export.cpp name="PreferenceService:metadata" path="services" />
+   <export.cpp name="PreferenceService:bin" path="bin" />
+</contribution>

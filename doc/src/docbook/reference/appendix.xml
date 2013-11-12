@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE appendix SYSTEM "docbook.dtd" >
+<appendix label="Appendix A">
+	<title>Validated SCA constraints</title>
+	<para>
+		<itemizedlist>
+			<listitem>
+				<para>[ASM40001]: The extension of a
+					componentType side file name
+					MUST
+					be .componentType
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40003] The @name attribute of a service child element of a
+				componentType MUST be unique amongst the service
+				elements of that componentType.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40004] The @name attribute of a reference child element of a
+				componentType MUST be unique amongst the reference
+				elements of that componentType.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40005] The @name attribute of a property child element of a 
+				componentType MUST be unique amongst the property
+				elements of that componentType.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40007] The value of the property @type attribute MUST be the QName of
+				an XML schema type.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40010] A single property element MUST NOT contain both a @type
+				attribute and an @element attribute
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM40011] When the componentType has @mustSupply="true" for a
+				property element, a component using the implementation MUST
+				supply a value for the property since the implementation has no
+				default value for the property.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50001]: The
+					@name
+					attribute of a component child
+					element of a
+					composite MUST
+					be
+					unique
+					amongst the component elements of
+					that
+					composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50002] The @name attribute of a service element of a component
+				MUST be unique amongst the service elements of that
+				component.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50003] The @name attribute of a service element of a component
+				MUST match the @name attribute of a service element of the 
+				componentType of the implementation child element of the component.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50004] If an interface is declared for a component service, the interface
+				MUST provide a compatible subset of the interface declared for
+				the equivalent service in the componentType of the
+				implementation
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50007] The @name attribute of a service element of a component
+				MUST be unique amongst the service elements of that component
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50008] The @name attribute of a reference element of a component
+				MUST match the @name attribute of a reference element of the
+				componentType of the implementation child element of the
+				component.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50009] The value of multiplicity for a component reference MUST only be
+				equal or further restrict any value for the multiplicity of the
+				reference with the same name in the componentType of the
+				implementation, where further restriction means 0..n to 0..1 or
+				1..n to 1..1.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50010] If @wiredByImpl="true" is set for a reference, then the reference
+				MUST NOT be wired statically within a composite, but left unwired.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50013] If @wiredByImpl="true", other methods of specifying the target
+				service MUST NOT be used.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50014] If @autowire="true", the autowire procedure MUST only be used 
+				if no target is identified by any of the other ways listed above. It is
+				not an error if @autowire="true" and a target is also defined 
+				through some other means, however in this case the autowire
+				procedure MUST NOT be used.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50026] If a reference has a value specified for one or more target
+				services in its @target attribute, there MUST NOT be any child
+				binding elements declared for that reference
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50027] If the @value attribute of a component property element is
+				declared, the type of the property MUST be an XML Schema
+				simple type and the @value attribute MUST contain a single
+				value of that type.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50028] If the value subelement of a component property is specified, the
+				type of the property MUST be an XML Schema simple type or an
+				XML schema complex type.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50029] If a component property value is declared using a child element of
+				the property element, the type of the property MUST be an
+				XML Schema global element and the declared child element
+				MUST be an instance of that global element.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50031] The @name attribute of a property element of a component
+				MUST be unique amongst the property elements of that component.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50032] If a property is single-valued, the value subelement MUST
+				NOT occur more than once.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50033] A property value subelement MUST NOT be used when the
+				@value attribute is used to specify the value for that property.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50034] If any "wire" element with its @replace attribute set to "true" has
+				a particular reference specified in its @source attribute, the value
+				of the @target attribute for that reference MUST be ignored and 
+				MUST NOT be used to define target services for that reference
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50035] A single property element MUST NOT contain both a @type
+				attribute and an @element attribute.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50036] The property type specified for the property element of a
+				component MUST be compatible with the type of the property
+				with the same @name declared in the component type of the
+				implementation used by the component. If no type is declared in
+				the component property element, the type of the property
+				declared in the componentType of the implementation MUST be used.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50037] The @name attribute of a property element of a component
+				MUST match the @name attribute of a property element of the
+				componentType of the implementation child element of the component.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50038] In these cases where the types of two property elements are
+				matched, the types declared for the two "property" elements
+				MUST be compatible.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50039] A reference with multiplicity 0..1 MUST have no more than one
+				target service defined.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50040] A reference with multiplicity 1..1 MUST have exactly one target
+				service defined.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50041] A reference with multiplicity 1..n MUST have at least one target
+				service defined.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50042] If a component reference has @multiplicity 0..1 or 1..1 and
+				@nonOverridable==true, then the component reference MUST
+				NOT be promoted by any composite reference.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM50044] When a property has multiple values set, all the values MUST be
+				contained within a single property element.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60001]: A
+					composite
+					@name attribute value MUST be
+					unique
+					within
+					the namespace
+					of
+					the
+					composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60002] @local="true" for a composite means that all the components
+				within the composite MUST run in the same operating system process.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60003] The name of a composite service element MUST be unique
+				across all the composite services in the composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60004] A composite service element's @promote attribute MUST
+				identify one of the component services within that composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60005] If a composite service interface is specified it MUST be the same
+				or a compatible subset of the interface provided by the promoted component service.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60006] The name of a composite "reference" element MUST be unique
+				across all the composite references in the composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60007] Each of the URIs declared by a composite reference's @promote
+				attribute MUST identify a component reference within the
+				composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60008] the interfaces of the component references promoted by a
+				composite reference MUST be the same, or if the composite
+				reference itself declares an interface then each of the component
+				reference interfaces MUST be a compatible subset of the
+				composite reference interface..
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60011] The multiplicity of a composite reference MUST be equal to or
+				further restrict the multiplicity of each of the component
+				references that it promotes, with the exception that the multiplicity
+				of the composite reference does not have to require a target if
+				there is already a target on the component reference. This
+				means that a component reference with multiplicity 1..1 and a
+				target can be promoted by a composite reference with multiplicity
+				0..1, and a component reference with multiplicity 1..n and one or
+				more targets can be promoted by a composite reference with
+				multiplicity 0..n or 0..1.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60012] If a composite reference has an interface specified, it MUST
+				provide an interface which is the same or which is a compatible
+				superset of the interface(s) declared by the promoted component reference(s).
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60013] If no interface is declared on a composite reference, the interface
+				from one of its promoted component references MUST be used
+				for the component type associated with the composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60014] The @name attribute of a composite property MUST be unique
+				amongst the properties of the same composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60031] The SCA runtime MUST raise an error if the composite resulting
+				from the inclusion of one composite into another is invalid.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60032] For a composite used as a component implementation, each
+composite service offered by the composite MUST promote a
+component service of a component that is within the composite.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60033] For a composite used as a component implementation, every
+component reference of components within the composite with
+a multiplicity of 1..1 or 1..n MUST be wired or promoted.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60034] For a composite used as a component implementation, all
+properties of components within the composite, where the
+underlying component implementation specifies
+"mustSupply=true" for the property, MUST either specify a value
+for the property or source the value from a composite property.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60035] All the component references promoted by a single composite
+reference MUST have the same value for @wiredByImpl.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60036] If the @wiredByImpl attribute is not specified on the composite
+reference, the default value is "true" if all of the promoted
+component references have a wiredByImpl value of "true", and
+the default value is "false" if all the promoted component
+references have a wiredByImpl value of "false". If the
+@wiredByImpl attribute is specified, its value MUST be "true" if all
+of the promoted component references have a wiredByImpl value
+of "true", and its value MUST be "false" if all the promoted
+component references have a wiredByImpl value of "false".
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60037] include processing MUST take place before the processing of
+the @promote attribute of a composite reference is performed.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60038] include processing MUST take place before the processing of
+the @promote attribute of a composite service is performed.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60039]include processing MUST take place before the @source and
+@target attributes of a wire are resolved.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60040] A single property element MUST NOT contain both a @type
+attribute and an @element attribute.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60041] If the included composite has the value true for the attribute
+@local then the including composite MUST have the same value
+for the @local attribute, else it is an error.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60042] The @name attribute of an include element MUST be the QName
+of a composite in the SCA Domain.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60043] The interface declared by the target of a wire MUST be a
+compatible superset of the interface declared by the source of the wire.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60045] An SCA runtime MUST introspect the componentType of a
+Composite used as a Component Implementation following the
+rules defined in the section "Component Type of a Composite
+used as a Component Implementation"
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60047] If there is no component service with @name corresponding to
+service-name, the SCA runtime MUST raise an error.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60048] If service-name is not present, the target component MUST
+have one and only one service with an interface that is a
+compatible superset of the wire source’s interface and satisifies
+the policy requirements of the wire source, and the SCA runtime
+MUST use this service for the wire.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60049] If binding-name is present, the binding subelement of the
+target service with @name corresponding to binding-name
+MUST be used for the wire.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM60050] If there is no binding subelement of the target service with
+@name corresponding to binding-name, the SCA runtime
+MUST raise an error.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM80002] Remotable service Interfaces MUST NOT make use of method
+or operation overloading.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM80003] If a remotable service is called locally or remotely, the SCA
+container MUST ensure sure that no modification of input
+messages by the service or post-invocation modifications to return messages are seen by the caller.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM90002] When a service or reference has multiple bindings, all noncallback
+bindings of the service or reference MUST have unique
+names, and all callback bindings of the service or reference
+MUST have unique names.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM90005] For a binding.sca of a component service, the @uri attribute
+MUST NOT be present.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP110001]: An SCA implementation MUST
+					reject a
+					composite file
+					that
+					does not conform to
+					http://docs.oasis-open.org/opencsa/sca/200912/sca-interface-cpp-1.1.xsd
+					or
+					http://docs.oasis-open.org/opencsa/sca/200912/sca-implementation-cpp-1.1.xsd.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP110002]: An SCA implementation MUST reject a
+					componentType
+					file
+					that
+					does not conform to
+					http://docs.oasis-open.org/opencsa/sca/200912/sca-interface-cpp-1.1.xsd.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP110003]: An SCA implementation MUST reject a contribution
+					file
+					that
+					does not conform to
+					http://docs.oasis-open.org/opencsa/sca/200912/sca-contribution-cpp-1.1.xsd
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12001] For any contribution packaging it MUST be possible to present
+the artifacts of the packaging to SCA as a hierarchy of resources
+based off of a single root
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12002] Within any contribution packaging A directory resource SHOULD
+exist at the root of the hierarchy named META-INF
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12003] Within any contribution packaging a document SHOULD exist
+directly under the META-INF directory named sca-contribution.xml which lists the SCA Composites within the
+contribution that are runnable.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12005] Where present, artifact-related or packaging-related artifact
+resolution mechanisms MUST be used by the SCA runtime to
+resolve artifact dependencies.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12006] SCA requires that all runtimes MUST support the ZIP packaging
+format for contributions.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12010] Where present, non-SCA artifact resolution mechanisms MUST
+be used by the SCA runtime in precendence to the SCA
+mechanisms
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12021] The SCA runtime MUST raise an error if an artifact cannot be
+resolved using these mechanisms, if present.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12025] The SCA runtime MUST raise an error if an artifact cannot be
+resolved by using artifact-related or packaging-related artifact
+resolution mechanisms, if present, by searching locations
+identified by the import statements of the contribution, if present,
+and by searching the contents of the contribution.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12027] An SCA runtime MUST reject files that do not conform to the
+schema declared in sca-contribution.xsd.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12032] Checking for errors in artifacts MUST NOT be done for artifacts in
+the Installed state (ie where the artifacts are simply part of
+installed contributions)
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM12033] Errors in artifacts MUST be detected either during the
+Deployment of the artifacts, or during the process of putting the
+artifacts into the Running state,
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM13001] An SCA runtime MUST reject a composite file that does not
+conform to the sca-core.xsd, sca-interface-wsdl.xsd, scaimplementation-
+composite.xsd and sca-binding-sca.xsd schema.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM13002] An SCA runtime MUST reject a contribution file that does not
+conform to the sca-contribution.xsd schema.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[ASM13003] An SCA runtime MUST reject a definitions file that does not
+conform to the sca-definitions.xsd schema.
+				</para>
+			</listitem>		
+			<listitem>
+				<para>[CPP20007]: The @name attribute of a function child element of a
+					interface.cpp MUST be unique amongst the function elements of that
+					interface.cpp.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP20008]: The @name attribute of a callbackFunction
+					child
+					element of a
+					interface.cpp MUST be unique amongst the
+					callbackFunction elements of
+					that interface.cpp.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP20009]: The name of
+					the componentType file for a C++
+					implementation MUST match
+					the class
+					name (excluding any namespace
+					definition) of the
+					implementations as
+					defined by the @class attribute
+					of the
+					implementation.cpp element.
+				</para>
+			</listitem>
+			<listitem>
+				<para>[CPP20010]: The @name attribute of a function child element of a
+					implementation.cpp MUST be unique amongst the function elements of
+					that
+					implementation.
+				</para>
+			</listitem>
+			
+		</itemizedlist>
+	</para>
+
+</appendix>

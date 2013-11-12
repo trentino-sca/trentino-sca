@@ -1,0 +1,14 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Trentino::Binding::SCA::SCABindingServer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCAContext" ,fontname="Helvetica"];
+  Node2 [label="boost::shared_ptr\< Context \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node3 [label="Trentino::Binding::SCA::Context",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_context.html",tooltip="This clas contains external dependencies of the SCA Binding Module."];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvoker" ,fontname="Helvetica"];
+  Node4 [label="boost::shared_ptr\< InvokerBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServiceRegistry" ,fontname="Helvetica"];
+  Node5 [label="boost::shared_ptr\< ServiceRegistryBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "../sdocbook.dtd">
+<article>
+	<title>Trentino Documentation</title>
+	<section>
+		<title>Trentino Documentation</title>
+		<para>
+		    The user documentation is available <ulink url="html-single/index.html">here</ulink>.
+		</para>
+		<para>
+        The complete API (doxygen and javadocs) are available as part of the Trentino download.
+		</para>
+	</section>
+</article>

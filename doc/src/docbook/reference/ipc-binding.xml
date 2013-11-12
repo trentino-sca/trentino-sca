@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "docbook.dtd">
+<chapter>
+	<title>Trentino Inter process communication binding using shared memory</title>
+<section>
+<title>Overview</title>
+<para>
+This chapter introduces how to configure Trentino to communicate using Interprocess communication.
+
+</para>
+<para>
+Trentino implements Remote Procedural Calls (RPC) using direct interprocess communication between Trentino runtimes.
+The transport is implemented by internally using shared memory, but it is completely transparent for the end user.
+</para>
+</section>
+<section>
+<title>Simple synchronous RPC using Trentino IPC Binding</title>
+<para>
+This chapter introduces how to configure Trentino to communicate using Interprocess communication.
+</para>
+<para>
+Trentino implements Remote Procedural Calls (RPC) using direct interprocess communication  based on memory sharing between Trentino runtimes.
+The memory sharing is completely transparent for the end user.
+</para>
+</section>
+
+</chapter>

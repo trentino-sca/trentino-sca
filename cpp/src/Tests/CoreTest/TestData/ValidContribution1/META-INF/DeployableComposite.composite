@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="DeployableComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+		   targetNamespace="ValidContribution1Namespace">
+
+	<component name="BuilderImplComponent">
+		<implementation.cpp class="Trentino::Example::ValidContribution1::BuilderImpl"                                                                      
+                        header="BuilderImpl.h"
+                        library="BusinessLogic"/>			
+	</component>
+
+  <component name="LoggerImplComponent">
+    <implementation.cpp class="Trentino::Example::ValidContribution1::LoggerImpl"
+                        header="LoggerImpl.h"
+                        library="BusinessLogic"/>   
+  </component>
+</composite>

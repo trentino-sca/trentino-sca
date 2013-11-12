@@ -1,0 +1,115 @@
+package compact_soap;
+
+message doubleField {
+	optional string name=1;
+	optional double value=2;
+}
+
+
+message floatField {
+	optional string name=1;
+	optional float value=2;
+}
+
+
+message int32Field {
+	optional string name=1;
+	optional int32 value=2;
+}
+
+
+message int64Field {
+	optional string name=1;
+	optional int64 value=2;
+}
+
+
+message uint32Field {
+	optional string name=1;
+	optional uint32 value=2;
+}
+
+
+message uint64Field {
+	optional string name=1;
+	optional uint64 value=2;
+}
+
+
+message sint32Field {
+	optional string name=1;
+	optional sint32 value=2;
+}
+
+
+message sint64Field {
+	optional string name=1;
+	optional sint64 value=2;
+}
+
+
+message fixed32Field {
+	optional string name=1;
+	optional fixed32 value=2;
+}
+
+
+message fixed64Field {
+	optional string name=1;
+	optional fixed64 value=2;
+}
+
+
+message sfixed32Field {
+	optional string name=1;
+	optional sfixed32 value=2;
+}
+
+
+message sfixed64Field {
+	optional string name=1;
+	optional sfixed64 value=2;
+}
+
+
+message boolField {
+	optional string name=1;
+	optional bool value=2;
+}
+
+
+message stringField {
+	optional string name=1;
+	optional string value=2;
+}
+
+
+message bytesField {
+	optional string name=1;
+	optional bytes value=2;
+}
+
+message structureField {
+optional string name=1;
+optional structure value=2;
+}
+
+
+message structure {
+	repeated  doubleField fieldsOfDouble=1;
+	repeated  floatField fieldsOfFloat=2;
+	repeated  int32Field fieldsOfInt32=3;
+	repeated  int64Field fieldsOfInt64=4;
+	repeated  uint32Field fieldsOfUint32=5;
+	repeated  uint64Field fieldsOfUint64=6;
+	repeated  sint32Field fieldsOfSint32=7;
+	repeated  sint64Field fieldsOfSint64=8;
+	repeated  fixed32Field fieldsOfFixed32=9;
+	repeated  fixed64Field fieldsOfFixed64=10;
+	repeated  sfixed32Field fieldsOfSfixed32=11;
+	repeated  sfixed64Field fieldsOfSfixed64=12;
+	repeated  boolField fieldsOfBool=13;
+	repeated  stringField fieldsOfString=14;
+	repeated  bytesField fieldsOfBytes=15;
+	repeated  structureField fieldsOfObjects=16;
+}

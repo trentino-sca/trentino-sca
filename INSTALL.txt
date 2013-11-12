@@ -1,0 +1,40 @@
+installing from source code
+
+Prerequisite:
+
+0-Prerequisite
+1-Cmake at least version 2.6
+2-Java at version 1.6. Version 1.7 is NOT YET supported.
+3-Maven version 3.0.2 or above
+Windows specific prerequisites
+1-Visual Studio 2010
+NOTE: third party libraries for windows are allready compiled
+Linux Specific prerequisites
+1-GNU compiler toolchain for C++
+2-BJAM
+3-TAR
+NOTE: The installer requires internet connection to download dependencies and compile it for your linux distribution. 
+The requirements will be downloaded in the folder cpp/3rdparty/source.
+
+TO Install the documentation, Doxygen is also required. But you can skip this if you don´t want to generate source code documentation
+
+Make sure that the applications above are in your PATH.
+The install scripts requires connection with internet to downla
+
+Installation
+1-download the source code from sourceforge
+2-Unzipp the source in a writable location
+
+On Windows
+ 2-1 Open the visual studio 2010 command prompt (See http://msdn.microsoft.com/de-de/library/ms229859.aspx)
+ 2-2 change to the unzipped directory
+ 2-3 run install.bat
+ 
+ On Linux
+ run install.sh
+ 
+ 
+ 
+ Troubleshoot
+ 
+ 

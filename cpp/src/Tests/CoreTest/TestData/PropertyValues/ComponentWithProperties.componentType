@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--******************************************************************************
+Trentino - A C++ based lightweight, non-invasive SCA runtime.
+Copyright 2011 by Siemens AG. All rights reserved.
+http://trentino.sourceforge.net/
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*******************************************************************************-->
+
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+			         xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--@many=false-->
+  <property name="_anySimpleType_S" type="xsd:anySimpleType" 		many="false" mustSupply="false"><value>0</value></property>
+  <property name="_anyURI_S" type="xsd:anyURI" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_base64Binary_S" type="xsd:base64Binary"		  many="false" mustSupply="false"><value>0000</value></property>
+  <property name="_boolean_S" type="xsd:boolean" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_byte_S" type="xsd:byte" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_date_S" type="xsd:date" 				    many="false" mustSupply="false"><value>2012-02-27</value></property>
+  <property name="_dateTime_S" type="xsd:dateTime" 			  many="false" mustSupply="false"><value>2010-02-27T17:48:00</value></property>
+  <property name="_decimal_S" type="xsd:decimal" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_double_S" type="xsd:double" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_duration_S" type="xsd:duration" 			  many="false" mustSupply="false"><value>P1Y</value></property>
+  <property name="_ENTITY_S" type="xsd:ENTITY" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_ENTITIES_S" type="xsd:ENTITIES" 			  many="false" mustSupply="false"><value>0</value></property>
+  <property name="_float_S" type="xsd:float" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_gDay_S" type="xsd:gDay" 				    many="false" mustSupply="false"><value>---29</value></property>
+  <property name="_gMonth_S" type="xsd:gMonth" 			    many="false" mustSupply="false"><value>--08</value></property>
+  <property name="_gMonthDay_S" type="xsd:gMonthDay" 			  many="false" mustSupply="false"><value>--08-29</value></property>
+  <property name="_gYear_S" type="xsd:gYear" 				    many="false" mustSupply="false"><value>1985</value></property>
+  <property name="_gYearMonth_S" type="xsd:gYearMonth" 		  many="false" mustSupply="false"><value>1985-08</value></property>
+  <property name="_hexBinary_S" type="xsd:hexBinary" 			  many="false" mustSupply="false"><value>00</value></property>
+  <property name="_ID_S" type="xsd:ID" 				      many="false" mustSupply="false"><value>0</value></property>
+  <property name="_IDREF_S" type="xsd:IDREF" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_IDREFS_S" type="xsd:IDREFS" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_int_S" type="xsd:int" 				      many="false" mustSupply="false"><value>0</value></property>
+  <property name="_integer_S" type="xsd:integer" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_language_S" type="xsd:language" 			  many="false" mustSupply="false"><value>en</value></property>
+  <property name="_long_S" type="xsd:long" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_Name_S" type="xsd:Name" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_NCName_S" type="xsd:NCName" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_negativeInteger_S" type="xsd:negativeInteger" 	many="false" mustSupply="false"><value>-23</value></property>
+  <property name="_NMTOKEN_S" type="xsd:NMTOKEN" 			    many="false" mustSupply="false"><value>CMS</value></property>
+  <property name="_NMTOKENS_S" type="xsd:NMTOKENS" 			  many="false" mustSupply="false"><value>CMS</value></property>
+  <property name="_nonNegativeInteger_S" type="xsd:nonNegativeInteger" many="false" mustSupply="false"><value>23</value></property>
+  <property name="_nonPositiveInteger_S" type="xsd:nonPositiveInteger" many="false" mustSupply="false"><value>0</value></property>
+  <property name="_normalizedString_S" type="xsd:normalizedString" 	many="false" mustSupply="false"><value>0</value></property>
+  <property name="_NOTATION_S" type="xsd:NOTATION" 			  many="false" mustSupply="false"><value>0</value></property>
+  <property name="_positiveInteger_S" type="xsd:positiveInteger" 	many="false" mustSupply="false"><value>23</value></property>
+  <property name="_QName_S" type="xsd:QName" 				    many="false" mustSupply="false"><value>xsd:QName</value></property>
+  <property name="_short_S" type="xsd:short" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_string_S" type="xsd:string" 			    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_time_S" type="xsd:time" 				    many="false" mustSupply="false"><value>17:48:00</value></property>
+  <property name="_token_S" type="xsd:token" 				    many="false" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedByte_S" type="xsd:unsignedByte" 		many="false" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedInt_S" type="xsd:unsignedInt" 		  many="false" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedLong_S" type="xsd:unsignedLong" 		many="false" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedShort_S" type="xsd:unsignedShort" 		many="false" mustSupply="false"><value>0</value></property>
+
+  <!--@many=true-->
+  <property name="_anySimpleType_M" type="xsd:anySimpleType" 		many="true" mustSupply="false"><value>0</value></property>
+  <property name="_anyURI_M" type="xsd:anyURI" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_base64Binary_M" type="xsd:base64Binary"		  many="true" mustSupply="false"><value>0000</value></property>
+  <property name="_boolean_M" type="xsd:boolean" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_byte_M" type="xsd:byte" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_date_M" type="xsd:date" 				    many="true" mustSupply="false"><value>2012-02-27</value></property>
+  <property name="_dateTime_M" type="xsd:dateTime" 			  many="true" mustSupply="false"><value>2010-02-27T17:48:00</value></property>
+  <property name="_decimal_M" type="xsd:decimal" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_double_M" type="xsd:double" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_duration_M" type="xsd:duration" 			  many="true" mustSupply="false"><value>P1Y</value></property>
+  <property name="_ENTITY_M" type="xsd:ENTITY" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_ENTITIES_M" type="xsd:ENTITIES" 			  many="true" mustSupply="false"><value>0</value></property>
+  <property name="_float_M" type="xsd:float" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_gDay_M" type="xsd:gDay" 				    many="true" mustSupply="false"><value>---29</value></property>
+  <property name="_gMonth_M" type="xsd:gMonth" 			    many="true" mustSupply="false"><value>--08</value></property>
+  <property name="_gMonthDay_M" type="xsd:gMonthDay" 			  many="true" mustSupply="false"><value>--08-29</value></property>
+  <property name="_gYear_M" type="xsd:gYear" 				    many="true" mustSupply="false"><value>1985</value></property>
+  <property name="_gYearMonth_M" type="xsd:gYearMonth" 		  many="true" mustSupply="false"><value>1985-08</value></property>
+  <property name="_hexBinary_M" type="xsd:hexBinary" 			  many="true" mustSupply="false"><value>00</value></property>
+  <property name="_ID_M" type="xsd:ID" 				      many="true" mustSupply="false"><value>0</value></property>
+  <property name="_IDREF_M" type="xsd:IDREF" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_IDREFS_M" type="xsd:IDREFS" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_int_M" type="xsd:int" 				      many="true" mustSupply="false"><value>0</value></property>
+  <property name="_integer_M" type="xsd:integer" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_language_M" type="xsd:language" 			  many="true" mustSupply="false"><value>en</value></property>
+  <property name="_long_M" type="xsd:long" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_Name_M" type="xsd:Name" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_NCName_M" type="xsd:NCName" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_negativeInteger_M" type="xsd:negativeInteger" 	many="true" mustSupply="false"><value>-23</value></property>
+  <property name="_NMTOKEN_M" type="xsd:NMTOKEN" 			    many="true" mustSupply="false"><value>CMS</value></property>
+  <property name="_NMTOKENS_M" type="xsd:NMTOKENS" 			  many="true" mustSupply="false"><value>CMS</value></property>
+  <property name="_nonNegativeInteger_M" type="xsd:nonNegativeInteger" many="true" mustSupply="false"><value>23</value></property>
+  <property name="_nonPositiveInteger_M" type="xsd:nonPositiveInteger" many="true" mustSupply="false"><value>0</value></property>
+  <property name="_normalizedString_M" type="xsd:normalizedString" 	many="true" mustSupply="false"><value>0</value></property>
+  <property name="_NOTATION_M" type="xsd:NOTATION" 			  many="true" mustSupply="false"><value>0</value></property>
+  <property name="_positiveInteger_M" type="xsd:positiveInteger" 	many="true" mustSupply="false"><value>23</value></property>
+  <property name="_QName_M" type="xsd:QName" 				    many="true" mustSupply="false"><value>xsd:QName</value></property>
+  <property name="_short_M" type="xsd:short" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_string_M" type="xsd:string" 			    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_time_M" type="xsd:time" 				    many="true" mustSupply="false"><value>17:48:00</value></property>
+  <property name="_token_M" type="xsd:token" 				    many="true" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedByte_M" type="xsd:unsignedByte" 		many="true" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedInt_M" type="xsd:unsignedInt" 		  many="true" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedLong_M" type="xsd:unsignedLong" 		many="true" mustSupply="false"><value>0</value></property>
+  <property name="_unsignedShort_M" type="xsd:unsignedShort" 		many="true" mustSupply="false"><value>0</value></property>
+</componentType>

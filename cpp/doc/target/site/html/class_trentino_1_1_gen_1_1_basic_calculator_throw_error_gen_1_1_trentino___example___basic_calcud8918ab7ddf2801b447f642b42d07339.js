@@ -1,0 +1,6 @@
+var class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcud8918ab7ddf2801b447f642b42d07339 =
+[
+    [ "Trentino_Example_BasicCalculatorThrowError_DividerProxy", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcud8918ab7ddf2801b447f642b42d07339.html#a0c08f9ab2ba939a71a7c83f9ab99d19f", null ],
+    [ "divide", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcud8918ab7ddf2801b447f642b42d07339.html#a2f40d71d6b4b27c58282f93630ebccb5", null ],
+    [ "mWire", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcud8918ab7ddf2801b447f642b42d07339.html#a1fee05f89474e126fd7d19e27f35a648", null ]
+];

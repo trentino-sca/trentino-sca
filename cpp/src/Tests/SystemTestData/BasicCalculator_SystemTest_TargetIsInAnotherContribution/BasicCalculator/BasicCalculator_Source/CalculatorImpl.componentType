@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+      <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Calculator" header=".\services\TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+  <reference name="Subtractor" multiplicity="1..1" autowire="false" target="SubtractorImpl/Subtractor">
+    <interface.cpp class="Trentino::Example::BasicCalculator::Subtractor" header="./services/TrentinoExampleBasicCalculatorSubtractor.h"/>
+  </reference>
+</componentType>

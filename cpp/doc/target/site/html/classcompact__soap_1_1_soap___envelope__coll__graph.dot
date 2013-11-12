@@ -1,0 +1,47 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compact_soap::Soap_Envelope",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" header_" ,fontname="Helvetica"];
+  Node2 [label="compact_soap::Soap_Header",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap___header.html"];
+  Node2 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" addressing_" ,fontname="Helvetica"];
+  Node3 [label="compact_soap::Addressing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing.html"];
+  Node3 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" from_\nmessageid_\naction_\nto_" ,fontname="Helvetica"];
+  Node4 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node6 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" endpointreference_\nfaultto_\nreplyto_" ,fontname="Helvetica"];
+  Node6 [label="compact_soap::Addressing_EndpointReferenceType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___endpoint_reference_type.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" referenceparameters_\nreferenceproperties_" ,fontname="Helvetica"];
+  Node7 [label="compact_soap::Addressing_MultipleAny",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___multiple_any.html"];
+  Node7 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node4 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" porttype_\naddress_" ,fontname="Helvetica"];
+  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node8 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" servicename_" ,fontname="Helvetica"];
+  Node8 [label="compact_soap::Addressing_ServiceNameType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_addressing___service_name_type.html"];
+  Node4 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" portname_" ,fontname="Helvetica"];
+  Node8 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node1 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" body_" ,fontname="Helvetica"];
+  Node9 [label="compact_soap::Soap_Body",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap___body.html"];
+  Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" faultmessage_" ,fontname="Helvetica"];
+  Node10 [label="compact_soap::Soap_Fault",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap___fault.html"];
+  Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" reason_" ,fontname="Helvetica"];
+  Node11 [label="compact_soap::Soap_faultreason",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap__faultreason.html"];
+  Node11 -> Node11 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node10 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node12 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" code_" ,fontname="Helvetica"];
+  Node12 [label="compact_soap::Soap_faultcode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap__faultcode.html"];
+  Node12 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node13 -> Node12 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" subcode_" ,fontname="Helvetica"];
+  Node13 [label="compact_soap::Soap_subcode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcompact__soap_1_1_soap__subcode.html"];
+  Node4 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" value_" ,fontname="Helvetica"];
+  Node13 -> Node13 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" subcode_\ndefault_instance_" ,fontname="Helvetica"];
+  Node4 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" role_\ndetail_\nnode_" ,fontname="Helvetica"];
+  Node9 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" default_instance_" ,fontname="Helvetica"];
+  Node4 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" content_" ,fontname="Helvetica"];
+}

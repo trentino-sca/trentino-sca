@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "../sdocbook.dtd">
+<section>
+<title>Trentino Service Discovery</title>
+<para>
+The goal of service discovery is to locate the appropriate services for a reference, if the reference hasn't define its target service explicitly by using one of the methods mentioned under SCA specification, section 4.3.1.
+Currently service discovery applies to remote <!--and local--> services. 
+By using service discovery a component can locate referenced services that are <!--actually hosted on the same runtime, as well as the services --> hosted on other Trentino runtimes in the same network.
+<!--Local service discovery is intended to provide SCA autowire feature.-->
+Remote service discovery identifies the matching service and its connection specific information to make remote communication possible.
+Service discovery is restricted to a local area network.
+</para>	
+<section>
+<title>Reference and Service Wiring with Service Discovery</title>
+<para>
+<!--In the SCA specification (section 4.3.1), specifying the target services for a reference is described.
+as follows:
+<itemizedlist>
+<listitem>
+<para>Through a value specified in the @target attribute of the reference element.</para>
+</listitem>
+<listitem>
+<para>Through a target URI specified in the @uri attributeof a binding element which is a child of the reference element.</para>
+</listitem>
+<listitem>
+<para>Through the setting of one or more values for binding-specific attributes and/or child elements of a binding element that is a childof the reference element.</para>
+</listitem>
+<listitem>
+<para>Through the specification of @autowire="true" for the reference (or through inheritance of that value from the component or composite containing the reference).</para>
+</listitem>
+<listitem>
+<para>Through the specification of @wiredByImpl="true" forthe reference.</para>
+</listitem>
+<listitem>
+<para>Through the promotion of a component reference by acomposite reference of the composite containing the component (the target service is then identified by the configuration of the composite reference).</para>
+</listitem>
+<listitem>
+<para>Through the presence of a <wire/> element which hasthe reference specified in its @source attribute.</para>
+</listitem>
+</itemizedlist>	
+Combinations of these different methods are allowed. -->
+<!--
+<para>
+For local references (references that do not have @remotable attribute of interface tag is not set as true) service discovery is triggered if none of the above is specified and if discovery is enabled at Runtime.conf.
+SCA Autowire support is based on local service discovery. 
+</para>
+-->
+
+For remote references (@remotable/interface.cpp/reference = true) service discovery is triggered if no connection specifier attribute is defined for the bindings of the reference.(i.e. for binding.sca service discovery is triggered if uri attribute is not specified) 
+(see Item-2 under SCA specification section 4.3.1)
+Service discovery matches the services that qualify the following conditions:
+<sbr/>
+<itemizedlist>	
+<listitem>
+Services should have the same fully qualified interface class name(@class/interface.cpp).
+</listitem>
+<listitem>
+Services should support at least one of the bindings supported by the reference.
+</listitem>
+<listitem>
+Services should support the metadata specified by the reference.
+</listitem>
+</itemizedlist>	
+<sbr/>
+In addition to SCA assembly schema version 1.1. Trentino defines an sca:Metadata element which is part of sca:Contract element to be able to describe extra characteristics of services and references. 
+The following snippet shows the pseudo-schema of a reference and a service that hosts metadata.
+
+<programlisting language="xml" >
+<![CDATA[
+<!-- metadata schema snippet -->
+<composite ... >
+...
+  <service ... >
+   <metadata>
+     <stringAttributes name="xs:string" value="xs:string"/>
+   </metadata>
+   <interface ... />
+    <binding uri="xs:anyURI"? name="xs:NCName"? requires="list of xs:QName"?policySets="listof xs:QName"?>
+     <wireFormat/>
+     <operationSelector/>
+     <requires/>
+     <policySetAttachment/>
+    </binding>
+    <callback>
+     <binding uri="xs:anyURI"? name="xs:NCName"? requires="list of xs:QName"? policySets="list of xs:QName"?>
+      <wireFormat/>
+      <operationSelector/>
+      <requires/>
+      <policySetAttachment/>
+     </binding>
+    </callback>
+  </service>
+  <reference ... >
+   <metadata>
+     <stringAttributes name="xs:string" value="xs:string"/>
+   </metadata>
+   <interface ... />
+    <binding uri="xs:anyURI"? name="xs:NCName"? requires="list of xs:QName"?policySets="listof xs:QName"?>
+     <wireFormat/>
+     <operationSelector/>
+     <requires/>
+     <policySetAttachment/>
+    </binding>
+    <callback>
+     <binding uri="xs:anyURI"? name="xs:NCName"? requires="list of xs:QName"? policySets="list of xs:QName"?>
+      <wireFormat/>
+      <operationSelector/>
+      <requires/>
+      <policySetAttachment/>
+     </binding>
+    </callback>
+  </reference>
+</composite>
+]]>
+ </programlisting>
+ Example:
+ The following SCDL is an example of a reference that will be wired via service discovery.
+ <programlisting language="xml" >
+<![CDATA[
+		<reference name="BasicPrinterRef">
+			<metadata>
+				<stringAttributes name="colour" value="yellow"/>
+			</metadata>
+			<interface.cpp class="Trentino::Example::BasicPrinter" header="services/TrentinoExampleBasicPrinter.h" remotable="true"/>
+			<binding.sca/>
+		</reference>
+]]>
+ </programlisting>
+ 
+As the service below supports binding.sca by default, and as it has matching interface and metadata, it is wired to the reference above:
+ 
+ <programlisting language="xml" >
+<![CDATA[
+	<service name="BasicPrinter" >
+		<metadata>
+			<stringAttributes name="floor" value="3"/>
+			<stringAttributes name="colour" value="yellow"/>
+		</metadata>
+        <interface.cpp class="Trentino::Example::BasicPrinter" header="services/TrentinoExampleBasicPrinter.h" remotable="true"/>
+    </service>
+]]>
+ </programlisting>
+Eventually service discovery provides the binding specific information of the found service. 
+Namely the connection information required for the binding types supported by the found service. (i.e. for binding.sca uri that includes network address, port information of the service is provided ) So runtime can manage the remote communication with this binding communication information.
+If there are more than one matching services matching, runtime uses one of them randomly.
+</para>
+</section>
+
+<section>
+<title>Enabling and Configuring Service Discovery</title>
+<section>
+<title>Service Discovery Configuration in Runtime.conf</title>
+<para>
+Service discovery is enabled or partially configured in the Runtime.conf file. Trentino uses OpenSLP for service discovery please also refer at the OpenSLP configuration mentioned under the respective section below.
+<!--Service discovery for local and remote services are enabled or disabled separately. There are use cases where remote service discovery does not make any sense, the user should still be able to perform local service discovery (for example for autowiring)-->
+The user can enable or disable service discovery for a Trentino runtime.
+In the Trentino configuration file Runtime.conf, the following options should be available.
+</para>
+<simplelist type='vert' columns='1'>
+<member>
+[Service_Discovery]
+</member>
+<member>
+# Default to true
+</member>
+<!--
+<member>
+enable.local.service.discovery=true
+</member>
+-->
+<member>
+#default to true
+</member>
+<member>
+enable.remote.service.discovery=true
+</member>
+</simplelist>	
+<para>
+In case of a discovery failure, the service state should be NOT_AVAILABLE.
+The runtime MUST be configured to try discovery a number of time if discovery fails.
+The time interval and the number of retries are configurable in Runtime.conf.
+</para>
+<simplelist type='vert' columns='1'>
+<member>
+[Service_Discovery]
+</member>
+<member>
+#default to false
+</member>
+<member>
+discovery.max.retry=3
+</member>
+<member>
+#values in seconds
+</member>
+<member>
+discovery.retry.interval=10
+</member>
+</simplelist>	
+<!--
+If eager initialization fails, the system can retry service discovery during invocation. This behavior should be configured in Runtime.conf.
+<simplelist type='vert' columns='1'>
+<member>
+[Service_Discovery]
+</member>
+<member>
+#default to false
+</member>
+<member>
+lazy.discovery.on.eager.failed=true
+</member>
+</simplelist>
+-->
+</section>
+<section>
+<title>OpenSLP and its configuration</title>
+<para>
+Trentino uses OpenSLP for service discovery. 
+<sbr/>
+<ulink url="http://www.openslp.org/">http://www.openslp.org/</ulink>
+<sbr/><sbr/>
+Service Location Protocol (SLP) is an Internet Engineering Task Force (IETF) standards track protocol that provides a framework to allow networking applications to discover the existence, location, and configuration of networked services in enterprise networks.
+<sbr/><sbr/>
+The OpenSLP project is an effort to develop an open-source implementation of the IETF Service Location Protocol suitable for commercial and non-commercial application.
+<sbr/><sbr/>
+Errors that are detected at network by OpenSLP are logged or notified with error codes of OpenSLP. For the meanings of error codes please see Appendix-B.
+</para>
+<section>
+<title>OpenSLP configuration file</title>
+<para>
+slp.conf is the configuration used by OpenSLP. Some of these parameters hame more vital importance based on the network conditions. Default version of this configuration file is comes with Trentino installation. 
+For a local area network that has Trentino runtimes operating, to have service discovery function available, at least one of Trentino runtimes must play the role of directory agent (SLP terminology, for further information please check out OpenSLP documentation or SLP RFC-2608). 
+So for each LAN the user needs to set net.slp.isDA to true for at least one Trentino runtime, to have service discovery feature work.
+
+User might be potentially be interested in the following attributes:
+<sbr/>
+<itemizedlist>
+<listitem>
+net.slp.isDA: Enables slpd to function as a DA. Only a very few DAs should exist. In Trentino it is true.
+</listitem>
+<listitem>
+slp.watchRegistrationPID: If net.slp.watchRegistrationPID is set to true, local registrations made with the SA via the SLPReg() API call will be monitored.  
+If the PID of the process (and/or thread on Linux) disappears (the registering process died unexpectedly with out calling SLPDereg()), then the registration is automatically de-registered. (Default is is false in Trentino)
+</listitem>
+<listitem>
+net.slp.unicastMaximumWait: An integer giving the maximum amount of time (in milliseconds) to perform unicast requests.(Default is is 50000 ms or 50 secs in Trentino)
+</listitem>
+<listitem>
+net.slp.multicastMaximumWait: An integer giving the maximum amount of time (in milliseconds) to perform multicast requests (Default is 50000 ms or 50 secs, in Trentino).
+</listitem>
+</itemizedlist>
+<sbr/>
+The user might need to change other configuration parameters based on the specific needs of networks and in such a case user should refer at the descriptions of configuration parameters in the config file or at the web site of openSLP. <ulink url="http://www.openslp.org/">http://www.openslp.org/</ulink>
+</para>
+</section>
+</section>
+</section>
+</section>

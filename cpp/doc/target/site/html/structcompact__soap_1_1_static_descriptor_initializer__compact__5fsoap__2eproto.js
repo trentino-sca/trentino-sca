@@ -1,0 +1,4 @@
+var structcompact__soap_1_1_static_descriptor_initializer__compact__5fsoap__2eproto =
+[
+    [ "StaticDescriptorInitializer_compact_5fsoap_2eproto", "structcompact__soap_1_1_static_descriptor_initializer__compact__5fsoap__2eproto.html#ab2d9488a82a1734584d4e98dbd2d03ff", null ]
+];

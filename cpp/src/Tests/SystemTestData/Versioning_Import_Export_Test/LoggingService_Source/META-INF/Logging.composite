@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="LoggingServiceComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="LoggingServiceNamespace">
+  <component name="LoggingServiceImpl">
+    <implementation.cpp
+        class="Trentino::Example::Logging::LoggingServiceImpl"
+		header="services/TrentinoExampleLoggingLoggingServiceImpl.h"
+		library="LoggingService" path="bin" />
+   <property name="loggerName" type="string" value="defaultLogger"></property>
+  </component>
+</composite>

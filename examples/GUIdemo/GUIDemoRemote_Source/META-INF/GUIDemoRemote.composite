@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="GUIDemoComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="GUIDemoNamespace">
+
+  <component name="GUIDemoLCDImpl_service1">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemoRemote"
+		eagerInit="true"/>
+
+    <service name="GUIDemoLCD">
+        <metadata>
+		  <stringAttributes name="color" value="yellow"/>
+		</metadata>
+    </service>
+        
+    <property name="GUIDemoLCDName" type="xsd:string">
+      <value>Service1: yellow</value>
+    </property>
+  </component>
+
+  <component name="GUIDemoLCDImpl_service2">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemoRemote"
+		eagerInit="true"/>
+
+    <service name="GUIDemoLCD">
+        <metadata>
+		  <stringAttributes name="color" value="green"/>
+		</metadata>
+    </service>
+        
+    <property name="GUIDemoLCDName" type="xsd:string">
+      <value>Service1: green</value>
+    </property>
+  </component>
+  
+<component name="GUIDemoLCDImpl_service3">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemoRemote"
+		eagerInit="true"/>
+
+    <service name="GUIDemoLCD">
+        <metadata>
+		  <stringAttributes name="color" value="blue"/>
+		</metadata>
+    </service>
+        
+    <property name="GUIDemoLCDName" type="xsd:string">
+      <value>Service1: blue</value>
+    </property>
+  </component>  
+  
+  
+</composite>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="TestServerComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="TestServerNamespace">
+
+  <component name="ServerComp1">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestServerImpl"
+		header="DiscoveryTestServerImpl.h"
+        scope="composite"
+		library="DiscoveryTestServer" />
+        
+      <service name="DiscoveryTestServer">
+      <metadata>
+		  <stringAttributes name="color" value="yellow"/>
+		</metadata>
+      </service>        
+     <property name="Color" value="yellow"/>   
+  </component>
+  
+  <component name="ServerComp2">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestServerImpl"
+		header="DiscoveryTestServerImpl.h"
+        scope="composite"
+		library="DiscoveryTestServer" />
+        
+      <service name="DiscoveryTestServer">
+      <metadata>
+		  <stringAttributes name="color" value="blue"/>
+		</metadata>
+      </service>        
+     <property name="Color" value="blue"/>   
+  </component>
+
+  <component name="ServerComp3">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestServerImpl"
+		header="DiscoveryTestServerImpl.h"
+        scope="composite"
+		library="DiscoveryTestServer" />
+        
+      <service name="DiscoveryTestServer">
+      <metadata>
+		  <stringAttributes name="color" value="green"/>
+		</metadata>
+      </service>        
+        <property name="Color" value="green"/>
+  </component>
+
+  <component name="ServerComp4">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestServerImpl"
+		header="DiscoveryTestServerImpl.h"
+        scope="composite"
+		library="DiscoveryTestServer" />
+        
+      <service name="DiscoveryTestServer">
+      <metadata>
+		  <stringAttributes name="color" value="black"/>
+		</metadata>
+      </service>        
+      
+      <property name="Color" value="black"/>
+        
+  </component>  
+  
+</composite>

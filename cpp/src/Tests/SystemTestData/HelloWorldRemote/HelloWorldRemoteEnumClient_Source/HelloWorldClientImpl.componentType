@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <reference name="HelloWorld" multiplicity="0..1">
+      <interface.cpp remotable="true" class="Trentino::Example::HelloWorldRemote::HelloWorld" header="TrentinoExampleHelloWorldRemoteHelloWorld.h"/>
+    </reference>
+</componentType>

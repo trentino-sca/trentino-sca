@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<article>
+	<title>Trentino downloads</title>
+	<section>
+		<title>Trentino downloads</title>
+		<para>
+			You can find zipped source code and binary distributions (for MS windows)
+			<ulink url="http://sourceforge.net/projects/trentino/files/">here</ulink>.
+      You can get current source code directly <ulink url="http://sourceforge.net/p/trentino/git/ci/master/tree/">from sourceforge Git repository</ulink>.
+		</para>
+	</section>
+
+</article>

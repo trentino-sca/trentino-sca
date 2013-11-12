@@ -1,0 +1,26 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::RuntimeModel::Service",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::RuntimeModel::ServiceBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_service_base.html",tooltip="Represents an SCA service at runtime."];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mBindingHelperSupport" ,fontname="Helvetica"];
+  Node3 [label="boost::shared_ptr\< BindingHelperProvider \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node4 [label="Trentino::RuntimeModel::BindingHelperProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_binding_helper_provider.html",tooltip="Class that implements bindingHelperByBindingId, required by an ServiceBase or by every entity that ha..."];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServiceInvocationWrapper" ,fontname="Helvetica"];
+  Node5 [label="boost::shared_ptr\< ServiceInvocationWrapperBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCAServiceType" ,fontname="Helvetica"];
+  Node6 [label="boost::shared_ptr\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node7 [label="T",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWireableSupport" ,fontname="Helvetica"];
+  Node8 [label="Trentino::RuntimeModel::Wireable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_wireable.html",tooltip="All elements which are wireable use this class as support."];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWires" ,fontname="Helvetica"];
+  Node9 [label="std::set\< WirePtr \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node6 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
+  Node10 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mPromotedBy" ,fontname="Helvetica"];
+  Node10 [label="std::vector\< ServiceBaseWeakPtr \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}

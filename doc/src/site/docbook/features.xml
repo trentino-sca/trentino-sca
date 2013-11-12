@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<article>
+	<title>Trentino Features and Roadmap</title>
+	<section>
+		<title>Trentino Features and Roadmap</title>
+		<para>
+			The following features are supported by Trentino 0.2:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>A Subset of the Service component Architecture including the
+					SCA assembly model.
+				</para>
+			</listitem>
+			<listitem>
+				<para>Lifecycle methods for proper initialization and removal of
+					components
+				</para>
+			</listitem>
+			<listitem>
+				<para>Dependency injection: all component dependencies are
+					automatically injected by the runtime
+				</para>
+			</listitem>
+			<listitem>
+				<para>A default SCA Binding based on the SOAP Protocol and Google
+					Protocol Buffers for message serialization
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+
+</article>

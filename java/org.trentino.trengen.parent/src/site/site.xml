@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+// **********************************************************************************
+// Trentino - A C++ based lightweight, non-invasive SCA runtime.
+// Copyright (C) Siemens AG, 2012
+// All Rights Reserved
+// http://trentino.sourceforge.net/
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+// **********************************************************************************-->
+<project name="Trentino">
+	<bannerLeft>
+		<name>Trentino Trengen</name>
+		<src>http://maven.apache.org/images/apache-maven-project.png</src>
+		<href>http://maven.apache.org/</href>
+	</bannerLeft>
+	<bannerRight>
+		<src>http://maven.apache.org/images/maven-small.gif</src>
+	</bannerRight>
+	<body>
+		<links>
+			<item name="Apache" href="http://www.apache.org/" />
+			<item name="Maven 1.x" href="http://maven.apache.org/maven-1.x/" />
+			<item name="Maven 2" href="http://maven.apache.org/" />
+		</links>
+
+		<menu name="Maven 2.0">
+			<item name="Introduction" href="index.html" />
+			<item name="Download" href="download.html" />
+			<item name="Release Notes" href="release-notes.html" />
+		</menu>
+		<menu ref="modules" />
+		<menu ref="reports" />
+	</body>
+</project>

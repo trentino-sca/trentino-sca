@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+     <service name="AppService1" >
+         <interface.cpp remotable="true" class="App::AppService1" header="AppService1.h"/>
+      </service>
+	<reference name="AppService2" multiplicity="1..1" autowire="false">
+		<interface.cpp class="App::AppService2" header="AppService2.h"/>
+	</reference>
+</componentType>

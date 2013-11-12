@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Utils::Pattern::FullImplCTorDTor\< TYPE \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_utils_1_1_pattern_1_1_full_impl_c_tor_d_tor.html",tooltip="Simple class to reduce linkage dependency by calling constructor and destructor."];
+}

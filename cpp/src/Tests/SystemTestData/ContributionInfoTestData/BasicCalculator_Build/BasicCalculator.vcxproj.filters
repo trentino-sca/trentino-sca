@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\TrentinoExampleBasicCalculatorCalculatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\TrentinoExampleBasicCalculatorDividerImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\TrentinoExampleBasicCalculatorCalculatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\TrentinoExampleBasicCalculatorDividerImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\TrentinoExampleBasicCalculatorCalculatorImpl.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\services\TrentinoExampleBasicCalculatorCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\services\TrentinoExampleBasicCalculatorDivider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\BasicCalculator_Source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{64D88888-6AD5-4E4B-8749-1F4C2E1A1988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{DBC947AC-7D85-4851-9609-12C4BC77DE4D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCA Files">
+      <UniqueIdentifier>{48CDFCE6-8C2A-4196-B0F2-111234C5BD82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\CalculatorImpl.componentType">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\DividerImpl.componentType">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\META-INF\sca-contribution.xml">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\BasicCalculator_Source\META-INF\BasicCalculator.composite">
+      <Filter>SCA Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--******************************************************************************
+Trentino - A C++ based lightweight, non-invasive SCA runtime.
+Copyright 2012 by Siemens AG. All rights reserved.
+http://trentino.sourceforge.net/
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*******************************************************************************-->
+<composite 	xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			name="SCAReferenceCompositeExample" 
+			targetNamespace="TrentinoNamespace"
+			local="true">
+			
+			<service name="SCAReferenceExampleService" promote="SCAReferenceExampleComponent"/>  <!-- promote="SCAReferenceExampleComponent/SCAReferenceExampleService" only one service-->
+			<reference name="SCAReferenceExampleReferences" multiplicity="0..n" promote="SCAReferenceExampleComponent/SCAServicesToAttachRef"> 
+				<binding.sca/>
+			</reference>
+			
+			<property name="Property3" type="xsd:boolean" mustSupply="true"/>
+			 
+			<!-- wire all the references -->
+			<component name="SCAReferenceExampleComponent">
+				<implementation.cpp library="SCAReferenceExample" 
+									path = "SCAFolderExample"
+									header="SCAFolderExample/SCAReferenceExampleImpl.h" 
+									class="SCAReferenceExampleImpl"
+									scope="composite"/>
+				<property name="Property1">
+					<value>42</value>
+				</property> 
+				<property name="Property2">
+					<value>NewStringValueName</value>  
+				</property>
+				
+				<property name="MultiProperty" type="xsd:string" many="true">
+					<value>Value1</value>
+					<value>Value2</value>
+					<value>Value3</value>
+				</property>				
+
+				<property name="ValueFileProperty" type="xsd:int" file="SCAFolderExample/ValueFile.txt"/>					
+				
+				<property name="Property3" type="xsd:boolean" source="$Property3"/>
+			</component>
+
+			
+			<!--<wire source="SCAReferenceExampleComponent/SCAWireServiceToAttachRef" target="SCAServiceToAttach" />
+			<wire source="SCAReferenceExampleComponent/SCAWireServiceToAttachRef" target="SCAServiceToAttachEx" />-->
+			
+</composite>

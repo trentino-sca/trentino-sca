@@ -1,0 +1,59 @@
+package compact_soap;
+
+message WSDLType {
+
+     message typedesc {
+     required string typename=1;
+     optional string protobufmessage =2;
+     }
+     
+
+     message MessageRefType {
+	   optional string messageLabel =1;
+	   optional string typeRef=2;
+     }
+
+
+     message MessageRefFaultType {
+       optional string messageLabel =1;
+       //name of a fault specified in the interface message
+       optional string referencedFault=2;
+     
+     }
+     
+     
+     message InterfaceOperationType {
+       repeated MessageRefType input =1;
+       repeated MessageRefType output =2;
+       repeated MessageRefFaultType infault =3;
+       repeated MessageRefFaultType outfault =4;	
+       optional string name =5;
+       optional string pattern =6;
+       optional string style =7; 
+     }
+     
+     
+     message InterfaceFaultType {
+	     
+	     optional string name=1;
+	     //The type been referenced
+	     optional string typeRef=2;
+    
+     }
+     
+	 message InterfaceType {
+	 	optional string documentation =1;
+	 	repeated InterfaceOperationType operations =2;
+	 	required string name =3;
+	 	optional string styleDefault =4;
+	 	repeated InterfaceFaultType faults=5;
+	 }
+
+	message DescriptionType {
+		repeated InterfaceType interfaces =1;
+	}
+
+	optional string documentation =1;
+	optional DescriptionType description =2;
+
+}

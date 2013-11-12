@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <property  name="loggerName"  type="xsd:string"  mustSupply="false"   />
+	<service name="LoggingService" >
+      <interface.cpp class="Trentino::Example::Logging::LoggingService" header="services/TrentinoExampleLoggingLoggingService.h"/>
+    </service>
+</componentType>

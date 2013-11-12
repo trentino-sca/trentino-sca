@@ -1,0 +1,21 @@
+                                    ------
+                                    Trentino Features
+                                    ------
+                                    Emeric Kwemou
+                                    ------
+                                    
+
+Trentino Features and Roadmap
+
+  See also {{{migration/2.0-highlights.html}details of main themes of 2.0}}.
+
+* 0.2 Features
+
+  The following features are supported by Trentino 0.2:
+  
+  * A Subset of the Service component Architecture
+  
+  * Dependency injection
+  
+  * A default SCA Binding based on the SOAP Protocol and Google Protocol Buffers for message serialization
+  

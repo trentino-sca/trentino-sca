@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <service name="GUI" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUI" header="services/TrentinoExampleGUIDemo.h"/>
+    </service>
+  <reference name="GUIDemoLCD" multiplicity="1..n" autowire="false">
+	<interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+	</reference>
+	<property name="GUIDemoName" type="xsd:string">GUIDemo_client</property>
+</componentType>

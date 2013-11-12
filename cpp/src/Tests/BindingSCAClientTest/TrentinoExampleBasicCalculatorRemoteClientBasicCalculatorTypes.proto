@@ -1,0 +1,33 @@
+package Trentino.Example.BasicCalculatorRemoteClient.protobuf;
+option optimize_for = LITE_RUNTIME;
+message PB_Address{
+	optional string street=1;
+	optional PB_Phone phone=2;
+} //message Address
+
+message PB_ComplexNumber{
+	optional int32 a=1;
+	optional int32 b=2;
+} //message ComplexNumber
+
+message PB_Phone{
+	optional string home=1;
+	optional string mobile=2;
+} //message Phone
+
+message PB_Person{
+	optional PB_Address addres=1;
+	optional string name=2;
+	optional string surname=3;
+	optional PB_Person mother=4;
+} //message Person
+
+message PB_TupleComplexNumber{
+	optional PB_ComplexNumber a=1;
+	optional PB_ComplexNumber b=2;
+} //message TupleComplexNumber
+
+message PB_ValidationException{
+	optional string details=1;
+} //message ValidationException
+

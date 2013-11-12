@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+	<service name="Log" >
+			<interface.cpp class="Trentino::Example::Builder::Logger" header="services/Logger.h"/>
+		</service>
+		<reference name="FileLogger" multiplicity="0..1">
+			<interface.cpp class="Trentino::Example::Builder::LoggerFile" header="services/LoggerFile.h"/>
+		</reference>
+		<reference name="ConsoleLogger" multiplicity="0..1">
+			<interface.cpp class="Trentino::Example::Builder::LoggerConsole" header="services/LoggerConsole.h"/>
+		</reference>
+</componentType>

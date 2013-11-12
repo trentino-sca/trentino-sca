@@ -1,0 +1,12 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="I:/Trentino/trentino/DEV/cpp/src/Runtime/ServiceRegistry/TrentinoServiceRegistryServiceInfo.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="I:/Trentino/trentino/DEV/cpp/src/BindingSCA/TrentinoBindingSCADataHandler.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_binding_s_c_a_data_handler_8cpp.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="I:/Trentino/trentino/DEV/cpp/src/BindingSCA/TrentinoBindingSCAServiceInfoReader.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_binding_s_c_a_service_info_reader_8cpp.html"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="I:/Trentino/trentino/DEV/cpp/src/Tests/BindingSCATest/TrentinoBindingSCADataHandlerTest.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_binding_s_c_a_data_handler_test_8cpp.html"];
+}

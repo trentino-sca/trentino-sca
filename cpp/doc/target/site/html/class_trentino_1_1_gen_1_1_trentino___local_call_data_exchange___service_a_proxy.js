@@ -1,0 +1,28 @@
+var class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy =
+[
+    [ "Trentino_LocalCallDataExchange_ServiceAProxy", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#ae8433acaf103937cc10322bb968c2bea", null ],
+    [ "Trentino_LocalCallDataExchange_ServiceAProxy", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#ae8433acaf103937cc10322bb968c2bea", null ],
+    [ "method_has_a_pointer_and_a_value_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a2c4b45fe786fc009a185fbcf08224637", null ],
+    [ "method_has_a_pointer_and_a_value_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#ab4e2ddab4868b626fbe39ac154dc2945", null ],
+    [ "method_has_a_template_class_as_argument", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#ada25ed405e50d1eb77e238b663779da8", null ],
+    [ "method_has_a_template_class_as_argument", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a79a586055151f974cb91016d7b91d831", null ],
+    [ "method_has_many_value_or_const_parameters", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a2137bbaa1ae273f4da4fc5e181ec1fca", null ],
+    [ "method_has_many_value_or_const_parameters", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a00315ae9a4f043fc5ab740550491bfe9", null ],
+    [ "method_has_two_const_pointers_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a31a7c16e2d58e2a11a0251b5af14c0a9", null ],
+    [ "method_has_two_const_pointers_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a3183ff36e6391b4c5edd8ae867c1a459", null ],
+    [ "method_has_two_pointers_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#acae9f165eade125d0444e21c39da1375", null ],
+    [ "method_has_two_pointers_return_a_pointer", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a0d0e3cc2853c950f5f8ac92546c74bb8", null ],
+    [ "method_with_one_value_return_a_const_Reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a819c7dc8132de3d6f2932119e25c88d0", null ],
+    [ "method_with_one_value_return_a_const_Reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#acaf191cadf6b5f3aa30bed81f862a139", null ],
+    [ "method_with_two_arguments_return_const_value", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a422fad80f1521d12b22256166cc67c53", null ],
+    [ "method_with_two_arguments_return_const_value", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a20798366996d3955e04028fad6a4b8dd", null ],
+    [ "method_with_two_parameters_first_by_const_value_second_by_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a368f224a1bc2ba4bbb2258e9e8e7aeb5", null ],
+    [ "method_with_two_parameters_first_by_const_value_second_by_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a16fdd91098085cc0d429340d4d760516", null ],
+    [ "method_with_two_parameters_first_by_value_second_by_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a163c1622395391c30da397c002ec5322", null ],
+    [ "method_with_two_parameters_first_by_value_second_by_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#ae0798576644f9efdcb5fb73160ce00f5", null ],
+    [ "method_with_two_parameters_first_by_value_second_const_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a7906e3c4d4cd01d2f2b1ffcffa9b8cc7", null ],
+    [ "method_with_two_parameters_first_by_value_second_const_reference", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#af6042946a8f488efd3f1eb17a36d80a3", null ],
+    [ "method_with_two_parameters_passed_by_value", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a4ec5e014999c235fa9876da0234cb103", null ],
+    [ "method_with_two_parameters_passed_by_value", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a90ebca223e7a5d129fde88492c574992", null ],
+    [ "mWire", "class_trentino_1_1_gen_1_1_trentino___local_call_data_exchange___service_a_proxy.html#a56ad773d3e431083142a045f39b00fef", null ]
+];

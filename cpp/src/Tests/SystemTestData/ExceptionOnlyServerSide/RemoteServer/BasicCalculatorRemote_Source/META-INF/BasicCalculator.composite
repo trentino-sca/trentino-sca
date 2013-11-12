@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicCalculatorComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicCalculatorNamespace">
+
+  <component name="BasicCalculatorImpl">
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculatorRemote::BasicCalculatorImpl"
+		header="TrentinoExampleBasicCalculatorRemoteBasicCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorRemote" />
+  </component>
+</composite>

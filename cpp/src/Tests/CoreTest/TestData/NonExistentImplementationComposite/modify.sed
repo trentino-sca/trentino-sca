@@ -1,0 +1,1 @@
+s/\(.*SmartLoggerComponent_SmartLoggerComposite.*NameQName.*\)\(\"SmartLoggerComposite\"\)\(.*$\)/\1\"NonExistentComposite\"\3/

@@ -1,0 +1,4 @@
+var class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_trentino___local_call_data_exchange___service_b_wrapper =
+[
+    [ "invoke", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_trentino___local_call_data_exchange___service_b_wrapper.html#ac581dcd0a7b31082c6b60ce9a1fbb92d", null ]
+];

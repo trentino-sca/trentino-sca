@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <service name="Divider" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="services/TrentinoExampleBasicCalculatorDivider.h"/>
+    </service>
+    <property name="Name" type="xsd:string"/>
+</componentType>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicCalculatorReturnVoidComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicCalculatorReturnVoidNamespace">
+
+  <component name="CalculatorImpl">
+
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculatorReturnVoid::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorReturnVoid" 
+		eagerInit="true"/>
+    <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculatorReturnVoid::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+  </component>
+
+</composite>

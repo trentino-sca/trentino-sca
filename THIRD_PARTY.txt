@@ -1,0 +1,94 @@
+Trentino website: http://trentino.sourceforge.net/
+Link to Trentino source code: http://sourceforge.net/projects/trentino/files/
+
+
+The following third party are used by Trentino:
+
+#################################################################################
+Boost 1.47 (http://www.boost.org)
+License:        Boost Software License - Version 1.0
+License link:   http://www.boost.org/users/license.html
+Link to source: http://sourceforge.net/projects/boost/files/boost/1.47.0/
+Usage: Linked
+
+#################################################################################
+Eclipse cdt 5.3.1 (www.eclipse.org/cdt)
+Version 5.3.1
+License: Eclipse Public License - v 1.0   
+License Link: http://www.eclipse.org/legal/epl-v10.html
+Link to source code : 
+         <TRENTINO_HOME>\java\org.trentino.trengen.cpp.parser.eclipse\eclipse_cdt
+Usage: Linked
+
+##################################################################################
+Google mock 1.6 (http://code.google.com/p/googlemock/)
+Version 1.6.0
+License: New BSD License
+License link: http://opensource.org/licenses/BSD-3-Clause
+Link to source code:
+http://code.google.com/p/googlemock/downloads/list
+Usage: Linked, not part of binary distribution, only for tests
+
+##################################################################################
+ Google C++ Testing Framework(http://code.google.com/p/googletest/)
+ Version 1.6.0
+License: New BSD License
+License link: http://opensource.org/licenses/BSD-3-Clause
+Link to source code:
+http://code.google.com/p/googletest/downloads/list
+Usage: Linked, not part of binary distribution, only for tests
+
+##################################################################################
+Zeromq 3.2.1 (http://www.zeromq.org/)
+Version 3.2.1
+License:  GNU Lesser General Public License
+License link: http://www.zeromq.org/area:licensing
+Link to source code:
+http://download.zeromq.org/zeromq-3.2.1-rc2.zip
+Usage: Linked
+
+##################################################################################
+Poco (http://pocoproject.org)
+Version: 1.4.6p1
+License: The Boost Software License 1.0
+License Link: http://pocoproject.org/license.html
+Link to source code:
+http://pocoproject.org/download/index.html
+Usage: Linked
+
+##################################################################################
+Freemarker 2.3.20 (http://freemarker.org/)
+Version: 2.3.20
+License: BSD Style License
+License Link: http://freemarker.org/docs/app_license.html
+Link to source code:
+http://sourceforge.net/projects/freemarker/files/freemarker/2.3.20/
+Usage: Linked
+
+###################################################################################
+Apache Common CLI (http://commons.apache.org/proper/commons-cli/)
+Version: 1.2
+License: Apache License, Version 2.0
+License Link: http://www.apache.org/licenses/LICENSE-2.0
+Link to source code:
+http://commons.apache.org/proper/commons-cli/download_cli.cgi
+Usage: Linked
+
+###################################################################################
+OpenSLP (http://www.openslp.org/)
+Version: 
+License: Caldera Systems open source license (Copyright (C) 2000 Caldera Systems, Inc), BSD Style License
+License link: http://www.openslp.org/license.html
+Link to source code:
+DEV/cpp/src/OpenSLP
+Usage: Modified source code
+
+###################################################################################
+Log4Cplus (http://log4cplus.sourceforge.net/)
+Version: 1.1.1
+License: Apache License, Version 2.0
+License Link: http://www.apache.org/licenses/LICENSE-2.0
+Link to source code: 
+http://sourceforge.net/projects/log4cplus/files/log4cplus-stable/1.1.1/
+Usage: Linked
+

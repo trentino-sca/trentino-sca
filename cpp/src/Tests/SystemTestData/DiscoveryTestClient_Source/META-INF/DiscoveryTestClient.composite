@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="DiscoveryTestClientComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="DiscoveryTestClientNamespace">
+
+  <component name="ClientComp1">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestClientImpl"
+		header="DiscoveryTestClientImpl.h"
+        scope="composite" eagerInit="true"
+		library="DiscoveryTestClient" >
+		<function name="onInit" init="true" />
+	 </implementation.cpp>
+	 <reference name="DiscoveryTestServerRef">
+    
+     <metadata>
+		   <stringAttributes name="color" value="yellow"/>
+		</metadata>
+        
+        
+        <binding.sca/>
+   </reference>
+   <property name="Color" value="yellow"/>
+  </component>
+  
+ 
+    <component name="ClientComp2">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestClientImpl"
+		header="DiscoveryTestClientImpl.h"
+        scope="composite" eagerInit="true"
+		library="DiscoveryTestClient" >
+		<function name="onInit" init="true" />
+	 </implementation.cpp>
+	 <reference name="DiscoveryTestServerRef">
+		<metadata>
+		   <stringAttributes name="color" value="blue"/>
+		</metadata>
+        <binding.sca/>
+   </reference>
+   <property name="Color" value="blue"/>
+  </component>
+  
+  
+    <component name="ClientComp3">
+    <implementation.cpp
+        class="Trentino::Example::DiscoveryTestClientImpl"
+		header="DiscoveryTestClientImpl.h"
+        scope="composite" eagerInit="true"
+		library="DiscoveryTestClient" >
+		<function name="onInit" init="true" />
+	 </implementation.cpp>
+	 <reference name="DiscoveryTestServerRef">
+		<metadata>
+		   <stringAttributes name="color" value="black"/>
+		</metadata>
+        <binding.sca/>
+   </reference>
+   <property name="Color" value="black"/>
+  </component>
+ 
+  
+</composite>

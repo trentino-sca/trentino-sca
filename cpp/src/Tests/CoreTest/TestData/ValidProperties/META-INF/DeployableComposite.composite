@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="DeployableComposite" 
+           xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		       targetNamespace="PropertiesTest"
+           xmlns:contrib="PropertiesTest">
+
+  <property name="DeployableCompositePropertyWithSingleDefaultValue" 
+            type="xsd:string" 
+            many="false" 
+            mustSupply="false">
+    <value>DeployableCompositeDefaultValue</value>
+  </property>
+
+  <property name="DeploybleCompositePropertyWithManyDefaultValues" 
+            type="xsd:string" 
+            many="true" 
+            mustSupply="false">
+    <value>DeployableCompositeDefaultValue1</value>
+    <value>DeployableCompositeDefaultValue2</value>
+    <value>DeployableCompositeDefaultValue3</value>
+  </property>
+
+  <component name="ComponentWithoutValues">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithUselesseDefaultValue">
+      <value>ComponentWithoutValuesValue1</value>
+    </property>
+    <property name="PropertyWithNoDefaultValue" value="ComponentWithoutValuesValue2"/>
+  </component>
+  
+  <component name="ComponentWithValues">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithSingleDefaultValue" value="ComponentWithValuesValue1"/>
+    <property name="PropertyWithManyDefaultValues" many="true">
+      <value>ComponentWithValuesValue2</value>
+      <value>ComponentWithValuesValue3</value>
+    </property>
+    <property name="PropertyWithUselesseDefaultValue">
+      <value>ComponentWithValuesValue4</value>
+    </property>
+    <property name="PropertyWithNoDefaultValue" value="ComponentWithValuesValue5"/>
+  </component>
+
+  <component name="ComponentWithSourceAttribute">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithManyDefaultValues" many="true"
+              source="$DeploybleCompositePropertyWithManyDefaultValues"/>
+    <property name="PropertyWithUselesseDefaultValue" 
+              source="$DeployableCompositePropertyWithSingleDefaultValue"/>
+    <property name="PropertyWithNoDefaultValue"
+              source="$DeployableCompositePropertyWithSingleDefaultValue"/>    
+  </component>
+
+  <component name="ComponentWithFileAttribute">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithManyDefaultValues" many="true"
+              file="sampleFolder/propertyFile2.xml"/>
+    <property name="PropertyWithUselesseDefaultValue"
+              file="propertyFile1.xml"/>
+    <property name="PropertyWithNoDefaultValue"
+              file="propertyFile1.xml"/>    
+  </component>
+
+  <component name="ComponentWithPrecedence">
+    <implementation.cpp class="Trentino::Tests::Core::Properties::Component"
+                        header="TrentinoTestsCorePropertiesComponent.h"
+                        library="BusinessLogic"/>
+    <property name="PropertyWithSingleDefaultValue"
+              file="propertyFile1.xml"
+              source="$DeployableCompositePropertyWithSingleDefaultValue"/>
+    <property name="PropertyWithManyDefaultValues" many="true"
+             file="sampleFolder/propertyFile2.xml">
+      <value>ComponentWithPrecedenceValue3</value>
+    </property>
+    <property name="PropertyWithUselesseDefaultValue"
+              source="$DeployableCompositePropertyWithSingleDefaultValue"
+              file="propertyFile1.xml"
+              value="ComponentWithPrecedenceValue1"/>
+    <property name="PropertyWithNoDefaultValue"
+              source="$DeployableCompositePropertyWithSingleDefaultValue">
+      <value>ComponentWithPrecedenceValue2</value>
+    </property>
+  </component>
+
+  <component name="ComponentImplByCompositeWithValues">
+    <implementation.composite name="contrib:ImplComposite"/>
+    <property name="ImplCompositePropertyWithSingleDefaultValue"
+              value="ComponentImplByCompositeWithValuesValue1"/>
+    <property name="ImplCompositePropertyWithManyDefaultValues" many="true">
+      <value>ComponentImplByCompositeWithValuesValue2</value>
+      <value>ComponentImplByCompositeWithValuesValue3</value>      
+    </property>
+    <property name="ImplCompositePropertyWithUselesseDefaultValue"
+              value="ComponentImplByCompositeWithValuesValue4"/>
+    <property name="ImplCompositePropertyWithNoDefaultValue"
+              value="ComponentImplByCompositeWithValuesValue5"/>
+  </component>
+
+  <component name="ComponentImplByCompositeWithoutValues">
+    <implementation.composite name="contrib:ImplComposite"/>
+    <property name="ImplCompositePropertyWithUselesseDefaultValue"
+              value="ComponentImplByCompositeWithoutValuesValue1"/>
+    <property name="ImplCompositePropertyWithNoDefaultValue"
+              value="ComponentImplByCompositeWithoutValuesValue2"/>
+  </component>  
+  
+</composite>

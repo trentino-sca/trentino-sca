@@ -1,0 +1,38 @@
+package protobuf.Trentino.Example.BasicPrinter;
+
+import "TrentinoExampleBasicPrinterTypes.proto";
+option optimize_for = LITE_RUNTIME;
+message BasicPrinterResponse{
+
+    message addResponse{
+       optional PB_ComplexNumber addResponse=1;
+      }
+      
+    message addSimpleResponse{
+       optional int32 addSimpleResponse=1;
+      }
+      
+    message divideResponse{
+       optional PB_ComplexNumber divideResponse=1;
+      }
+      
+    message multiplyResponse{
+        optional PB_ComplexNumber c=1;
+      }
+      
+    message divide2Response{
+       optional PB_ComplexNumber divide2Response=1;
+      }
+      
+    message calculateAgeResponse{
+       optional uint32 calculateAgeResponse=1;
+      }
+      
+     optional addResponse addResponseObject=1;
+     optional addSimpleResponse addSimpleResponseObject=2;
+     optional divideResponse divideResponseObject=3;
+     optional multiplyResponse multiplyResponseObject=4;
+     optional divide2Response divide2ResponseObject=5;
+     optional calculateAgeResponse calculateAgeResponseObject=6;
+
+}

@@ -1,0 +1,10 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Trentino::Gen::BuilderGen::Trentino_Example_Builder_LoggerConsoleProxy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::Example::Builder::LoggerConsole",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_example_1_1_builder_1_1_logger_console.html",tooltip="LogConsole interface testcode."];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWire" ,fontname="Helvetica"];
+  Node3 [label="Trentino::RuntimeModel::WireBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_wire_base.html",tooltip="A wire connects a reference and service and stores the proxy that is used to execute calls over this ..."];
+}

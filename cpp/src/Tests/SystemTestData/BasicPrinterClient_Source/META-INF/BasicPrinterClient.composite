@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicPrinterClientComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicPrinterClientNamespace">
+
+  <component name="BasicPrinterClientImpl">
+    <implementation.cpp
+        class="Trentino::Example::BasicPrinterClientImpl"
+		header="TrentinoExampleBasicPrinterClientImpl.h"
+        scope="composite" eagerInit="true"
+		library="BasicPrinterClient" >
+		<function name="onInit" init="true" />
+	 </implementation.cpp>
+	 <reference name="BasicPrinterRef">
+		<metadata>
+		   <stringAttributes name="colour" value="yellow"/>
+		</metadata>
+       <binding.sca/>
+   </reference>
+  </component>
+</composite>

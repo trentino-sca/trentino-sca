@@ -1,0 +1,12 @@
+var namespace_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen =
+[
+    [ "InitializerTrentino_Example_BasicCalculatorThrowError_CalculatorWrapperRflx", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_initializer_trentino___example__53d3e3692a85ecd25f41c1b2e19525e5.html", null ],
+    [ "InitializerTrentino_Example_BasicCalculatorThrowError_DividerWrapperRflx", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_initializer_trentino___example__b137840741b02717ea6e963adbd6936e.html", null ],
+    [ "InitializerTrentino_Example_BasicCalculatorThrowError_DividerProxyRflx", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_initializer_trentino___example__56bd3bdf2971b9680e8818d09043a604.html", null ],
+    [ "Trentino_Example_BasicCalculatorThrowError_CalculatorWrapper", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcu74a5b64fc9d980409b68782aea0eb4b4.html", null ],
+    [ "Trentino_Example_BasicCalculatorThrowError_DividerWrapper", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcu6cc6edac4dd78135dbd0d56ee9a43fef.html", null ],
+    [ "Trentino_Example_BasicCalculatorThrowError_DividerProxy", "class_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen_1_1_trentino___example___basic_calcud8918ab7ddf2801b447f642b42d07339.html", null ],
+    [ "mInitializerTrentino_Example_BasicCalculatorThrowError_CalculatorWrapperRflx1", "namespace_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen.html#ac492553d77a30258cefe9c130987fbb8", null ],
+    [ "mInitializerTrentino_Example_BasicCalculatorThrowError_DividerProxyRflx3", "namespace_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen.html#a45e3dc37671598b12e87a912c1cbb925", null ],
+    [ "mInitializerTrentino_Example_BasicCalculatorThrowError_DividerWrapperRflx2", "namespace_trentino_1_1_gen_1_1_basic_calculator_throw_error_gen.html#ad666c02d7b97a6a301019654c685ec31", null ]
+];

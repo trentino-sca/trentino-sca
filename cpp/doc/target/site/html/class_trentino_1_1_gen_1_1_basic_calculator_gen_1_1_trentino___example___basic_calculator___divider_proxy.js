@@ -1,0 +1,6 @@
+var class_trentino_1_1_gen_1_1_basic_calculator_gen_1_1_trentino___example___basic_calculator___divider_proxy =
+[
+    [ "Trentino_Example_BasicCalculator_DividerProxy", "class_trentino_1_1_gen_1_1_basic_calculator_gen_1_1_trentino___example___basic_calculator___divider_proxy.html#a70f8e8232932c745f15c84efdc2c2058", null ],
+    [ "divide", "class_trentino_1_1_gen_1_1_basic_calculator_gen_1_1_trentino___example___basic_calculator___divider_proxy.html#a722dd77ca2781b9b649ee3c991d7356c", null ],
+    [ "mWire", "class_trentino_1_1_gen_1_1_basic_calculator_gen_1_1_trentino___example___basic_calculator___divider_proxy.html#a54f60dc72a8598f550661802af502274", null ]
+];

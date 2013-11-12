@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<chapter>
+		<section>
+		<section>
+		<title>Installing from source code</title>
+		<section>
+		<title>Prerequisite</title>
+			<itemizedlist>
+				<listitem>
+					<para>Cmake at least version 2.6</para>
+				</listitem>
+				<listitem>
+					<para>Java at version 1.6. Version 1.7 is NOT YET supported.
+					</para>
+				</listitem>
+				<listitem>
+					<para>Maven version 3.0.2 or above</para>
+				</listitem>
+			</itemizedlist>
+
+			<title>Windows specific prerequisites</title>
+			<para>Visual Studio 2010 or above is required.</para>
+			<note>
+				<para>third party libraries for windows are already compiled
+				</para>
+			</note>
+			
+			<title>Linux Specific prerequisites</title>
+			<itemizedlist>
+				<listitem>
+					<para>GNU compiler toolchain for C++</para>
+				</listitem>
+				<listitem>
+					<para>BJAM</para>
+				</listitem>
+				<listitem>
+					<para>TAR and ZIP tools</para>
+				</listitem>
+			</itemizedlist>
+			<note>
+				<para>
+					The installer requires internet connection to download
+					dependencies
+					and compile it for your linux distribution.
+					The
+					dependencies will be downloaded in the folder
+					cpp/3rdparty/source.
+
+				</para>
+			</note>
+			<para>
+				To Install the documentation, Doxygen is also required. But
+				you can
+				skip this if you don't want to generate source code
+				documentation
+			</para>
+			<note>
+				<para>
+					Make sure that the applications above are in your PATH
+				</para>
+			</note>
+		</section>	
+		</section>
+		</section>
+		<section>
+		<section>
+			<title>Installation</title>
+			<itemizedlist>
+				<listitem>
+					<para>
+						download
+						<ulink url="http://sourceforge.net/projects/trentino/">the source code
+							from here
+						</ulink>
+					</para>
+				</listitem>
+				<listitem>
+					<para> Unzip the
+						source in a writable location
+					</para>
+				</listitem>
+				<listitem>
+					<para>On windows:</para>
+					<itemizedlist>
+						<listitem>
+							<para>
+								Open
+								the visual
+								studio
+								2010
+								command prompt (See
+								<ulink url="http://msdn.microsoft.com/de-de/library/ms229859.aspx">
+									http://msdn.microsoft.com/de-de/library/ms229859.aspx
+								</ulink>
+								)
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								Change to the
+								unziped directory and run
+								<emphasis>install.bat</emphasis>
+							</para>
+						</listitem>
+						<listitem>
+							<para></para>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+
+				<listitem>
+					<para>On Linux</para>
+					<itemizedlist>
+						<listitem>
+							<para>chmod +x
+								install.sh
+							</para>
+						</listitem>
+						<listitem>
+							<para>run
+								install.sh
+							</para>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+			</itemizedlist>
+		</section>
+		</section>
+		
+		<section>
+		<section>
+			<title>
+			Building Trentino With Cygwin
+			</title>
+		<section>
+			<title>	Cygwin Installation </title>
+				<para>
+					<para>
+						1.	Download <ulink url="http://cygwin.com/setup.exe"><citetitle>http://cygwin.com/setup.exe</citetitle></ulink> and run it
+					</para>
+					<para>
+						2.	Select <emphasis>install from internet</emphasis>
+					</para>
+					<para>3. Choose directory to install, say ‘C:\cygwin’</para>
+					<para>4.	Choose ‘All Users’</para>
+					<para>5. Choose temporary directory where setup will store packages, say ‘C:\tmp’</para>
+					<para>6.	Specify proxy settings according your network configuration</para>
+					<para>7.	Choose any mirror to download from</para>
+					<para>8.	Select the following packages
+							<listitem>
+								bzip2
+							</listitem>
+							<listitem>
+								cmake
+							</listitem>
+							<listitem>
+								coreutils
+							</listitem>
+							<listitem>
+								gcc4
+							</listitem>
+							<listitem>
+								gcc4-core
+							</listitem>
+							<listitem>
+								gcc4-g++
+							</listitem>
+							<listitem>
+								sed
+							</listitem>
+							<listitem>
+								tar
+							</listitem>
+							<listitem>
+								unzip
+							</listitem>
+							<listitem>
+								wget
+							</listitem>
+							</para>
+							<mediaobject>
+							  <imageobject>
+								<imagedata fileref="images/cygwin_image.png" format="PNG"/>
+							  </imageobject>
+							<caption>
+								<para>Package Selection for Setup</para>
+							</caption>
+							</mediaobject>
+
+						<para>9.	Click ‘Next>’ to install these packages</para>
+				</para>
+			
+			<title>	Cygwin Configuration </title>
+				<para> To support proxy you have to edit wget configuration file under installation folder: C:\cygwin\etc. Here is an example how proxy can be configured:
+					<programlisting> 
+						https_proxy = proxy.xxxx.ru:81
+						http_proxy = proxy.xxxx.ru:81
+						proxy_user = USERNAME
+						proxy_password = PASSWORD
+					</programlisting>
+					<itemizedlist>
+						<listitem>
+							USERNAME - your Windows user name
+						</listitem>
+						<listitem>
+							PASSWORD - your Windows password
+						</listitem>
+					</itemizedlist>
+				</para>
+			
+			
+			<title>	Cygwin Building </title>
+				<para>	1.	Create new directory, say ‘C:\work\trentino.cygwin’ </para>
+				<para>	2.	Run Cygwin Terminal from Desktop </para>
+				<para>	3.	Change directory to the created one (note, that ‘$’ character is a command prompt):</para>
+				<para>
+					<programlisting> 
+						$ cd /cygdrive/c/work/trentino.cygwin
+					</programlisting>
+				</para>
+				<para>	4.	Run cmake with path to sources (C:\work\trentino\DEV\cpp in my case): </para>
+				<para>
+					<programlisting> 
+						$ cmake /cygdrive/c/work/trentino/DEV/cpp
+					</programlisting>
+				</para>
+				<para>		5.	Run make to build (‘make clean’ is not required for the first run, but required if you changed something and want to rebuild Trentino): </para>
+				
+					<programlisting >
+					$ make clean 
+					$ make 
+					</programlisting>
+		</section>
+		</section>
+		</section>
+</chapter>

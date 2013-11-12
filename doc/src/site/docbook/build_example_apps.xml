@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<article>
+	<section>
+		<title>Building and deploying example applications</title>
+
+		<section>
+			<title>Building basic calculator application</title>
+			<para>
+				The basiccalculator sca application is provided with a build
+				script.
+			</para>
+			<section>
+				<title>Prerequisite</title>
+				<itemizedlist>
+					<listitem>
+						<para>Set the environnement variable TRENTINO_HOME to point to the
+							location of your installed Trentino distribution
+						</para>
+					</listitem>
+					<listitem>
+						<para>Make sure you have Cmake installed and part of your PATH
+						</para>
+					</listitem>
+					<listitem>
+						<para> Make sure Java Version 1.6.* is part of your PATH
+						</para>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section>
+				<title>Building</title>
+				<itemizedlist>
+					<listitem>
+						<para>Open your Terminal or console (On windows use the visual
+							studio command prompt)
+						</para>
+					</listitem>
+					<listitem>
+						<para>change to directory
+							${TRENTINO_HOME}/samples/BasicCalculator_Source
+						</para>
+					</listitem>
+					<listitem>
+						<para>On windows run build_apps.bat</para>
+					</listitem>
+					<listitem>
+						<para>On linux run ./build_apps.sh</para>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section>
+				<title></title>
+				<para>
+					After the build is finished, a folder BasicCalculator will be
+					created
+					next to BasicCalculator_Source.
+					That folder contains a ready
+					to deploy SCA contrubution.
+				</para>
+			</section>
+			<section>
+				<title>Deploying the SCA Contribution</title>
+				<itemizedlist>
+					<listitem>
+						<para>Open your trentino console application by executing
+							${TRENTINO_HOME}/bin/TrentinoConsole
+						</para>
+					</listitem>
+					<listitem>
+						<para>You first have to boot Trentino. For that purpose type the
+							command
+							"boot" in the console.
+						</para>
+					</listitem>
+					<listitem>
+						<para> Now you can deploy (install) your application into the
+							runtime.
+							For that purpose just enter the following command into the console:
+							install C:\TrentinoContributions\BasicCalculator myuri
+						</para>
+					</listitem>
+					<listitem>
+						<para>You have already installed BasicCalculator. Congratulations! :)</para>
+					</listitem>
+				</itemizedlist>
+			</section>
+		</section>
+
+
+
+
+	</section>
+
+</article>

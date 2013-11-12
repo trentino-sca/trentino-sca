@@ -1,0 +1,9 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Binding::TrentinoBinding",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_trentino_binding.html",tooltip="A Trentino Binding all Bindings should implement this interface, so that the Binding Manager can mana..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::Binding::SCA::TrentinoBindingSCA",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_trentino_binding_s_c_a.html",tooltip="The Trentino SCA Binding implementation main class."];
+}

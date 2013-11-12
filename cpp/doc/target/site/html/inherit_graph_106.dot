@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Gen::BasicCalculatorGen::InitializerTrentino_Example_BasicCalculator_DividerProxyRflx",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_gen_1_1_basic_calculator_gen_1_1_initializer_trentino___example___basic_calculator___divider_proxy_rflx.html",tooltip="based on implementation.cpp/class (including the parsing of namespaces in the header) most parts are ..."];
+}

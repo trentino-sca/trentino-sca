@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">	
+	<reference name="EmptyService" multiplicity="0..n">
+		<interface.cpp class="Trentino::Tests::Core::EmptyService" header="TrentinoTestsCoreEmptyService.h"/>
+	</reference>	
+	<reference name="EmptyService2" multiplicity="0..n">
+		<interface.cpp class="Trentino::Tests::Core::EmptyService2" header="TrentinoTestsCoreEmptyService2.h"/>
+	</reference>
+</componentType>

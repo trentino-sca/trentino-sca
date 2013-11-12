@@ -1,0 +1,8 @@
+var class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957 =
+[
+    [ "InitializerTrentino_LocalCallDataExchange_ServiceAProxyRflx", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957.html#a377d87d6516903d51b030af13288c178", null ],
+    [ "~InitializerTrentino_LocalCallDataExchange_ServiceAProxyRflx", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957.html#a7cd3c881e1ed57d7dfa8b62825db5aed", null ],
+    [ "deleteObject", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957.html#a3b59cc7f746ce4670cdca9313ef0d959", null ],
+    [ "newObjectWithParam", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957.html#a627384242f4c20bf031f268cefdb9521", null ],
+    [ "mmdoHandle", "class_trentino_1_1_gen_1_1_local_call_data_exchange_gen_1_1_initializer_trentino___local_call_da20975632750d56509f22a535d0ebf957.html#a03fb88d4e1710085f5e2c32e3cab5b6f", null ]
+];

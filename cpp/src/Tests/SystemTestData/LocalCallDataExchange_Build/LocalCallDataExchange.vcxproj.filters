@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\LocalCallDataExchange_Source\TrentinoLocalCallDataExchangeServiceABImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\LocalCallDataExchange_Source\TrentinoLocalCallDataExchangeServiceABImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LocalCallDataExchange_Source\services\TrentinoLocalCallDataExchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LocalCallDataExchange_Source\services\TrentinoLocalCallDataExchangeServiceAB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\LocalCallDataExchange_Source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LocalCallDataExchange_Source\ServiceAImpl.componentType">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\LocalCallDataExchange_Source\ServiceBImpl.componentType">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\LocalCallDataExchange_Source\META-INF\sca-contribution.xml">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\LocalCallDataExchange_Source\META-INF\LocalCallDataExchange.composite">
+      <Filter>SCA Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{91C38571-5B35-48E8-8B96-D02B03710AE7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F4E587B2-CF7C-4D18-8F49-D68E77F8F206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCA Files">
+      <UniqueIdentifier>{D930D8E7-1988-4DDF-BD87-CD2CDD87B4D3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

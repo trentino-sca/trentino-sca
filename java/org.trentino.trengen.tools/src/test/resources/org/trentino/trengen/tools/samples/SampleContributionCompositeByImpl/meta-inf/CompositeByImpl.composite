@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="CompositeByImpl" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="TrentinoNamespace">
+
+<reference name="compositeRef" promote="MyClientComponent/HelloWorldService" multiplicity="0..n">
+</reference>
+<property name="compositeProperty" type="xsd:string" value="Sinop"/>
+  <component name="MyHelloWorldComponent">
+    <implementation.cpp 
+        class="HelloWorldComponent"
+        library="HelloWorldComponent"
+        path="./HelloWorldComponent"
+        header="HelloWorldComponent/HelloWorldComponent.h"/>
+	<service name="HelloWorldService" >
+    <interface.cpp class="HelloWorldService" 
+                   header="/Services/HelloWorldService.h"
+                   remotable="true"/>
+  </service>
+  <property name="ComponentTo" type="xsd:string" value="Test"/>
+  </component>
+
+  <component name="MyClientComponent">
+    <implementation.cpp 
+        class="ClientComponent"
+        library="ClientComponent"
+        path="./ClientComponent"
+        header="ClientComponent/ClientComponent.h"
+        scope="composite"/>
+  </component>
+</composite>

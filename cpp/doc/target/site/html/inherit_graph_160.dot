@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Reflection::Data::Property::MetaData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_reflection_1_1_data_1_1_property_1_1_meta_data.html",tooltip="MetaData structure is used to hold all relevant information about a property. This is the public POD ..."];
+}

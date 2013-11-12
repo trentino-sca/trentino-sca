@@ -1,0 +1,38 @@
+                                    ------
+                                    Building and deploying example applications.
+                                    ------
+                                    Emeric, Kwemou
+                                    ------
+
+                              
+Building and deploying example applications.
+
+
+* Basic calculator.
+
+
+ The basiccalculator sca application is provided with a build script.
+
+* Prerequisite
+
+    * Set the environnement variable TRENTINO_HOME to point to the location of your installed Trentino distribution
+	* Make sure you have Cmake installed and part of your PATH
+	* Make sure Java Version 1.6.* is part of your PATH ( Java 1.7 is not yet supported)
+	
+* Building
+
+    * Open your Terminal or console (On windows use the visual studio command prompt)
+    * change to directory <TRENTINO_HOME>/samples/BasicCalculator_Source
+    * On windows run build_apps.bat
+    * On linux run ./build_apps.sh
+
+ * After the build is finished, a folder BasicCalculator will be created next to BasicCalculator_Source. 
+ That folder contains a ready to deploy SCA contrubution.
+
+* Deploying the SCA Contribution.
+
+    * Open your trentino console application by executing <TRENTINO_HOME>/bin/TrentinoConsole
+    * You first have to boot Trentino. For that purpose type the command "boot" in the console. The message Trentino runtime successfully loaded in the current process is printed in the console
+    * Now you can deploy (install) your application into the runtime. For that purpose just enter the following command into the console:
+		*	Then  write �install C:\TrentinoContributions\BasicCalculator some.uri�
+		*	You have already installed BasicCalculator. Congratulations! :)

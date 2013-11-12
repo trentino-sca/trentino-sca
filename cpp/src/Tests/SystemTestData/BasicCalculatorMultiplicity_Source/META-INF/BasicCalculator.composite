@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicCalculatorComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicCalculatorNamespace">
+
+  <component name="CalculatorImpl1">
+
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorMultiplicity" 
+		eagerInit="true"/>
+    <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+	<reference name="Divider"  target="DividerImpl1/Divider">
+		<interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+	</reference>
+    <property name="Name" value="Calculator 1"/>
+  </component>
+  
+  <component name="CalculatorImpl2">
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorMultiplicity" 
+		eagerInit="true"/>
+    <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+	<reference name="Divider"  multiplicity="1..n" target="DividerImpl1/Divider DividerImpl2/Divider">
+		<interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+	</reference>
+    <property name="Name" value="Calculator 2"/>
+  </component>
+  
+  <component name="CalculatorImpl3">
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculator::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorMultiplicity" 
+		eagerInit="true"/>
+    <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+	<reference name="Divider" multiplicity="1..1" target="DividerImpl1/Divider">
+		<interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+	</reference>
+    <property name="Name" value="Calculator 2"/>
+  </component>
+  
+  
+
+  <component name="DividerImpl1">
+    <implementation.cpp 
+        class="Trentino::Example::BasicCalculator::DividerImpl"
+		header="TrentinoExampleBasicCalculatorDividerImpl.h"
+        scope="composite"
+		library="BasicCalculatorMultiplicity"
+		eagerInit="true"/>
+    <service name="Divider" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+    </service>
+    <property name="Name" value="Divider 1"/>
+  </component>
+  
+    <component name="DividerImpl2">
+    <implementation.cpp 
+        class="Trentino::Example::BasicCalculator::DividerImpl"
+		header="TrentinoExampleBasicCalculatorDividerImpl.h"
+        scope="composite"
+		library="BasicCalculatorMultiplicity"
+		eagerInit="true"/>
+    <service name="Divider" >
+      <interface.cpp class="Trentino::Example::BasicCalculator::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+    </service>
+    <property name="Name" value="Divider 2"/>
+  </component>
+  
+</composite>

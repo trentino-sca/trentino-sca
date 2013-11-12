@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+  <reference name="HelloWorldService" multiplicity="0..1"  target="MyHelloWorldComponent/HelloWorldService aaa" >
+    <interface.cpp class="HelloWorldService"
+                   header="Services/HelloWorldService.h"/>
+  </reference>
+  <reference name="HelloWorldService2" multiplicity="1..1" >
+    <interface.cpp class="HelloWorldService"
+                   header="Services/HelloWorldService.h"/>
+  </reference>
+  
+   <reference name="HelloWorldService3" multiplicity="1..n" >
+    <interface.cpp class="HelloWorldService"
+                   header="Services/HelloWorldService.h"/>
+  </reference>
+  
+   <reference name="HelloWorldService4" target="aa" >
+    <interface.cpp class="HelloWorldService"
+                   header="Services/HelloWorldService.h"/>
+  	<binding.sca name="sameName"/>
+  </reference>
+  
+</componentType>

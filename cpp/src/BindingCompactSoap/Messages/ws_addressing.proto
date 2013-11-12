@@ -1,0 +1,36 @@
+
+package trentino.bindingsca.csoap;
+option optimize_for = LITE_RUNTIME;
+
+message Addressing {
+
+
+message EndpointReferenceType {
+	optional string address =1;
+	optional MultipleAny referenceProperties=2;
+	optional MultipleAny referenceParameters=3;
+	optional string portType =4;
+	optional ServiceNameType serviceName=5;
+}
+
+
+    // correspond to ReferencePropertiesType and ReferenceParametersType
+	message MultipleAny {
+		  repeated string property =1;
+	}
+
+
+	message ServiceNameType{
+		optional string portName =1;
+	}
+
+	optional EndpointReferenceType endpointReference =1;
+	optional string messageID =2;
+	optional string to =4;
+	optional string action =5;
+	optional string from =6;
+	optional EndpointReferenceType replyTo =7;
+	optional EndpointReferenceType faultTo = 8;
+
+}
+

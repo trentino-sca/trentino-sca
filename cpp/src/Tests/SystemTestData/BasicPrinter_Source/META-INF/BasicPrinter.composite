@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicPrinterComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicPrinterNamespace">
+
+  <component name="BasicPrinterImpl">
+    <implementation.cpp
+        class="Trentino::Example::BasicPrinterImpl"
+		header="TrentinoExampleBasicPrinterImpl.h"
+        scope="composite"
+		library="BasicPrinter" />
+  </component>
+  
+  <component name="BasicPrinterImpl2">
+    <implementation.cpp
+        class="Trentino::Example::BasicPrinterImpl2"
+		header="TrentinoExampleBasicPrinterImpl2.h"
+        scope="composite"
+		library="BasicPrinter" />
+  </component>
+</composite>

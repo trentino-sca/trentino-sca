@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Console::CommandInfo::SCAComponent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_console_1_1_command_info_1_1_s_c_a_component.html",tooltip="This struct intended to store the SCDL information in string format for a single component. Later, after execution is completed, such a struct will be passed to an output visitor, which will parse it and send toward the final output."];
+}

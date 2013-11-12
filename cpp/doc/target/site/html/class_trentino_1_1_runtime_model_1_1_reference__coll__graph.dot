@@ -1,0 +1,26 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::RuntimeModel::Reference",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::RuntimeModel::ReferenceBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_reference_base.html",tooltip="Represents an SCA reference at runtime."];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mProxyReflectObject" ,fontname="Helvetica"];
+  Node3 [label="boost::shared_ptr\< ReflectObject \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mPromotedTo\nmPromotedBy" ,fontname="Helvetica"];
+  Node4 [label="std::vector\< ReferenceBaseWeakPtr \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSetter" ,fontname="Helvetica"];
+  Node5 [label="boost::shared_ptr\< ReflectMethod \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCAReference" ,fontname="Helvetica"];
+  Node6 [label="boost::shared_ptr\< ComponentReference \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCAReferenceType" ,fontname="Helvetica"];
+  Node7 [label="boost::shared_ptr\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node8 [label="T",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWireableSupport" ,fontname="Helvetica"];
+  Node9 [label="Trentino::RuntimeModel::Wireable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_runtime_model_1_1_wireable.html",tooltip="All elements which are wireable use this class as support."];
+  Node10 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWires" ,fontname="Helvetica"];
+  Node10 [label="std::set\< WirePtr \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node7 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" keys" ,fontname="Helvetica"];
+}

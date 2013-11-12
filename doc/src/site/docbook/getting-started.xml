@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<article>
+  <title>Getting started</title>
+   <section>
+   	<title>Getting started</title>
+	<para>There are many ways to get started writing your first
+		Trentino application. We recommend that you look at some example
+		applications and their source code first, before you write your own
+		code.
+	</para>
+   </section>
+	<section>
+		<title>Installing Trentino</title>
+		<para>
+			you can install Trentino from source code as
+			<ulink url="building.html">described
+				here
+			</ulink>
+			or you can
+			<ulink url="downloads.html">download a binary distribution</ulink>
+		</para>
+	</section>
+	<section>
+		<title>Running the
+			Trentino examples
+		</title>
+		<para> Please select your example and run as
+			described in the
+			corresponding page
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>
+					<ulink url="build_example_apps.html">Running Trentino basic
+						calculator
+						example
+					</ulink>
+				</para>
+			</listitem>
+		</itemizedlist>
+	</section>
+<section>
+<title>Write your own SCA contribution (application)</title>
+<para>TODO</para>
+</section>
+<section>
+<title>Next steps</title>
+<para><ulink url="reference/index.html">read the Trentino documentation</ulink> </para>
+</section>
+</article>

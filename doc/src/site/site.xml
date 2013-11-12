@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="${project.name}">
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.3.0</version>
+	</skin>
+
+	<custom>
+		<fluidoSkin>
+		    <navBarStyle>navbar-inverse</navBarStyle>
+			<topBarEnabled>true</topBarEnabled>
+			<sideBarEnabled>true</sideBarEnabled>
+			<topBarIcon>
+				<name>Trentino</name>
+				<alt>Trentino. A runtime for Embedded Systems</alt>
+				<src>images/logos/Trentino_black_400_109.png</src>
+				<href>/index.html</href>
+			</topBarIcon>
+			<googleSearch>
+				<sitesearch />
+			</googleSearch>
+			
+		   <leftColumnClass>span2</leftColumnClass>
+      <bodyColumnClass>span10</bodyColumnClass>
+		</fluidoSkin>
+	</custom>
+	<poweredBy>
+		<logo name="" href="" img="images/shim.gif" />
+	</poweredBy>
+
+	<version position="left" />
+
+
+
+	<body>
+
+		<links>
+			<item name="Home" href="index.html" />
+		</links>
+
+		<menu name="Main" inherit="none">
+			<item name="Home" href="index.html" />
+			<item name="Getting Started" href="getting-started.html" />
+			<item name="Downloads" href="downloads.html" />
+			<item name="User Guide" href="user_guide/index.html" />
+			<!-- item name="Features" href="features.html" /-->
+			<item name="FAQ" href="faq.html" />
+		</menu>
+
+		<menu name="Developer">
+			<item name="Architecture" href="developer/architecture.html" />
+			<!-- item name="Trengen API" href="apidocs/index.html" /-->
+			<!-- item name="Runtime API" href="doxygen/index.html" /-->
+			<item name="Documentation Guide" href="developer/documentation_guide.html" />
+		</menu>
+
+		<menu name="Support" inherit="none">
+			<item name="Building" href="building.html" />
+		</menu>
+
+		<menu name="Trengen Reports" ref="reports" />
+	</body>
+
+</project>

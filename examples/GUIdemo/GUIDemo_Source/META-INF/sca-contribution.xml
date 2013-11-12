@@ -1,0 +1,4 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="GUIDemoNamespace">
+   <deployable composite="sample:GUIDemoComposite"/>
+   <import.cpp name="dll-directory" location="../BThread_QT/QTlib"/>
+</contribution>

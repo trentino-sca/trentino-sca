@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="SmartLoggerComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BuilderNamespace" xmlns:sample="BuilderNamespace">
+
+
+  <service name="FileLogger" promote="SmartLogger/SmartLog" >
+	<interface.cpp header="services/LoggerFile.h" class="Trentino::Example::Builder::LoggerFile"/>
+  </service>
+  <service name="ConsoleLogger" promote="SmartLogger/SmartLog" >
+	<interface.cpp header="services/LoggerConsole.h" class="Trentino::Example::Builder::LoggerConsole"/>
+  </service>
+
+ <component name="SmartLogger">
+    <implementation.cpp 
+        class="Trentino::Example::Builder::SmartLoggerImpl"
+		header="SmartLoggerImpl.h"
+        scope="composite"
+		library="Builder"
+		eagerInit="true"/>
+	<service name="SmartLog" >
+	<interface.cpp class="Trentino::Example::Builder::SmartLog" header="services/SmartLog.h"/>
+	</service>
+ </component> 
+  
+ </composite>

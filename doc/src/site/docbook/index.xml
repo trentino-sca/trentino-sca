@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "sdocbook.dtd">
+<article>
+	<title>Trentino</title>
+  <section>
+    <title>News</title>
+    <variablelist>
+      <title></title>
+      <varlistentry>
+        <term>
+          30.07.2013: Trentino version 0.8 released
+        </term>
+        <listitem>
+          <para>
+            We are proud to announce the release of Trentino version 0.8. This new release adds support for service discovery based on SLP discovery protocoll.
+            And provides a reusable Preference Service.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+	<section>
+		<title>Introduction</title>
+		<para>
+		    Trentino is a platform that enables the development, the deployment, the management and monitoring of embedded applications
+			based on the open standard
+			<ulink url="http://www.oasis-opencsa.org/ci/c">Service
+				Component Architecture (SCA)</ulink>.
+				</para>
+						<para>
+			<inlinemediaobject>
+				<imageobject>
+					<imagedata contentwidth="15cm" scalefit="1"
+						fileref="images/platform_goals.png" format="PNG" width="800" />
+				</imageobject>
+			</inlinemediaobject>
+		</para>
+				<para>
+				It is a platform for SOA (Service Oriented Architecture) based distributed embedded systems.
+		    Trentino severely reduces complexity by using the powerful but simple SCA assembly model that simplify the development of reusable services. And thus has positive implications on
+			both safety and cost during the entire application lifecycle of your product.</para>
+				<para>
+            The Trentino platform is an enabler for vertical integration.
+			A Trentino application can communicate with remote applications from different levels of an automation pyramid. This is made possible by Trentino providing interfaces to integrate a variety of communications protocols,
+			from industry protocols up to REST or Web Services protocols.
+		</para>
+		<para>
+		Trentino is an enabler for embedded applications as a service. The platform provides functions to locally or remotely (bulk) deploy, start stop and update hosted applications. Application deployment is simplified using service discovery.
+		Applications can be configured at runtime by a remote operator. Monitoring deployed services allows the control of defined QoS.
+		All these features combined together enable implementing complex system distribution scenario, as well as high availability Use Cases.
+		</para>
+		<para>
+		Testing a distributed application is a complex task. Trentino application development is simplified by tools and frameworks that enable easy component and integration testing of hosted services.</para>
+		<para>
+			<inlinemediaobject>
+				<imageobject>
+					<imagedata contentwidth="15cm" scalefit="1"
+						fileref="images/feature-diag.png" format="PNG" width="800" />
+				</imageobject>
+			</inlinemediaobject>
+		</para>
+	</section>
+	<section>
+	<title>Some problems Trentino can solve</title>
+	<itemizedlist>
+	<listitem>
+	<para>Vertical integration: I want to build a system with total integration from field devices up to Enterprise Resource Planning</para>
+	</listitem>
+		<listitem>
+	<para>Cloud enablement: I want to download applications from an application store up to a device, configure applications for the given device, deploy and run automatically</para>
+	</listitem>
+		<listitem>
+	<para>I wants to build a highly configurable C++ based line of products. It should be easy to reuse components, manage different versions of components</para>
+	</listitem>
+		<listitem>
+	<para>I want to build a C++ based embedded application with many services. I need a clear model to describe implement and reuse services. Manage the scope of services in a multithreaded environment efficiently.</para>
+	</listitem>
+			<listitem>
+	<para>
+	I want to build a highly available client server embedded system, where the address of the server is automatically discovered, 
+	so that I can just start another server instance whenever my server fails. Without any changes to the client.
+	</para>
+	</listitem>
+	</itemizedlist>
+	</section>
+	<section>
+	<title>Requirements</title>
+	<itemizedlist>
+	<listitem>
+	<para>Availability: Application runs 24/7 days and no downtime is tolerated. Platform should simplify implementation of redundancy strategies to increase availability</para>
+	</listitem>
+		<listitem>
+	<para>Determinism: For local communication between components, Trentino must guarantee that the time between a call on a proxy and its concrete execution on the target object is less than 100 micro second in 90% of the calls, for a set of environments to be defined before testing. This value is lower than the one requested by some known Trentino users</para>
+	</listitem>
+		<listitem>
+	<para>Performance: The latency of distributed applications depends on the communication infrastructure. Each Application will defines its own performance requirements and choose the suitable hardware and communication stack to enable it.
+	Trentino as platform should not be a blocker for application performance.</para>
+	</listitem>
+	</itemizedlist>
+	</section>
+	<section>
+		<title>Runtime Features</title>
+		<para>
+
+			Trentino has been designed from the ground up to eliminate
+			complexity at
+			both architecture and API levels.
+			It provides the
+			following keys
+			features to the embedded developpers:
+		<inlinemediaobject>
+				<imageobject>
+					<imagedata contentwidth="15cm" scalefit="1"
+						fileref="images/feature-diag.png" format="PNG" width="800" />
+				</imageobject>
+			</inlinemediaobject>
+		</para>
+	</section>
+	<section>
+		<title>Lightweight Runtime</title>
+		<para>
+			The main goal of Trentino is to be as
+			lightweight as possible. An
+			empty
+			Trentino runtime has a memory
+			footprint lower than 1 MB.
+		</para>
+	</section>
+
+	<section>
+		<title>Target users</title>
+		<para>
+			Trentino has been designed
+			as generic as possible to be
+			integrated in almost
+			all kind of embedded
+			applications. The minimal
+			requirements for
+			Trentino is that
+			the
+			embedded device should host an
+			Operating System.
+			The Source code can
+			be compiled for Visual Studio and
+			GCC platforms
+			(including QNX).
+		</para>
+	</section>
+
+	<section>
+		<title>Learn more</title>
+		<para>
+			To find out more about Trentino,			<ulink url="getting-started.html">follow this
+			roadmap to get started
+			quickly.</ulink></para><para>
+			If you are avaluating Trentino, please see our answers to
+			frequently
+			asked questions.
+			If you want to contribute to Trentino,
+			register on our
+			developer-mailingslist.
+
+			Trentino is licensed under
+			LGPL. Full commercial
+			support is available from
+			Siemens Corporate Technology.
+			Tooling for Trentino applications are
+			provided.
+		</para>
+	</section>
+
+</article>

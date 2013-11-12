@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="DeployableComposite" 
+           xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		       targetNamespace="CoreTest">
+  <component name="ComponentWithProperties">
+    <implementation.cpp class="Trentino::Tests::Core::ComponentWithProperties"
+                        header="TrentinoTestsCoreComponentWithProperties.h"
+                        library="BusinessLogic"/>   
+  </component>
+</composite>

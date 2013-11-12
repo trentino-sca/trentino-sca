@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--******************************************************************************
+Trentino - A C++ based lightweight, non-invasive SCA runtime.
+Copyright 2011 by Siemens AG. All rights reserved.
+http://trentino.sourceforge.net/
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*******************************************************************************-->
+
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+			         xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <property name="PropertyWithSingleDefaultValue" type="xsd:string" many="false" mustSupply="false">
+    <value>ComponentTypeDefaultValue</value>
+  </property>
+
+  <property name="PropertyWithManyDefaultValues" type="xsd:string" many="true" mustSupply="false">
+    <value>ComponentTypeDefaultValue1</value>
+    <value>ComponentTypeDefaultValue2</value>
+    <value>ComponentTypeDefaultValue3</value>
+  </property>
+
+  <property name="PropertyWithUselesseDefaultValue" type="xsd:string" many="false" mustSupply="true">
+    <value>ComponentTypeNeverUsed</value>
+  </property>
+
+  <property name="PropertyWithNoDefaultValue" type="xsd:string" many="false" mustSupply="true"/>
+</componentType>

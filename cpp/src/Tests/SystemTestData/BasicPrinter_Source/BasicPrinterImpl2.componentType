@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <service name="BasicPrinter2" >
+		<metadata>
+		  <stringAttributes name="floor" value="4"/>
+		  <stringAttributes name="colour" value="yellow"/>
+		</metadata>
+        <interface.cpp class="Trentino::Example::BasicPrinter" header="services/TrentinoExampleBasicPrinter.h" remotable="true"/>
+    </service>
+</componentType>

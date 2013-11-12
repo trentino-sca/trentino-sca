@@ -1,0 +1,3 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="HelloWorldRemoteNamespace">
+   <deployable composite="sample:HelloWorldRemoteComposite"/>
+</contribution>

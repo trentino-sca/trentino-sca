@@ -1,0 +1,56 @@
+package example.basicCalculator;
+
+message Calculator {
+
+message addRequest{
+required int32 a =1;
+required int32 b =2;
+}
+
+message addResponse {
+required int32 result =1;
+}
+
+message reverseRequest{
+required string val =1;
+}
+
+message reverseResponse {
+required string result =1;
+}
+
+message divRequest{
+required int32 a =1;
+required int32 b =2;
+}
+
+message divResponse {
+required int32 result =1;
+}
+
+
+message div2Request{
+required int32 a =1;
+required int32 b =2;
+}
+
+message div2Response {
+required int32 result =1;
+}
+
+message faultDetail{
+optional string description =1;
+}
+
+optional addRequest addRq =1;
+optional addResponse addRes =2;
+optional divRequest divRq =3;
+optional divResponse divRes =4;
+optional div2Request div2Rq =5;
+optional div2Response div2Res =6;
+optional faultDetail divFd =8;
+optional reverseRequest reverseRq =9;
+optional reverseResponse reverseRs =10;
+
+
+}

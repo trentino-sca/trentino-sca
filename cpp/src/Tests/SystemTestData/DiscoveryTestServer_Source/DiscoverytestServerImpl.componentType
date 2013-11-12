@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <service name="DiscoveryTestServer" >
+<!--		<metadata>
+		  <stringAttributes name="color" value="yellow"/>
+		</metadata> -->
+        
+        <metadata>
+		  <stringAttributes name="commonattribute" value="thevalue"/>
+		</metadata>
+        
+        <interface.cpp class="Trentino::Example::DiscoveryTestServer" header="services/DiscoveryTestServer.h" remotable="true"/>
+    </service>
+    <property name="Color" type="xsd:string"/>
+</componentType>

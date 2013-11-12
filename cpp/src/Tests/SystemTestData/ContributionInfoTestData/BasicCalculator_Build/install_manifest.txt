@@ -1,0 +1,11 @@
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/BasicCalculator.lib
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/BasicCalculator.dll
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/META-INF/BasicCalculator.composite
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/META-INF/sca-contribution.xml
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/services/TrentinoExampleBasicCalculatorCalculator.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/services/TrentinoExampleBasicCalculatorDivider.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/TrentinoExampleBasicCalculatorCalculatorImpl.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/TrentinoExampleBasicCalculatorDividerImpl.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/TrentinoExampleBasicCalculatorCalculatorImpl.inl
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/CalculatorImpl.componentType
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/BasicCalculator_Source/../BasicCalculator/DividerImpl.componentType

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <reference name="DiscoveryTestServerRef" multiplicity="0..1" >
+      <interface.cpp class="Trentino::Example::DiscoveryTestServer" header="services/DiscoveryTestServer.h" remotable="true"/>
+    </reference>
+    <property name="Color" type="xsd:string"/>
+</componentType>

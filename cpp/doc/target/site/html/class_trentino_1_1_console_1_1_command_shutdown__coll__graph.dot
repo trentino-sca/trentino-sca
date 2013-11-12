@@ -1,0 +1,25 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Console::CommandShutdown",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Trentino::Console::ContextManagingCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_console_1_1_context_managing_command.html",tooltip="Base class for commands that might modify, create and delete contexts."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Trentino::Console::Command",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_console_1_1_command.html",tooltip="A base abstract class for all the users commands."];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mErrorMessage" ,fontname="Helvetica"];
+  Node4 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mContextManager" ,fontname="Helvetica"];
+  Node6 [label="Trentino::Console::ContextManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_console_1_1_context_manager.html",tooltip="Central entity used to access contexts."];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mContext" ,fontname="Helvetica"];
+  Node7 [label="Trentino::Console::Context",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_console_1_1_context.html",tooltip="Serves as a container for different information needed during the execution of a command."];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Trentino::Console::ContextAccessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_console_1_1_context_accessor.html",tooltip="Interface containing only the getter methods for a Context."];
+  Node9 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mManagementInterface" ,fontname="Helvetica"];
+  Node9 [label="Trentino::ManagementInterface",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_management_interface.html",tooltip="A class representing the interface to communicate with the runtime."];
+  Node10 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mRuntimeDLL" ,fontname="Helvetica"];
+  Node10 [label="boost::shared_ptr\< DynamicLibrary \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+}

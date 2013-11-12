@@ -1,0 +1,150 @@
+                                    ------
+                                    Trentino Architecture
+                                    ------
+                                    Emeric, Kwemou
+                                    ------
+                                    
+Trentino Architecture
+
+  Trentino runtime is designed with extensibility in mind. The figure below shows a  The figure below shows a sketch of the layered functional architecture that supports the extensibility and ease of use for end-user developers.
+  
+[../images/architecture.png] Trentino Architecture showing functional blocks.
+
+* Trentino Model
+
+** SCA Model
+
+ The SCA Model is a C++ class representation of the information contained in SCDL language elements ( based on the corresponding XML Schema) as well as in source code annotation for the SCA Assembly Model and the C++ Client and Implementation Model.
+ Hierarchical relations between entities in the SCA Spec are be visible in the model.
+ The SCA Model is generated from from the SCA Spec XML schema. The generation process is done in two steps:
+ 
+    * A java binding of the schema is generated using JAXB XJC compiler
+    
+    * The SCA Model (C++ binding) is generated based on the previously generated java binding
+    
+    * The C++ generator is implemented in java.
+
+
+ 
+ 
+[../images/model-generation-process.png]
+
+
+
+
+** Runtime Model
+
+ The Runtime Model contains extra descriptives informations about a loaded contribution. 
+ It is only a descriptive model, and do not provide procedures that would be called by other components of the runtime. 
+ The Runtime Model is built by other components, mainly during contribution  / composites loading.
+
+* Bootsstrapper
+
+ The Bootstrapper start the Trentino runtime.
+
+ It is in charge of:
+
+    * Loading trentino extentions like Interception framework
+    
+    * Load plugged Binding frameworks
+    
+    * Creating the DomainContext as specified in the SCA SPEC
+    
+    * Creating the virtual Local Domain and the local domain composite
+    
+    * Instantiate management interface, so that remote console can connect to the runtime
+    
+    * Instantiate lifecycle manager and Registry and other Runtime components and connect them so that they can work together in one domain context
+    
+    * After the bootstrapper is instantiated, it delegate the start of deployed contribution to the lifecycle manager
+
+** Local Domain composite
+
+ The local domain composite is the virtual domain composite as defined by the SCA Spec. For trentino, the domain  composite is restricted to Services within one single runtime
+
+
+* Management interface
+
+ The Runtime Management modul implements all the management functionalities of the runtime. It is the entry point of the Trentino Management Interface. This Module does not include the implementation of the management client (console)
+ Topic covered:
+
+    * Retrieve management information abour the application configuration
+    * Implement contribution / composite management (deployment and undeployment)
+    
+* Runtime - Invocation Layer
+
+ The Trentino Invocation Layer is in charge of local procedure invocation. The invocation layer perform necessary dependency injection. It uses the "Implementation Lifecycle Manager" to get Service implementation at runtime.
+ Function provided are:
+ 
+    * Calls one or more configured interceptors during methode invocation
+    
+    * Calls exception handlers when execption occured in the business logic
+    
+    * Instantiate the components and performing dependency injection when required.
+    
+ * Runtime - Lifecycle manager (Contribution loader)
+ The lifecycle manager component is in charge of managing SCA entities. It provides interface to load a contributions and composites and put the them in suitable states. It is also the place where services are initialized and activated.
+ Once a  service is active in the point of view of the Lifecycle manager, it set the service as active in the Service Registry. The Lifecycle manager initiate the Runtime Model of the Loaded contribution / Composites and Services
+     
+
+* Service Registry
+
+ The Service registry Modul is the Central Persistent point to get informations about Services used in the runtime.
+
+   * During composite loading, The Lifecycle Manager (Contribution Loader), will register new Services to the registry.
+   
+   * The Discovery Service will also register discovered Services to the Service Registry
+   
+   * Internal components and also Services will register listeners to the Registry to listen to services states changes.
+   
+   * The listener will be implemented using signal - slot mechanism
+ 
+* Discovery Service
+
+  Provide a discovery Service.
+  Discovery Service can find remote service and publish their description into the service registry.
+  
+* Wiring Agent
+
+ The Wiring Agent is a software component that is responsible of wiring service reference and target services. 
+ Wenn the Lifecycle Manager (Contribution Loader) is loading composites and therefore services, it just delegate the wiring of reference and service to the agent. In that way, it is possible for the Lifecycle manager to just describe the needed target service and let the wiring agent wire the reference to that target service one the service is available in the registry.
+
+
+** How does wiring agent work?
+
+ Lifecycle manager call wiring agent with a service reference, plus the description of the target service
+ The wiring agent look up the registry for a target service with the given description
+ If no service available, the agent register a special listener to the registry, so that itis notified when exactly a given service is available.
+ If the reference is still active (composite is still loaded), then wire reference and target service.
+ The wiring agant can also use the discovery service to initiate some remote service discovery, in the hope that the Discovery service will find and register the searched service to the Service Registry
+ 
+** Rewiring
+
+ The wiring agent is also the point where rewiring is done.
+ The lifecycle manager will just call the Wiring agent with the given parameter of the new target service endpoint
+ 
+* Binding
+
+ The Binding Layer is responsible for the remote communication. It includes Service description addressing and binding.
+ Trentino is built to enable extension with new Bindings. The Binding Framework is an SDK and SPI used for that purpose.
+ The Binding framework consist of four main parts.
+ 
+   * BindingManager: Central service that manages Bindings. It can load start and stop bindings. The BindingManager read binding configurations from a central document located at 
+     res/binding.properties. A Binding configuration hold parameters like, binding port, URL filter, and any attributes that is required by a specific binding to start correctly.
+     A Binding itself implements a TrentinoBinding interface.
+     
+     
+    * TrentinoBinding: this is the main interface that a Binding provider should implement and register to the binding manager by adding a new entry in res/binding.properties.
+    The TrentinoBinding has tree main lifecycle methods.
+    	* setContext:  this method is called once by the BindingManager before the binding is started. It provides the TrentinoBinding with its context.
+    	* start: this method is called by the BindingManager to start the Binding. A Binding provider should implement this method by initializing its communication stack (e.g starting a tcp server), configure itself to be able to respond to remote requests
+    	* stop : stop the TrentinoBinding, delete unused resources and clean memory.
+    	
+    * BindingHelper: A BindingHelper is an interface that is provided by a remote service. A BindingHelper has no methods. A Binding developer will extend this interface to provide specific classes and methods needed by the TrentinoBinding to serialize and unserialize remote messages.
+     A BindingHelper will be mostly generated during deployment by Tregen.
+     
+    * TregenBindingPlugin : It is an extension point of Tregen, where the developer can create new Files that can be associated to a deployed Service (NOT YET IMPLEMENTED)
+    
+ 
+ 
+

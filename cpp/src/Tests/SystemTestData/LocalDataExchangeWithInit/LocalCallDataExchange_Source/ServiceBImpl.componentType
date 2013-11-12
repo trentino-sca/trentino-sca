@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <!--service name="ServiceB" >
+      <interface.cpp class="Trentino::LocalCallDataExchange::ServiceB" header="services/TrentinoLocalCallDataExchangeServiceAB.h"/>
+    </service-->
+    <reference name="ServiceA" multiplicity="1..1" autowire="false" target="componentA/ServiceA">
+		<interface.cpp class="Trentino::LocalCallDataExchange::ServiceA" header="services/TrentinoLocalCallDataExchangeServiceAB.h"/>
+	</reference>
+</componentType>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="Builder" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BuilderNamespace" xmlns:sample="BuilderNamespace">
+
+  <component name="BuilderComponent">
+    <implementation.composite name="sample:BuilderComponentComposite"/>
+    <service name="Build" >
+      <interface.cpp class="Trentino::Example::Builder::Build" header="services/Build.h"/>
+    </service>
+    <reference name="Log" multiplicity="0..n" autowire="false" 
+               target="LoggerComponent/Log LoggerImplComponent/NonExistenmtService2">
+      <interface.cpp class="Trentino::Example::Builder::Logger" header="services/Logger.h"/>
+    </reference>
+  </component>
+
+  <component name="LoggerComponent">
+    <implementation.composite name="sample:LoggerComponentComposite"/>
+    <service name="Log" >
+      <interface.cpp class="Trentino::Example::Builder::Logger" header="services/Logger.h"/>
+    </service>
+  </component>
+
+  <component name="GUIComponent">
+    <implementation.cpp class="Trentino::Example::Builder::GUIImpl"
+			header="GUIImpl.h"
+			scope="composite"
+			library="Builder"
+			eagerInit="true"/>
+    <reference name="BuildRefGUI" multiplicity="1..1" autowire="false" target="BuilderImplComponent/NonExistentService1">
+      <interface.cpp class="Trentino::Example::Builder::Build" header="services/Build.h"/>
+    </reference>
+  </component>
+
+  <wire source="BuilderComponent/Log" target="LoggerComponent/Log"/>
+  <wire source="BuilderComponent/Log" target="LoggerImplComponent/NonExistenmtService3"/>
+</composite>

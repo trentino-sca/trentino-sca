@@ -1,0 +1,40 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="I:/Trentino/trentino/DEV/cpp/src/Tests/UtilsTest/TrentinoTestsPatternStaticClassTest.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="cppunit/TestFixture.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="cstring",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="cppunit/extensions/HelperMacros.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="../../Utils/TrentinoUtilsPatternStaticClass.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_utils_pattern_static_class_8h.html"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="boost/crc.hpp",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="malloc.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="typeinfo",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="../Global/TrentinoGlobal.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_global_8h.html"];
+  Node5 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TrentinoUtilsPatternEmptyImplCTorDTor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_utils_pattern_empty_impl_c_tor_d_tor_8h.html"];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="TrentinoUtilsPatternEmptyImplCTorDTor.inl",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node5 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="TrentinoUtilsStaticMap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_utils_static_map_8h.html"];
+  Node13 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node13 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="TrentinoUtilsPatternStaticClass.inl",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="../../Utils/TrentinoUtilsPatternFullImplCTorDTor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_trentino_utils_pattern_full_impl_c_tor_d_tor_8h.html"];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="TrentinoUtilsPatternFullImplCTorDTor.inl",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}

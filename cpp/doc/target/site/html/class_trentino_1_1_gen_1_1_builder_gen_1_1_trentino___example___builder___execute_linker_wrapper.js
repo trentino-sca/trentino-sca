@@ -1,0 +1,4 @@
+var class_trentino_1_1_gen_1_1_builder_gen_1_1_trentino___example___builder___execute_linker_wrapper =
+[
+    [ "invoke", "class_trentino_1_1_gen_1_1_builder_gen_1_1_trentino___example___builder___execute_linker_wrapper.html#a9b8eba222732aeb32d505444f3bbce96", null ]
+];

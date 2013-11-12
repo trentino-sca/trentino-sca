@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.trentino</groupId>
+	<artifactId>org.trentino.doc</artifactId>
+	<version>0.7-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<url>http://trentino.sourceforge.net/</url>
+	<organization>
+		<name>Siemens Corporate Technologies</name>
+		<url>http://www.siemens.com</url>
+	</organization>
+	<mailingLists>
+		<mailingList>
+			<name>trentino-devel Archives</name>
+			<post>http://sourceforge.net/mailarchive/forum.php?forum_name=trentino-devel</post>
+		</mailingList>
+	</mailingLists>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License (LGPL)</name>
+			<url>http://www.gnu.org/copyleft/lesser.html</url>
+		</license>
+	</licenses>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<dockx.version>2.0.14</dockx.version>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+<!-- 				<plugin>
+					<groupId>com.agilejava.docbkx</groupId>
+					<artifactId>
+							docbkx-maven-plugin
+							</artifactId>
+					<version>
+						${dockx.version}
+									</version>
+				</plugin> -->
+			</plugins> 
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.doxia</groupId>
+						<artifactId>doxia-module-docbook-simple</artifactId>
+						<version>1.4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<moduleExcludes>
+						<apt>**/*.apt</apt>
+					</moduleExcludes>
+					<reportPlugins>
+<!-- 						<plugin> -->
+<!-- 							<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 							<artifactId>maven-javadoc-plugin</artifactId> -->
+<!-- 							<version>2.8.1</version> -->
+<!-- 							<reportSets> -->
+<!-- 								<reportSet> -->
+<!-- 									<id>non-aggregate</id> -->
+<!-- 									<configuration> -->
+<!-- 									</configuration> -->
+<!-- 									<reports> -->
+<!-- 										<report>javadoc</report> -->
+<!-- 									</reports> -->
+<!-- 								</reportSet> -->
+<!-- 								<reportSet> -->
+<!-- 									<id>aggregate</id> -->
+<!-- 									<configuration> -->
+<!-- 									</configuration> -->
+<!-- 									<reports> -->
+<!-- 										<report>aggregate</report> -->
+<!-- 									</reports> -->
+<!-- 								</reportSet> -->
+<!-- 							</reportSets> -->
+<!-- 						</plugin> -->
+						<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jxr-plugin</artifactId> 
+							<version>2.3</version> <configuration> <aggregate>true</aggregate> </configuration> 
+							</plugin> -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-report-plugin</artifactId>
+							<version>2.12.2</version>
+							<configuration>
+								<aggregate>true</aggregate>
+							</configuration>
+						</plugin>
+						<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>cobertura-maven-plugin</artifactId> 
+							<version>2.5.1</version> <configuration> <formats> <format>html</format> 
+							</formats> <aggregate>true</aggregate> </configuration> </plugin> <plugin> 
+							<groupId>org.codehaus.mojo</groupId> <artifactId>findbugs-maven-plugin</artifactId> 
+							<version>2.5.2</version> <configuration> <effort>Max</effort> <threshold>Low</threshold> 
+							<findbugsXmlOutput>false</findbugsXmlOutput> <xmlOutput>false</xmlOutput> 
+							<includeTests>true</includeTests> </configuration> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+							<artifactId>maven-checkstyle-plugin</artifactId> <version>2.9.1</version> 
+							</plugin> -->
+					</reportPlugins>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	<modules>
+		<!-- module>../DEV/cpp/doc/pom.xml</module -->
+		<module>../java/org.trentino.trengen.parent/pom.xml</module>
+	</modules>
+</project>

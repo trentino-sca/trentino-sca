@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="HelloWorldRemoteComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="HelloWorldRemoteNamespace">
+
+  <component name="TrentinoExampleHelloWorldRemoteHelloWorldImpl">
+
+    <implementation.cpp
+        class="Trentino::Example::HelloWorldRemote::HelloWorldImpl"
+		header="TrentinoExampleHelloWorldRemoteHelloWorldImpl.h"
+        scope="composite"
+		library="HelloWorldRemote" 
+		eagerInit="true"/>
+		<service name="HelloWorld" >
+      <interface.cpp remotable="true" class="Trentino::Example::HelloWorldRemote::HelloWorld" header="TrentinoExampleHelloWorldRemoteHelloWorld.h"/>
+    </service>
+  </component>
+</composite>

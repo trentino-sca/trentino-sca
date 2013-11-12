@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+	<service name="ExecuteCompiler" >
+		<interface.cpp class="Trentino::Example::ValidContribution1::ExecuteCompiler" header="services/ExecuteCompiler.h"/>
+	</service>
+	<reference name="Log" multiplicity="0..n">
+		<interface.cpp class="Trentino::Example::ValidContribution1::Logger" header="services/Logger.h"/>
+	</reference>
+</componentType>

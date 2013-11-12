@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::XML::Schema::QName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_x_m_l_1_1_schema_1_1_q_name.html",tooltip="Represents XML qualified names as defined in the XML specification: XML Schema Part 2: Datatypes Seco..."];
+}

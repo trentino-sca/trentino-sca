@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="GUIDemoCompositeDiscovery" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="GUIDemoNamespace">
+
+  <component name="Client1">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="../GUIDemoRemoteClient/TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemoRemoteClient"
+		eagerInit="true"/>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client 1: yellow</value>
+    </property>
+    <reference name="GUIDemoLCD" multiplicity="1..n">
+        <metadata>
+		   <stringAttributes name="color" value="yellow"/>
+		</metadata>
+      <binding.sca/>
+    </reference>
+  </component>
+  
+  <component name="Client2">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="../GUIDemoRemoteClient/TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemoRemoteClient"
+		eagerInit="true"/>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client 2: blue</value>
+    </property>
+    <reference name="GUIDemoLCD" multiplicity="1..n">
+        <metadata>
+		   <stringAttributes name="color" value="blue"/>
+		</metadata>
+      <binding.sca/>
+    </reference>
+  </component>
+  
+  <component name="Client3">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="../GUIDemoRemoteClient/TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemoRemoteClient"
+		eagerInit="true"/>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client 3: green</value>
+    </property>
+    <reference name="GUIDemoLCD" multiplicity="1..n">
+        <metadata>
+		   <stringAttributes name="color" value="green"/>
+		</metadata>
+      <binding.sca/>
+    </reference>
+  </component>
+
+</composite>

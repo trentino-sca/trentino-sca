@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section SYSTEM "../sdocbook.dtd">
+<section>
+	<title>Trentino Interface description language (TIDL) reference</title>
+<section>
+<title>Overview</title>
+<para>
+The Trentino Interface description language is used to describe remotable Services by the Trentino SCA (default)  binding.
+The interface has the same concepts as corba IDL, but use the java language to describe services.
+Using the java language to describe our (C++) interface has many advantages.
+<itemizedlist>
+<listitem>
+<para>We can reuse existing IDE when creating our interface</para>
+</listitem>
+<listitem>
+<para>We rely on a robust java JDK for parsing the IDL</para>
+</listitem>
+<listitem>
+<para>Reuse existing java knowledge</para>
+</listitem>
+</itemizedlist>
+</para>
+</section>
+<section>
+<title>Why do we need TIDL?</title>
+<para>
+<orderedlist>
+<listitem>
+<para>To be interoperable. TIDL is neutral and we can use it to generate code for other Languagues like java (e.g used by Management and monitoring tool to acces a runtime). 
+ <sbr/>Example: Android client</para>
+</listitem>
+<listitem>
+<para>In TIDL we can put more Interface description information than in normal C++ code
+ <sbr/>Example:  Complex addressing where the response to a request should be send to more than one recipient
+ <sbr/>Example: metadata to set time out for a method</para>
+</listitem>
+<listitem>
+<para>Semantic of remote procedural call migth be difficult to implement by hand.
+ <sbr/>Example : Interface methods should not use pointers
+ <sbr/>Example : Data binding: only legal data structures have to be exchanged -Y user have to learn format of leagl data structure. Trengen have to be able to sucessfully serialize all deta created by the end user</para>
+</listitem>
+<listitem>
+<para>Parsing issue: The CPP Parser is not well tested and the functionality covered until now, is missing some important features
+ <sbr/>Example: MACROS expansion</para>
+</listitem>
+<listitem>
+<para>Extensibililty: extends the framework by extending the TIDL while the generated interface is not changed.
+</para>
+</listitem>
+</orderedlist>
+</para>
+</section>
+<section>
+<title>Example interface</title>
+<para>
+<programlisting language="java" >
+<![CDATA[
+package Trentino.Example.BasicCalculatorRemote;
+
+//We MUST ALWAYS Import this package
+import org.trentino.tidl.*;
+
+public interface BasicCalculator extends TInterface{
+
+	ComplexNumber add(ComplexNumber a, ComplexNumber b);
+	
+	TInt addSimple(TInt a, TInt b);
+	
+	ComplexNumber divide(ComplexNumber a, ComplexNumber b);
+	
+	void multiply(ComplexNumber a, ComplexNumber b,@Out ComplexNumber c);
+	
+	ComplexNumber divide2 (TupleComplexNumber tuple);
+	
+	TUInt calculateAge (Person person) throws ValidationException;
+	
+	
+	class ValidationException extends TException{
+     TString details;
+    }
+	 
+	class Address extends TStruct{
+	  TString street;
+	  Phone phone;
+	}
+	
+	class TupleComplexNumber extends TStruct{
+		ComplexNumber a;
+		ComplexNumber b;
+	}
+	
+	class Phone extends TStruct{
+	TString home;
+	TString mobile;
+	}
+	
+	class Person extends TStruct{
+		Address addres;
+		TString name;
+		TString surname;
+		Person mother;
+     }
+	 
+	 class ComplexNumber extends TStruct{
+		TInt a;
+		TInt b;
+     }
+}
+
+]]>
+</programlisting>
+The description of the interface is self explanatory for a java developer.
+An interface extends "TInterface" and has methods. An interface can import types.
+</para>
+</section>
+<section>
+<title>TIDL types</title>
+<para>
+TIDL support simple and complex types.
+All TIDL simple types are prefixed with "T", to differentiate them from other java types.
+</para>
+<section>
+<title>Simple types</title>
+<para>
+<itemizedlist>
+<listitem>
+<para>TBool: the boolean type</para>
+</listitem>
+<listitem>
+<para>TDouble: the double type</para>
+</listitem>
+<listitem>
+<para>TFloat: the float type</para>
+</listitem>
+<listitem>
+<para>TInt: the int type. TInt is mapped to int32 C++ type</para>
+</listitem>
+<listitem>
+<para>TUInt: unsigned int type: mapping uint32</para>
+</listitem>
+<listitem>
+<para>TLong: the long type: mapping int64</para>
+</listitem>
+<listitem>
+<para>TULong: the long type: mapping uint64</para>
+</listitem>
+<listitem>
+<para>TString: represent a string, mapping a C++ std::string</para>
+</listitem>
+</itemizedlist>
+</para>
+</section>
+<section>
+<title>Complex types</title>
+<para>
+Complex types are defined by creating a class that extends "TStruct" or that extends another complex type.
+A complex type defines all the fields it contains. The fields MUST be TIDL simples types or TIDL complex types.
+Inheritance is supported for complex types. A complex type can reference a object from the same type.
+<example>
+<para>
+<programlisting language="java">
+<![CDATA[
+	 class Person extends TStruct{
+		Address addres;
+		TString name;
+		TString surname;
+		Person mother;
+     }
+]]>
+</programlisting>
+</para>
+</example>
+</para>
+</section>
+<section>
+<title>Exceptions</title>
+<para>TIDL support exception specification. An exception is a TIDL complex type with the particularity that it extends "TException" instead of "TStruct"
+
+<programlisting language="java">
+<![CDATA[
+	class ValidationException extends TException{
+     TString details;
+    }
+	 
+]]>
+</programlisting>
+</para>
+</section>
+</section><section>
+<title>Interface</title>
+<para>
+An interface is a java interfaces, with the exception that a TIDL interface always extends "TInterface".
+It is described in a java file with the same name.
+</para>
+<section>
+<title>Import section</title>
+<para>
+A TIDL interface MUST allways import org.trentino.tidl.*;
+This import statement will import all the basic TIDL types and annotations in the TDIL description file. 
+</para>
+</section>
+
+
+
+
+<section>
+<title>Interface Methods</title>
+<para>
+Interfaces methods are normal java methods.
+All the types used by a TIDL methods as arguments or return types MUST be TIDL types.
+Normal java types like "String", "int" are not used and will cause the compilation and code generation to fails.
+Exceptions can be specified on methods. In that case, exception MUST be a TIDL exception.
+</para>
+</section>
+<section>
+<title>Methods arguments</title>
+
+<para>
+Methods arguments can be annotated to describe their behaviour.
+<programlisting language="cpp" >
+<![CDATA[
+void multiply(ComplexNumber a, ComplexNumber b,@Out ComplexNumber c);
+]]>
+</programlisting>
+</para>
+<section>
+<title>@In Annotation</title>
+<para>
+@In annotation indicates that the parameter is an input parameter. So that it should not be modified.
+</para>
+<para>A Parameter without annotation is supposed to be @In annotated</para>
+</section>
+<section>
+<title>@Out annotation</title>
+<para>
+@Out indicate that the given parameter is an output parameter, that should be filled by the service with data.
+It is therefore modifiable.
+</para>
+</section>
+<section>
+<title>@InOut annotation</title>
+<para>
+This annotation indicates that the parameter is an input but also output parameter.
+The service is supposed to read data from that parameter but also write to it back.
+</para>
+</section>
+</section>
+</section>
+<section>
+<title>C++ code generation</title>
+<para>
+Trengen can generate C++ code from a TIDL Interface. The generated code is used to implement the client and the server.
+See the trengen chapter (usage) for more details about the C++ code generation from TIDL interfaces.
+</para>
+<section>
+<title>Example generated C++ code</title>
+<para>
+This is the corresponding C++ code generated for the BasicCalculator interface specified in the last section
+<programlisting language="cpp" >
+<![CDATA[
+// Generated by Trentino TDIL CPP interface generator. do not modify
+
+#ifndef TrentinoExampleBasicCalculatorRemoteBasicCalculatorH
+#define TrentinoExampleBasicCalculatorRemoteBasicCalculatorH
+
+#include "BasicCalculatorGlobal.h"
+#ifndef NULL
+#define NULL 0
+#endif
+
+
+#include <boost/cstdint.hpp>
+#include <string>
+
+typedef  boost::int32_t  tint32_t;
+typedef  boost::uint32_t  tuint32_t;
+typedef  boost::int64_t  tint64_t;
+typedef  boost::uint64_t  tuint64_t;
+
+namespace Trentino{
+namespace Example{
+namespace BasicCalculatorRemote{
+
+//forward declaration
+class ComplexNumber;
+class Phone;
+class Address;
+class Person;
+class TupleComplexNumber;
+class ValidationException;
+
+
+//**************************************************************************************
+//                                         ComplexNumber
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT ComplexNumber{
+private:
+	tint32_t a_;
+	tint32_t b_;
+
+public:
+// constructor and destructor---------------------------------------
+	ComplexNumber();
+	virtual ~ComplexNumber();
+// default instance
+   static const ComplexNumber& default_instance();
+// accessors -------------------------------------------------------
+	void set_a(tint32_t value);
+	tint32_t a() const; 
+	void set_b(tint32_t value);
+	tint32_t b() const; 
+ 
+ //default instance data
+ private:
+   static ComplexNumber* default_instance_;
+}; //class ComplexNumber
+
+//**************************************************************************************
+//                                         Phone
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT Phone{
+private:
+	std::string* home_;
+	std::string* mobile_;
+
+public:
+// constructor and destructor---------------------------------------
+	Phone();
+	virtual ~Phone();
+// default instance
+   static const Phone& default_instance();
+// accessors -------------------------------------------------------
+ 	const std::string& home() const;
+ 	void set_home(const std::string& value);
+	void set_home(const char* value);
+	void set_home(const char* value, size_t size);
+ 	const std::string& mobile() const;
+ 	void set_mobile(const std::string& value);
+	void set_mobile(const char* value);
+	void set_mobile(const char* value, size_t size);
+ 
+ //default instance data
+ private:
+   static Phone* default_instance_;
+}; //class Phone
+
+//**************************************************************************************
+//                                         Address
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT Address{
+private:
+	std::string* street_;
+	Phone* phone_;
+
+public:
+// constructor and destructor---------------------------------------
+	Address();
+	virtual ~Address();
+// default instance
+   static const Address& default_instance();
+// accessors -------------------------------------------------------
+ 	const std::string& street() const;
+ 	void set_street(const std::string& value);
+	void set_street(const char* value);
+	void set_street(const char* value, size_t size);
+	Phone* mutable_phone();
+	Phone& phone() const;
+	bool has_phone() const;
+ 
+ //default instance data
+ private:
+   static Address* default_instance_;
+}; //class Address
+
+//**************************************************************************************
+//                                         Person
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT Person{
+private:
+	Address* addres_;
+	std::string* name_;
+	std::string* surname_;
+	Person* mother_;
+
+public:
+// constructor and destructor---------------------------------------
+	Person();
+	virtual ~Person();
+// default instance
+   static const Person& default_instance();
+// accessors -------------------------------------------------------
+	Address* mutable_addres();
+	Address& addres() const;
+	bool has_addres() const;
+ 	const std::string& name() const;
+ 	void set_name(const std::string& value);
+	void set_name(const char* value);
+	void set_name(const char* value, size_t size);
+ 	const std::string& surname() const;
+ 	void set_surname(const std::string& value);
+	void set_surname(const char* value);
+	void set_surname(const char* value, size_t size);
+	Person* mutable_mother();
+	Person& mother() const;
+	bool has_mother() const;
+ 
+ //default instance data
+ private:
+   static Person* default_instance_;
+}; //class Person
+
+//**************************************************************************************
+//                                         TupleComplexNumber
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT TupleComplexNumber{
+private:
+	ComplexNumber* a_;
+	ComplexNumber* b_;
+
+public:
+// constructor and destructor---------------------------------------
+	TupleComplexNumber();
+	virtual ~TupleComplexNumber();
+// default instance
+   static const TupleComplexNumber& default_instance();
+// accessors -------------------------------------------------------
+	ComplexNumber* mutable_a();
+	ComplexNumber& a() const;
+	bool has_a() const;
+	ComplexNumber* mutable_b();
+	ComplexNumber& b() const;
+	bool has_b() const;
+ 
+ //default instance data
+ private:
+   static TupleComplexNumber* default_instance_;
+}; //class TupleComplexNumber
+
+//**************************************************************************************
+//                                         ValidationException
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class TRENTINO_EXAMPLE_BASICCALCULATORREMOTE_IMPORT_EXPORT ValidationException{
+private:
+	std::string* details_;
+
+public:
+// constructor and destructor---------------------------------------
+	ValidationException();
+	virtual ~ValidationException();
+// default instance
+   static const ValidationException& default_instance();
+// accessors -------------------------------------------------------
+ 	const std::string& details() const;
+ 	void set_details(const std::string& value);
+	void set_details(const char* value);
+	void set_details(const char* value, size_t size);
+ 
+ //default instance data
+ private:
+   static ValidationException* default_instance_;
+}; //class ValidationException
+
+//**************************************************************************************
+//                                         BasicCalculator
+//**************************************************************************************
+//! \brief 
+//**************************************************************************************
+class BasicCalculator{
+  //services
+public:
+	virtual ComplexNumber add (const ComplexNumber& a,const ComplexNumber& b) =0;
+	virtual tint32_t addSimple (const tint32_t a,const tint32_t b) =0;
+	virtual ComplexNumber divide (const ComplexNumber& a,const ComplexNumber& b) =0;
+	virtual void multiply (const ComplexNumber& a,const ComplexNumber& b, ComplexNumber& c) =0;
+	virtual ComplexNumber divide2 (const TupleComplexNumber& tuple) =0;
+	virtual tuint32_t calculateAge (const Person& person) throw (ValidationException)=0;
+  
+}; //class BasicCalculator
+} //namespace Trentino
+} //namespace Example
+} //namespace BasicCalculatorRemote
+
+#endif //TrentinoExampleBasicCalculatorRemoteBasicCalculatorH
+]]>
+</programlisting>
+</para>
+</section>
+<section>
+<title> Providing default values at model level</title>
+<para>
+Default values for structures can be defined in a TIDL using the <emphasis>@Default</emphasis> annotation.
+<programlisting language="java" >
+<![CDATA[
+
+public interface ICommandService extends TInterface{
+
+    TBool isRunning();
+	StorageRackData getStateData();
+	
+   void setCommand(Command command);
+   void setCommandWithIdentifier(TString identifier, Command command);
+   
+   class StorageRackCommand extends TStruct {
+        TFloat activePower;
+        TFloat reactivePower;  
+   }
+   
+   class Data extends TStruct{
+   
+        @Default(bv=true)
+		TBool isValid;
+		
+		@Default(sv="Default")
+		TString Name;
+		   
+		@Default(nv=-1)
+		TFloat StateOfCharge;
+		
+		@Default(nv=-1)
+		TFloat MaxChargingPower;
+   }
+}
+
+]]>
+</programlisting>
+The @Default annotation has tree attributes.
+<itemizedlist>
+<listitem>
+<para>nv (Number Values): used to store default values for numbers. Example: @Default(nv=-1)</para>
+</listitem>
+<listitem>
+<para>sv (String Values): used to store default values for strings. Example: @Default(sv="Default")</para>
+</listitem>
+<listitem>
+<para>bv (Boolean Values): used to store default values for boolean. Example: @Default(bv=true)</para>
+</listitem>
+</itemizedlist>
+</para>
+<note>
+<para>
+Only fields with primitives types can have default values. Putting default values on complex types has no effect during code generation.
+</para>
+</note>
+</section>
+</section>
+</section>

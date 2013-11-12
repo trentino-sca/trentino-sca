@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="PreferenceServiceComposite" 
+           xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="PreferenceServiceNamespace">
+
+  <component name="PreferenceServiceImpl">
+    <implementation.cpp
+        class="Trentino::System::PreferenceServiceImpl"
+				header="services\TrentinoSystemPreferenceServiceImpl.h"
+        scope="composite"
+				library="PreferenceService" path="bin"/>
+  </component>
+
+</composite>

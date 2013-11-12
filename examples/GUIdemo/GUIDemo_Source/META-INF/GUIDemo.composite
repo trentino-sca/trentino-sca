@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="GUIDemoComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="GUIDemoNamespace">
+  <component name="GUIDemoImpl_one_to_many">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemo" 
+		eagerInit="true"/>
+    <service name="GUI" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUI" header="services/TrentinoExampleGUIDemo.h"/>
+    </service>
+    <reference name="GUIDemoLCD" multiplicity="1..n" autowire="false" target="GUIDemoLCDImpl_service1/GUIDemoLCD GUIDemoLCDImpl_service2/GUIDemoLCD">
+		  <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </reference>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client_1</value>
+    </property>
+  </component>
+
+  <component name="GUIDemoImpl_many_to_one">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemo"
+		eagerInit="true"/>
+    <service name="GUI" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUI" header="services/TrentinoExampleGUIDemo.h"/>
+    </service>
+    <reference name="GUIDemoLCD" multiplicity="1..n" autowire="false" target="GUIDemoLCDImpl_service1/GUIDemoLCD GUIDemoLCDImpl_service2/GUIDemoLCD">
+      <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </reference>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client_2</value>
+    </property>
+  </component>
+
+  <component name="GUIDemoImpl_one_to_one">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemo"
+		eagerInit="true"/>
+    <service name="GUI" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUI" header="services/TrentinoExampleGUIDemo.h"/>
+    </service>
+    <reference name="GUIDemoLCD" multiplicity="1..n" autowire="false" target="GUIDemoLCDImpl_service3/GUIDemoLCD">
+      <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </reference>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client_3</value>
+    </property>
+  </component>
+
+
+  <component name="GUIDemoLCDImpl_service1">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemo"
+		eagerInit="true"/>
+    <service name="GUIDemoLCD" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </service>
+    <property name="GUIDemoLCDName" type="xsd:string">
+    <value>Service_1</value>
+    </property>
+  </component>
+
+  <component name="GUIDemoLCDImpl_service2">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemo"
+		eagerInit="true"/>
+    <service name="GUIDemoLCD" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </service>
+    <property name="GUIDemoLCDName" type="xsd:string">
+      <value>Service_2</value>
+    </property>
+  </component>
+
+  <component name="GUIDemoLCDImpl_service3">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoLCDImpl"
+		header="TrentinoExampleGUIDemoLCDImpl.h"
+        scope="composite"
+		library="GUIDemo"
+		eagerInit="true"/>
+    <service name="GUIDemoLCD" >
+      <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="./services/TrentinoExampleGUIDemoLCD.h"/>
+    </service>
+    <property name="GUIDemoLCDName" type="xsd:string">
+      <value>Service_3</value>
+    </property>
+  </component>
+  
+</composite>

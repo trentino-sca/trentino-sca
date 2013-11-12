@@ -1,0 +1,39 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Binding::SCA::DataHandler",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCAContext" ,fontname="Helvetica"];
+  Node2 [label="boost::shared_ptr\< Context \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node3 [label="Trentino::Binding::SCA::Context",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_context.html",tooltip="This clas contains external dependencies of the SCA Binding Module."];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvoker" ,fontname="Helvetica"];
+  Node4 [label="boost::shared_ptr\< InvokerBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node5 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServiceRegistry" ,fontname="Helvetica"];
+  Node5 [label="boost::shared_ptr\< ServiceRegistryBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mDeps" ,fontname="Helvetica"];
+  Node6 [label="boost::shared_ptr\< DataHandlerDependencies \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node7 [label="Trentino::Binding::SCA::DataHandlerDependencies",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_data_handler_dependencies.html",tooltip="that holds datas of a DataHandler"];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mSCABodyDeserializer" ,fontname="Helvetica"];
+  Node8 [label="boost::shared_ptr\< SCABodyDeserializer \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node9 [label="Trentino::Binding::SCA::SCABodyDeserializer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_s_c_a_body_deserializer.html"];
+  Node10 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mConverter" ,fontname="Helvetica"];
+  Node10 [label="boost::shared_ptr\< CompactSoapConverter \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node11 [label="Trentino::Binding::SCA::CompactSoapConverter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_compact_soap_converter.html",tooltip="convert raw data ta soap message object and back"];
+  Node12 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mBindingId" ,fontname="Helvetica"];
+  Node12 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node14 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServiceInfoReader" ,fontname="Helvetica"];
+  Node14 [label="boost::shared_ptr\< ServiceInfoReader \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node15 -> Node14 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node15 [label="Trentino::Binding::SCA::ServiceInfoReader",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_service_info_reader.html",tooltip="main class responsible of reading a soap header and therefore determine attributes of the header that..."];
+  Node16 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvokerProxy" ,fontname="Helvetica"];
+  Node16 [label="boost::shared_ptr\< InvokerProxyBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node17 -> Node16 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node17 [label="Trentino::Binding::SCA::InvokerProxyBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_binding_1_1_s_c_a_1_1_invoker_proxy_base.html"];
+}

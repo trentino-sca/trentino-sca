@@ -1,0 +1,49 @@
+                            
+                            ------
+                            Trentino
+                            ------
+                            Emeric Kwemou
+                            ------
+                            Juli 2012
+                            
+Introduction
+
+  TRENTINO is a powerful open source development platform for building C++ based, lightweight, distributed and modular embedded applications.
+  
+  It is based on the open standard {{{http://www.oasis-opencsa.org/ci/c}Service Component Architecture (SCA)}}.
+  
+  Trentino severely reduces complexity and thus has positive implications on both safety and cost during the entire application lifecycle of your product.
+
+* Enable extensible architectures
+
+  Trentino has been designed from the ground up to eliminate complexity at both architecture and API levels.
+  It provides the following keys features to the embedded developpers:
+    
+    * A standard based component model
+    
+    * Plugable communication protocols (SCA Bindings)
+    
+    * A Management and monitoring component for Trentino applications
+    
+    * Distributed Service discovery
+    
+    * Trentino is non invasive: Minimal API, use of dependency injection. It therefore facilitate the migration of existing C++ code base to a Trentino Runtime.
+
+* Lightweight Runtime
+
+  The main goal of Trentino is to be as lightweight as possible. An empty Trentino runtime has a memory footprint lower than 500 KB.
+ 
+* Target users
+
+  Trentino has been designed as generic as possible to be integrated in almost all kind of embedded applications. The minimal requirements for Trentino is that
+ the embedded device should host an Operating System. 
+ The Source code can be compiled for Visual Studio and GCC platforms (including QNX).
+
+* Learn more
+
+ To find out more about Trentino, {{{./getting-started.html}follow this roadmap to get started quickly}}. 
+ If you are avaluating Trentino, please see our answers to frequently asked questions.
+ If you want to contribute to Trentino, register on our developer-mailingslist. 
+
+ Trentino is licensed under Apache License, Version 2.0. Full commercial support is available from Siemens Corporate Technology. 
+ Tooling for Trentino applications are provided.

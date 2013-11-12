@@ -1,0 +1,3 @@
+[Runtime]
+	DLLPath = ${TRENTINO_CONSOLE_CONF_STANDARD_RUNTIME_PATH}
+	DLLName = TrentinoRuntime

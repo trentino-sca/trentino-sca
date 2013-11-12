@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "../sdocbook.dtd">
+<chapter>
+	<title>Trentino Preference Service</title>
+<section>
+<title>Overview</title>
+<para>
+  The goal of Trentino Preference Service is to allow applications to store and retrieve device and system preference data. This data is stored persistently in an implementation-dependent backing store. Typical implementations include flat files, OS-specific registries, directory servers and SQL databases. 
+</para>
+<para>
+  Users need to be able to persistently store their settings and preferences about the devices they use. This information can be stored locally on the OSGi device or remotely on the backend. It can later be retrieved, so that the user specific preferences would be used.
+</para>
+<para>
+  The term "device preferences" implies the value set of user defined settings or any other customized information. For example: fonts, colors, network identifier, device name, etc.
+</para>
+<para>	
+  The OSGi specification defines that preferences are managed by the Preferences Service running on the managed OSGi device. Preferences are stored in a hierarchical tree in the device's database. The Trentino system allows obtaining these preferences and storing them on the backend. Thus preferences can be modified at the backend and then synchronized and used on any OSGi device that the user can access. For each managed OSGi device, with enabled support of Preference Management, there is a single preference tree for device preferences.
+</para>	
+</section>
+<section>
+<title>Preference Servicee Interface</title>
+<para>
+	Trentino Preference Service Interface provides the methods to manage device preference storage. In the storage, device preference information is stored as a hierarchical collection of Preference node. For Preference Interface, Trentino fully support OSGI Preference Specification, please find the details at http://www.osgi.org/javadoc/r4v42/org/osgi/service/prefs/Preferences.html.
+<itemizedlist>
+<listitem>
+	Preference* getStore(string pathName); /* Returns the Preference Root Node from the storage unit under the input pathName. */
+</listitem>
+<listitem>
+	Preference* createStore(string pathName); /* Create a new storage at the location which PathName referers to. */
+</listitem>
+<listitem>
+	void deleteStore(string PathName); /* Delete the Preference storage. */
+</listitem>
+</itemizedlist>
+</para>
+</section>
+<section>
+<title>How to Apply Preference Service in a Trentino Contribution</title>
+<para>
+  In general, the binary of Preference Service should be built successfully and installed first at TRENTINO_HOME\CommonServices\PreferenceService with trentino runtime. While Trentino runtime booting, Preferece Service can be automatically loaded. For this reason, we advise any user not to install any commons services manually.
+</para>
+<para>
+  Within Trentino Runtime, a trentino contribution must qualify the following conditions, which can import preference service for hosted device preference management.
+<itemizedlist>
+<listitem>
+Contribution should reference the metadata exposed by Preference Service.
+</listitem>
+<listitem>
+The header files of preference service should be included in the implementation of the contribution. By default, all these files is placed at TRENTINO_HOME\include\PreferenceService
+</listitem>
+</itemizedlist>
+The following sample of sca-configuration.xml file shows how to import the metadata of Preference Service. 
+ <programlisting language="xml" >
+<![CDATA[
+  <contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="PreferenceServiceInvokerNamespace">
+     <deployable composite="sample:PreferenceServiceInvokerComposite"/>
+     <import.cpp name="PreferenceServiceMetadata" location="PreferenceService:metadata"  version="1.0.0" />
+  </contribution>
+]]>
+ </programlisting>
+ 
+The following sample of PreferenceServiceInvokerImpl.ComponentType file shows how to reference the binary of Preference Service.
+<programlisting language="xml" >
+<![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <service name="PreferenceServiceInvoker">
+    <interface.cpp class="Trentino::System::PreferenceServiceInvoker" header="services/TrentinoSystemPreferenceServiceInvoker.h"/>
+  </service>
+	<reference name="PreferenceService" multiplicity="1..1" autowire="false" target="PreferenceServiceImpl/PreferenceService">
+		<interface.cpp class="Trentino::System::PreferenceService" header="PreferenceServiceMetadata:TrentinoSystemPreferenceService.h"/>
+	</reference>
+</componentType>
+]]>
+ </programlisting>
+
+The following sample of TrentinoSystemPreferenceServiceInvokerImpl.h shows how to include the header files of Preference Service.
+<programlisting language="xml" >
+<![CDATA[
+#ifndef TrentinoSystemPreferenceServiceInvokerImplH
+#define TrentinoSystemPreferenceServiceInvokerImplH
+
+//standard
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+//specific
+#include "services/TrentinoSystemPreferenceServiceInvoker.h"
+#include <PreferenceService/TrentinoSystemPreferenceService.h>
+#include <PreferenceService/TrentinoSystemPreference.h>
+
+#ifdef WIN32
+   #ifdef PreferenceServiceInvoker_EXPORTS
+      #define INVOKER_IMPORT_EXPORT __declspec(dllexport)
+   #else
+      #define INVOKER_IMPORT_EXPORT __declspec(dllimport)
+   #endif //PreferenceServiceInvoker_EXPORTS
+#else
+   #define INVOKER_IMPORT_EXPORT
+#endif //WIN32
+
+namespace Trentino{
+	namespace System
+	{
+		class INVOKER_IMPORT_EXPORT PreferenceServiceInvokerImpl : public PreferenceServiceInvoker
+		{
+			//services
+		public:
+			PreferenceServiceInvokerImpl();
+			virtual ~PreferenceServiceInvokerImpl();
+			//*******************************************************************************************
+			//                                       setPreferenceService()
+			//*******************************************************************************************      
+			//! \brief set PreferenceService object.
+			//! \param[in] PreferenceService* pPreferenceService - the pointer of the PreferenceService.
+			//! \return Preference*. 
+			//! \sa 
+			//*******************************************************************************************
+			void setPreferenceService(PreferenceService* pPreferenceService);
+
+			//*******************************************************************************************
+			//                                       test()
+			//*******************************************************************************************      
+			//! \brief test the PreferenceService component
+			//!        create a new store/create tables/read-write preferences
+			//! \return void. 
+			//! \sa 
+			//*******************************************************************************************
+			virtual void test();
+
+   	private :
+
+      //@Reference(service="IPreferenceService")
+      PreferenceService* mPreference;
+		};
+	} //namespace System
+} //namespace Trentino
+
+#endif //TrentinoSystemPreferenceServiceInvokerImplH
+]]>
+ </programlisting>
+For the sample contribution, the rest of TrentinoSystemPreferenceServiceInvoker is implemented in the same way like other contributions.
+</para>
+
+</section>
+</chapter>

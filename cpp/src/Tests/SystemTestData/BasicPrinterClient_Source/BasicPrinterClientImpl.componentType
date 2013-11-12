@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+  <reference name="BasicPrinterRef" multiplicity="0..1">
+      <interface.cpp class="Trentino::Example::BasicPrinter" header="services/TrentinoExampleBasicPrinterClient.h" remotable="true"/>
+    </reference>
+</componentType>

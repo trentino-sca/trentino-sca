@@ -1,0 +1,4 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:ns="SeparateWiresTest">
+   <deployable composite="ns:FirstComposite"/>
+   <deployable composite="ns:SecondComposite"/>
+</contribution>

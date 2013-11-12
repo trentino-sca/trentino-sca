@@ -1,0 +1,22 @@
+ -----
+Trentino Documentation
+ -----
+Emeric Kwemou
+ -----
+ Mar 2012
+ -----
+
+Trentino Documentation
+
+  This page is under construction. Our reference documentation is still in an early stage. But you can already find useful information to get started.
+
+  This is the home of the Trentino reference guide.  This is where you can find out how to use Trentino and how the pieces fit together.  For detailed descriptions of the individual classes in Trentino please refer to the {{{../apidocs/index.html}Javadocs}}.
+
+  Use the links below to navigate to the HTML and PDF versions of the guide:
+  
+    * {{{./html/index/index.html}HTML}} format
+    
+    * {{{./html-single/index.html}HTML Single Page}}
+    
+    * {{{./pdf/trentino-user-docs.pdf}PDF}} format
+

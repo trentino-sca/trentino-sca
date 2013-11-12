@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.trentino</groupId>
+  <artifactId>org.trentino.runtime</artifactId>
+  <version>0.2</version>
+  <name>Runtime</name>
+   <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>http://trentino.sourceforge.net/</url>
+    </site>
+  </distributionManagement>
+    <build>
+    <!-- To define the plugin version in your parent POM -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.soebes.maven.plugins.dmg</groupId>
+          <artifactId>doxygen-maven-plugin</artifactId>
+          <version>1.0.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <!-- To use the plugin goals in your POM or parent POM -->
+    <plugins>
+      <plugin>
+        <groupId>com.soebes.maven.plugins.dmg</groupId>
+        <artifactId>doxygen-maven-plugin</artifactId>
+        <version>1.0.1</version>
+		 <configuration>
+		<configurationFile>Doxyfile</configurationFile>
+		</configuration>
+      </plugin>
+    </plugins>
+  </build>
+    <reporting>
+       <plugins><plugin>
+        <groupId>com.soebes.maven.plugins.dmg</groupId>
+        <artifactId>doxygen-maven-plugin</artifactId>
+        <version>1.0.1</version>
+		 <configuration>
+		<configurationFile>Doxyfile</configurationFile>
+		</configuration>
+      </plugin> </plugins>
+  </reporting>
+</project>

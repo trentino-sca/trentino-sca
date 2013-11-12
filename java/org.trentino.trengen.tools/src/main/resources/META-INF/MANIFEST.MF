@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: tr1t6321
+Build-Jdk: 1.6.0_23
+Main-Class: org.trentino.trengen.tools.trengen.Trengen
+Class-Path: org.eclipse.cdt.core_5.3.1.201109151620.jar;org.eclipse.core.resources_3.7.100.v20110510-0712.jar;org.eclipse.equinox.common_3.6.0.v20110523.jar;freemarker-2.3.16.jar

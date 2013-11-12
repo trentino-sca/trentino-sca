@@ -1,0 +1,7 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Utils::Logging::Log4CPlusLogger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_utils_1_1_logging_1_1_log4_c_plus_logger.html",tooltip="Thin class to wrap log4cplus functionality. Supports query and setup of log4cplus loggers..."];
+}

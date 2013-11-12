@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary SYSTEM "docbook.dtd">
+<glossary >
+	<glossdiv>
+		<title>Trentino Glossary</title>
+
+		<glossentry>
+			<glossterm>SCA</glossterm>
+
+			<glossdef>
+				<para>The Service Component Architecture Specification</para>
+			</glossdef>
+		</glossentry>
+
+		<glossentry>
+			<glossterm>SCA Contribution</glossterm>
+
+			<glossdef>
+				<para>
+    A contribution is a set of artifacts ready for deployment on a Trentino Runtime. It typically contains composites and related artifacts that will be deployed on the SCA runtime.
+    A contribution can refer to other contribution, so that installed contribution can be reused.
+				</para>
+			</glossdef>
+		</glossentry>
+	</glossdiv>
+</glossary>

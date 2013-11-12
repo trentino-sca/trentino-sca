@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright(C) OASIS(R) 2005,2010. All Rights Reserved. 
+     OASIS trademark, IPR and other policies apply.  -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+        xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" 
+        elementFormDefault="qualified">
+
+   <include schemaLocation="sca-core-1.1-cd06.xsd"/>
+
+   <!-- IPC Binding -->
+   <element name="binding.ipc" type="sca:IPCBinding" 
+            substitutionGroup="sca:binding"/>
+   <complexType name="IPCBinding">
+      <complexContent>
+         <extension base="sca:Binding">
+		  <!--attribute name="memMapId" type="string" use="optional"/>
+		  <attribute name="serviceSpecifier" type="string" use="required"/-->
+         </extension>
+      </complexContent>
+   </complexType>
+
+</schema>

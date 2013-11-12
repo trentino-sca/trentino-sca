@@ -1,0 +1,25 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Tests::BasicCalculatorReturnVoid::BasicCalculatorReturnVoidInvocationTest",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mReferencePtr" ,fontname="Helvetica"];
+  Node2 [label="boost::shared_ptr\< ReferenceBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvocationContext" ,fontname="Helvetica"];
+  Node3 [label="boost::shared_ptr\< InvocationContext \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mWire" ,fontname="Helvetica"];
+  Node4 [label="boost::shared_ptr\< WireBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServiceWrapper" ,fontname="Helvetica"];
+  Node5 [label="boost::shared_ptr\< ServiceInvocationWrapperBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mServicePtr" ,fontname="Helvetica"];
+  Node6 [label="boost::shared_ptr\< ServiceBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node7 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mInvoker" ,fontname="Helvetica"];
+  Node7 [label="boost::shared_ptr\< InvokerBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mMockComponentImplementationManagerBase" ,fontname="Helvetica"];
+  Node8 [label="boost::shared_ptr\< Trentino::Core::Tests::MockComponentImplementationManagerBase \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node9 [label="Trentino::Core::Tests::MockComponentImplementationManagerBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_core_1_1_tests_1_1_mock_component_implementation_manager_base.html"];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Trentino::Core::ComponentImplementationManagerBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_core_1_1_component_implementation_manager_base.html",tooltip="Responsible for creating and managing instances of component implementations."];
+}

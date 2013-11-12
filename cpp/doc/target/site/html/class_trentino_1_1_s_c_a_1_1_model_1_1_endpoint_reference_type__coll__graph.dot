@@ -1,0 +1,23 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::SCA::Model::EndpointReferenceType",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mReferenceParametersElement" ,fontname="Helvetica"];
+  Node2 [label="boost::shared_ptr\< ReferenceParametersType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node3 [label="Trentino::SCA::Model::ReferenceParametersType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_s_c_a_1_1_model_1_1_reference_parameters_type.html"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mAddressElement" ,fontname="Helvetica"];
+  Node4 [label="boost::shared_ptr\< AttributedURIType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node5 [label="Trentino::SCA::Model::AttributedURIType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_s_c_a_1_1_model_1_1_attributed_u_r_i_type.html"];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mValueElement" ,fontname="Helvetica"];
+  Node6 [label="std::string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="std::basic_string\< char \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip="STL class."];
+  Node8 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mMetadataElement" ,fontname="Helvetica"];
+  Node8 [label="boost::shared_ptr\< MetadataType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classboost_1_1shared__ptr.html"];
+  Node9 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dummy" ,fontname="Helvetica"];
+  Node9 [label="Trentino::SCA::Model::MetadataType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_trentino_1_1_s_c_a_1_1_model_1_1_metadata_type.html"];
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter  SYSTEM "docbook.dtd">
+<chapter>
+	<title>What's New in Trentino 0.2</title>
+
+	<para>Trentino 0.2 has six major themes:</para>
+	<itemizedlist>
+		<listitem>
+			<para>Trengen was completely rewritten is java</para>
+		</listitem>
+
+		<listitem>
+			<para>Support a subset of the Service Component Architecture specification: Contribution, composites, components, manual wiring.</para>
+		</listitem>
+
+		<listitem>
+			<para>Support of SCA Properties (all xml simple types)
+Property query from the Trentino console</para>
+		</listitem>
+
+		<listitem>
+			<para>Support for remote communication by:
+Combining google protocol buffer and binary SOAP as communication protocol
+Using ZeroMq as intelligent and reliable Transport layer</para>
+		</listitem>
+
+		<listitem>
+			<para> Support for SCA C++ API: Domain and ComponentContext</para>
+		</listitem>
+
+		<listitem>
+			<para>Management console</para>
+		</listitem>
+		<listitem>
+		<para>Components lifecycle methods</para>
+		</listitem>
+	</itemizedlist>
+</chapter>

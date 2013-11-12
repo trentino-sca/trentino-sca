@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article SYSTEM "../sdocbook.dtd">
+<article>
+	<title>Trentino - User Manual</title>
+	<orderedlist>
+	<listitem>
+    <para>
+    <ulink url="introduction.html"> Introduction</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="console-howto.html">Console howto</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="trengen.html">Trengen tool reference</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="binding.html">Remote communication via bidings (SCA Binding or IPC (inter process communication via shared memory) biding)</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="tidl.html">Trentino Interface Description language reference</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="service_discovery.html">Service discovery with Trentino</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="deployment.html">Packaging and deployment of Trentino Applications</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="preference_service.html">Trentino Preference Service</ulink>
+    </para>
+	</listitem>
+		<listitem>
+    <para>
+    <ulink url="appendix.html">Appendix A</ulink>
+    </para>
+	</listitem>
+			<listitem>
+    <para>
+    <ulink url="appendixB.html">Appendix B</ulink>
+    </para>
+	</listitem>
+			<listitem>
+    <para>
+    <ulink url="glossary.html">Glossary</ulink>
+    </para>
+	</listitem>
+	</orderedlist>
+
+</article>

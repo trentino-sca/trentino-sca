@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="AppComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="AppNamespace">
+
+  <component name="AppImpl">
+
+    <implementation.cpp
+        class="App::AppImpl"
+		header="AppImpl.h"
+        scope="composite"
+		library="App" 
+		eagerInit="true"/>
+	<reference name="AppService2" multiplicity="1..1" >
+		<binding.sca uri="tcp://localhost:8080/AppService2" />
+	</reference>
+  </component>
+</composite>

@@ -1,0 +1,43 @@
+package protobuf.Trentino.Example.BasicPrinter;
+
+import "TrentinoExampleBasicPrinterTypes.proto";
+option optimize_for = LITE_RUNTIME;
+message BasicPrinterRequest{
+
+    message addRequest{
+        optional PB_ComplexNumber a=1;
+        optional PB_ComplexNumber b=2;
+      }
+      
+    message addSimpleRequest{
+        optional int32 a=1;
+        optional int32 b=2;
+      }
+      
+    message divideRequest{
+        optional PB_ComplexNumber a=1;
+        optional PB_ComplexNumber b=2;
+      }
+      
+    message multiplyRequest{
+        optional PB_ComplexNumber a=1;
+        optional PB_ComplexNumber b=2;
+        optional PB_ComplexNumber c=3;
+      }
+      
+    message divide2Request{
+        optional PB_TupleComplexNumber tuple=1;
+      }
+      
+    message calculateAgeRequest{
+        optional PB_Person person=1;
+      }
+      
+     optional addRequest addRequestObject=1;
+     optional addSimpleRequest addSimpleRequestObject=2;
+     optional divideRequest divideRequestObject=3;
+     optional multiplyRequest multiplyRequestObject=4;
+     optional divide2Request divide2RequestObject=5;
+     optional calculateAgeRequest calculateAgeRequestObject=6;
+
+}

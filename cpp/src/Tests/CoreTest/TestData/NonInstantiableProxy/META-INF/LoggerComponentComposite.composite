@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="LoggerComponentComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BuilderNamespace" xmlns:sample="BuilderNamespace">
+
+	<service name="Log" promote="LoggerImpl/Log">
+		  <interface.cpp class="Trentino::Example::Builder::Logger" header="services/Logger.h"/>
+	</service>
+	<component name="LoggerImpl">
+		<implementation.cpp 
+			class="Trentino::Example::Builder::LoggerImpl"
+			header="LoggerImpl.h"
+			scope="composite"
+			library="Builder"
+			eagerInit="true"/>
+		<service name="Log" >
+			<interface.cpp class="Trentino::Example::Builder::Logger" header="services/Logger.h"/>
+		</service>
+		<reference name="FileLogger" multiplicity="0..1">
+			<interface.cpp class="Trentino::Example::Builder::LoggerFile" header="services/LoggerFile.h"/>
+		</reference>
+		<reference name="ConsoleLogger" multiplicity="0..1">
+			<interface.cpp class="Trentino::Example::Builder::LoggerConsole" header="services/LoggerConsole.h"/>
+		</reference>
+	</component>
+
+	<component name="SmartLoggerComponent">
+		<implementation.composite name="sample:SmartLoggerComposite"/>
+		<service name="FileLogger" >
+			<interface.cpp class="Trentino::Example::Builder::LoggerFile" header="services/LoggerFile.h"/>
+		</service>
+		<service name="ConsoleLogger">
+			<interface.cpp class="Trentino::Example::Builder::LoggerConsole" header="services/LoggerConsole.h"/>
+		</service>
+	</component>
+	<wire source="LoggerImpl/FileLogger" target="SmartLoggerComponent/FileLogger"/>
+	<wire source="LoggerImpl/ConsoleLogger" target="SmartLoggerComponent/ConsoleLogger"/>
+ </composite>

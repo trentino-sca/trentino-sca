@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="HelloWorldComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="HelloWorldNamespace">
+
+  <component name="TrentinoExampleHelloWorldHelloWorldImpl">
+
+    <implementation.cpp
+        class="Trentino::Example::HelloWorld::HelloWorldImpl"
+		header="TrentinoExampleHelloWorldHelloWorldImpl.h"
+        scope="composite"
+		library="HelloWorld" 
+		eagerInit="true">
+		<function name="init" init="true"/>
+	</implementation.cpp>
+		<service name="HelloWorld" >
+      <interface.cpp class="Trentino::Example::HelloWorld::HelloWorld" header="TrentinoExampleHelloWorldHelloWorld.h"/>
+    </service>
+  </component>
+</composite>

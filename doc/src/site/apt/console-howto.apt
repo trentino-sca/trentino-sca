@@ -1,0 +1,286 @@
+                                    ------
+                                    Trentino Console How to
+                                    ------
+                                    Trentino Team
+                                    ------
+                                    July 2012
+                                    
+
+Trentino Console How to
+		
+ Trentino’s console is a separate executable tool that lets the user interact with the Trentino Runtime. The Runtime itself is not aware of the existence of the console and offers its functionality over a well- defined interface.\
+ From the user’s point of view the runtime can be controlled by a set of commands offered by the console.\
+ On startup the console prints an intro message and changes to the command prompt:
+		
+------------------------------------------
+	TrentinoConsole, TRENTINO's deployment console
+	Copyright (C) Siemens AG, 2012. All rights reserved.
+	TRENTINO is released under the Apache License, Version 2.0
+	Trentino> 
+-------------------------------------------
+
+	 		
+	
+* Help command			
+			
+ The help command can be used to retrieve a list of the supported commands along with a short description: 
+			
+--------------------------------------
+	
+Trentino> help
+	
+Commands available in this console
+ 
+    boot       - boot the Trentino runtime into the current process
+    shutdown   - unload the Trentino runtime from the current process
+    install    - install, deploy and run a contribution
+    remove     - remove an installed, deployed or running contribution
+    info       - retrieve information about installed entities from the runtime
+    quit, exit - quit from this console
+	
+  Try commands above with '-h' option for more information
+	
+------------------------------------------
+	
+	 Every command except for quit and exit can be called with the –h option to retrieve a more detailed usage description. 
+	
+	The first step for using the Trentino runtime consists in booting it with the help of the boot command.  Once the runtime is booted the install, remove and info commands can be used to interact with it. Using them before booting will issue the “management interface not available” error. The runtime can be unloaded from the current process by using the shutdown command. A graceful shutdown is also performed by using the quit or exit commands (there is no difference between quit and exit) that additionally terminate also the console itself.
+	
+	The install command is responsible for installing, deploying and running a contribution. The installation steps solely loads a contribution into memory without to perform SCA error and consistency checking. Errors issued during the installation process may concern only the non-existence of expected contribution dynamic libraries and configuration files. Wiring and consistency checking is performed in the deployment step. Finally, before the contribution is put in the Running state, all @eagerInit=”true” component implementations are instantiated. Currently all the three steps are executed automatically.
+	
+	The install command expects two arguments: a path to the contribution folder and a contribution base URI under which the contribution is to be installed into the domain. Example:
+	 
+------------------------------------------+
+	
+Trentino> install  C:\conributions\someContribution some.contrib.uri
+	
+------------------------------------------+
+
+* Remove command
+			
+	A contribution can be removed using the remove command. It reverts all the steps performed by the install command and completely removes the contribution from memory. remove expects a contribution base URI as argument. 
+			 
+------------------------------------------+
+	
+	Trentino> remove some.contrib.uri
+	
+------------------------------------------+
+	
+	
+* Info command	
+	
+ The info command is used to retrieve different information about SCA entities available in the runtime. 
+	
+------------------------------------------+
+	
+	Trentino> info –h
+	
+	Retrieve the information about installed entities from the runtime.
+	
+	Usage:
+	
+	    info [-h] [-s] [-q(b|c|rs)] URI
+	    
+	    -h    show this message
+	    
+	    -s    show entities status
+	    
+	    -q    perform a request by using the following specifiers:
+	    
+	      b   retrieve contributions
+	      
+	      c   retrieve components
+	      
+	      r   retrieve references
+	      
+	      s   retrieve services
+	      
+	URI may be one of the following type: contribution base URI, component,
+	reference, service. To retrieve a list of all the domain-level
+	components leave the URI empty. 
+------------------------------------------+
+
+	** Retrieve installed contributions
+	To retrieve as list of installed contributions
+	leave the URI empty.
+	
+   ** -q option
+
+ The –q option is used to specify the kind of entities the information should be retrieved for.\
+ 
+   ** -s option
+   
+ The –s option can be used to retrieve additional information about the specified entity, such as its state or in case of references their targets. 
+			
+	**Retrieving information about contributions:
+			
+	info –qb will retrieve a list of all contribution available in the runtime info –s –qb additionally shows the contribution states
+			
+	
+------------------------------------------+
+	
+	Trentino> info –qb
+	
+	[contribution]: some.contrib.uri
+	
+	[contribution]: other/uri
+	
+------------------------------------------+
+			 
+			
+	It’s also possible to pass a contribution base uri to the info command in order to retrieve information about a specific contribution. Since it’s currently not possible to retrieve other information than the contribution’s state
+			
+	info –qb some.contrib.uri is the same as –qb -s some.contrib.uri
+	
+------------------------------------------+
+	Trentino> info -qb some.contrib.uri
+	[contribution]: some.contrib.uri (Running)
+------------------------------------------+
+			 
+	**Retrieving information about available components:
+			
+	info –qc will retrieve a list of all the domain-level components (i.e. components not contained in a composite used as implementation). Components are referenced by their structural URI.
+	
+------------------------------------------+
+	
+	Trentino> info –qc
+	
+	[component]: BuilderComponent
+	
+	[component]: LoggerComponent
+	
+	[component]: GUIComponent
+	
+------------------------------------------+
+	
+   info –qc some.contrib.uri will retrieve a list of all the components contained in the contribution with the given base URI. 
+	
+	
+------------------------------------------+
+	
+	Trentino> info -qc some.contrib.uri
+	
+	[component]: BuilderComponent/BuilderImplComponent
+	
+	[component]: BuilderComponent/LinkerComponent
+	
+	[component]: BuilderComponent/CompilerComponent
+	
+	[component]: LoggerComponent/SmartLoggerComponent/SmartLogger
+	
+	[component]: LoggerComponent/LoggerImpl
+	
+	[component]: LoggerComponent/SmartLoggerComponent
+	
+	[component]: BuilderComponent
+	
+	[component]: LoggerComponent
+	
+	[component]: GUIComponent
+	
+------------------------------------------+
+			 
+		
+	Notice the structural URI style: LoggerComponent/SmartLoggerComponent/SmartLogger for example means that SmartLogger is contained in a composite used as SmartLoggerComponent’s implementation while SmartLoggerComponent itself is contained in a composite used as LoggerComponent’s implementation. 
+	
+	The  -s option can be specified also for components to retrieve their states: info –s –qc some.contrib.uri 
+	
+	Retrieving information about single components:
+	
+	In order to retrieve information about a specific component, the component’s URI must be passed to the info command.
+	
+	The simplest case is as follows:
+	
+	info GUIComponent will do nothing except for showing the passed component URI as output. This can be used to check for the existence of a component: 
+
+
+------------------------------------------+
+	
+	Trentino> info GUIComponent
+	
+	[component]: GUIComponent
+	
+	Trentino> info nonExisitent
+	
+	ERROR - Component with URI 'nonExisitent' not found
+	
+	Trentino>
+	
+------------------------------------------+
+			 
+	
+ info –s GUIComponent will additionaly show the component’s state
+			
+	
+------------------------------------------+
+	
+	Trentino> info -s GUIComponent
+	
+	[component]: GUIComponent (Resolved)
+	
+------------------------------------------+
+	
+	
+			Adding the –qs, -qr or –qrs options retrieves a list of services, references or service and references, respectively for the given component.
+	
+------------------------------------------+
+	
+	Trentino> info -qsr LoggerComponent/LoggerImpl
+	
+	[component]: LoggerComponent/LoggerImpl
+	
+	    [references]:
+	    
+	        FileLogger
+	        
+	        ConsoleLogger
+	        
+	    [services]:
+	    
+	        Log
+	        
+------------------------------------------+
+	
+** Retrieve component informations	 
+	
+	Additionally using the the –s options will retrieve all the possible information for a component:
+	
+------------------------------------------+
+	
+	Trentino> info -s -qrs BuilderComponent/CompilerComponent
+	
+	[component]: BuilderComponent/CompilerComponent (Resolved)
+	
+	    [references]:
+	    
+	        Log (Resolved) -> LoggerComponent#service(Log) LoggerComponent#service(Log)
+	        
+	    [services]:
+	    
+	        ExecuteCompiler (Available)
+	        
+	
+------------------------------------------+	
+	 
+	 
+			The output tells us that CompilerComponent’s reference with the name “Log” is wired twice to the “Log” service implemented by the LoggerComponent. Furthermore CompilerComponent offers an “ExecuteCompiler” service that is in Available state. 
+			
+			Retrieving information about single services and references:
+			
+			In order to retrieve information about a specific service or reference, its structural URIs must be passed as argument. Example:
+	
+------------------------------------------+
+	
+	Trentino> info -s LoggerComponent/LoggerImpl#reference(FileLogger)
+	
+	[references]:
+	
+	    FileLogger (Resolved) -> LoggerComponent/SmartLoggerComponent#service(FileLogger)
+	
+	Trentino> info  -s BuilderComponent/LinkerComponent#service(ExecuteLinker)
+	[services]:
+	
+	    ExecuteLinker (Available)
+	    
+	
+------------------------------------------+

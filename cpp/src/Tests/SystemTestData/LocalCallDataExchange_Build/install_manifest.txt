@@ -1,0 +1,9 @@
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/LocalCallDataExchange.lib
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/LocalCallDataExchange.dll
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/META-INF/LocalCallDataExchange.composite
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/META-INF/sca-contribution.xml
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/services/TrentinoLocalCallDataExchange.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/services/TrentinoLocalCallDataExchangeServiceAB.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/TrentinoLocalCallDataExchangeServiceABImpl.h
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/ServiceAImpl.componentType
+I:/Trentino/trentino/DEV/cpp/src/Tests/SystemTestData/LocalCallDataExchange_Source/../LocalCallDataExchange/ServiceBImpl.componentType

@@ -1,0 +1,4 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="BasicCalculatorNamespace">
+   <deployable composite="sample:BasicCalculatorComposite"/>
+   <import.cpp name="loggingmetadata" location="logging:metadata" version="1.0.0" />
+</contribution>

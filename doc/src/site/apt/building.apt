@@ -1,0 +1,114 @@
+                                    ------
+                                    Building Trentino
+                                    ------
+                                    Emeric, Kwemou
+                                    ------
+                                    
+Installing from source code
+
+* Prerequisite
+
+    * Cmake at least version 2.6
+    
+    *Java at version 1.6. Version 1.7 is NOT YET supported.
+    
+    * Maven version 3.0.2 or above
+	
+** Windows specific prerequisites
+
+    * Visual Studio 2010
+    
+ NOTE: third party libraries for windows are already compiled
+
+** Linux Specific prerequisites
+
+    * GNU compiler toolchain for C++
+    
+    * BJAM
+    
+    * TAR and ZIP tools
+    
+	
+	NOTE: The installer requires internet connection to download dependencies and compile it for your linux distribution. 
+	The dependencies will be downloaded in the folder cpp/3rdparty/source.
+	
+	To Install the documentation, Doxygen is also required. But you can skip this if you don't want to generate source code documentation
+	
+	Make sure that the applications above are in your PATH.
+
+Installation
+
+    * download {{{./download.html} the source code from here}}
+    
+    * Unzip the source in a writable location
+
+* On Windows
+
+    * Open the visual studio 2010 command prompt (See http://msdn.microsoft.com/de-de/library/ms229859.aspx)
+    
+    * change to the unzipped directory
+    
+    * run install.bat
+ 
+* On Linux
+
+    * chmod +x install.sh
+    
+    * run install.sh
+ 
+*  Cygwin Installation
+
+    [[1]] Download http://cygwin.com/setup.exe and run it
+   
+    [[2]] Select ‘install from internet’
+   
+    [[3]] Choose directory to install, say ‘C:\cygwin’
+   
+    [[4]] Choose ‘All Users’
+   
+    [[5]] Choose temporary directory where setup will store packages, say ‘C:\tmp’
+   
+    [[6]] Specify proxy settings according your network configuration
+   
+    [[7]] Choose any mirror to download from
+   
+    [[8]] Select the following packages
+    
+        * bzip2
+        
+        * cmake
+        
+        * coreutils
+        
+        * gcc4
+        
+        * gcc4-core
+        
+        * gcc4-g++
+        
+        * make
+        
+        * sed
+        
+        * tar
+        
+        * unzip
+        
+        * wget
+   
+    [[9]] Select the following packages
+    
+            [../images/cygwin_image.png]
+    
+        * Click ‘Next>’ to install the selected packages
+        
+ ** Cygwin Configuration
+   To support proxy you have to create wget configuration file. Default file name is C:\cygwin\home\USERNAME\.wgetrc
+   
+   Here is an example how proxy can be configured:
+ 
+
+
+ 
+ 
+                           

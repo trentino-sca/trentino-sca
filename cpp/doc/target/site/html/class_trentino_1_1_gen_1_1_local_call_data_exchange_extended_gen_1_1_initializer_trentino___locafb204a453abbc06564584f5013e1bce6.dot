@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Trentino::Gen::LocalCallDataExchangeExtendedGen::InitializerTrentino_LocalCallDataExchange_ServiceBWrapperRflx",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mmdoHandle" ,fontname="Helvetica"];
+  Node2 [label="Trentino::Reflection::Data::Object::MetaData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_reflection_1_1_data_1_1_object_1_1_meta_data.html",tooltip="MetaData structure is used to hold all relevant information about an object. This is the internal POD..."];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" properties" ,fontname="Helvetica"];
+  Node3 [label="Trentino::Reflection::Data::Property::MetaData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_reflection_1_1_data_1_1_property_1_1_meta_data.html",tooltip="MetaData structure is used to hold all relevant information about a property. This is the public POD ..."];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" methods" ,fontname="Helvetica"];
+  Node4 [label="Trentino::Reflection::Data::Method::MetaData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_reflection_1_1_data_1_1_method_1_1_meta_data.html",tooltip="MetaData structure is used to hold all relevant information about a method which can be called by Inv..."];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" params" ,fontname="Helvetica"];
+  Node5 [label="Trentino::Reflection::Data::Method::Param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_trentino_1_1_reflection_1_1_data_1_1_method_1_1_param.html"];
+}

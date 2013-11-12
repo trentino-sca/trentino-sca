@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+	<reference name="BuildRefGUI" multiplicity="1..1" autowire="false" target="BuilderComponent/Build">
+		<interface.cpp class="Trentino::Example::Builder::Build" header="services/Build.h"/>
+	</reference>
+</componentType>

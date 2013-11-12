@@ -1,0 +1,4 @@
+var class_trentino_1_1_gen_1_1_basic_calculator_return_void_gen_1_1_trentino___example___basic_calcu8c46fbe14152d6a07488d85a7cb40602 =
+[
+    [ "invoke", "class_trentino_1_1_gen_1_1_basic_calculator_return_void_gen_1_1_trentino___example___basic_calcu8c46fbe14152d6a07488d85a7cb40602.html#a59633d48f09ab1e9c969b7f405077a66", null ]
+];

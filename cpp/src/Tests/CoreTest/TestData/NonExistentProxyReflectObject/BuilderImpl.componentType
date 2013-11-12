@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+	<service name="Build" >
+		<interface.cpp class="Trentino::Example::Builder::Build" header="services/Build.h"/>
+	</service>
+	<reference name="ExecuteLinker" multiplicity="0..1">
+		<interface.cpp class="Trentino::Example::Builder::ExecuteLinker" header="services/ExecuteLinker.h"/>
+	</reference>
+	<reference name="ExecuteCompiler" multiplicity="0..1">
+		<interface.cpp class="Trentino::Example::Builder::ExecuteCompiler" header="services/ExecuteCompiler.h"/>
+	</reference>
+</componentType>

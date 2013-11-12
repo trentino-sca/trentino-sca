@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "docbook.dtd">
+<chapter>
+	<title>Trengen: Trentino validation and code generation tool</title>
+	<section>
+		<title>Overview</title>
+		<para>
+			Trengen is the validation and generation tool of Trentino
+			runtime. It validates users contribution and generates many artifacts necessary 
+			extra artifacts that are used by the runtime to
+			access, execute and manage the deployed contribution. Generated
+			artifacts include:
+			<itemizedlist>
+				<listitem>
+					<para>Reflection code: C++ source code necessary by the runtime in
+						other to
+						perform dependency injection.
+					</para>
+				</listitem>
+				<listitem>
+					<para>Serialization and Deserialization code: needed by the runtime
+						or by a Trentino client to handle remote procedural calls.
+					</para>
+				</listitem>
+				<listitem>
+					<para>Proxies and skeletons classes for the defined services
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</section>
+	<section>
+		<title>Contribution validation</title>
+		<section>
+			<title>Usage</title>
+			<para>
+				Trengen validates the contribution against Service Component
+				Architecture v1.1 (SCAAM v1.1) and SCA
+				client and implementation
+				Model for C++ Specification V1.1.
+				<screen>
+<![CDATA[
+
+USAGE 1:
+trengen -cont <contribution_directory> -outdir <output_directory*> -lib <libname*>
+        -libdirs <directory*> -includedirs <directory*> -d* -rtdir <runtime_directory*>
+        -install_dir <contribution_installation_directory*> -v*
+
+OPTIONS:
+-cont <contribution_directory>|<zip_file_of_contribution_directory_tree>: specifies
+        the root directory of SCA contribution, can be a zip file or a path.
+-outdir <output_directory*>: If provided it specifies the output directory for the
+        Trengen generated code. Default is <input_directory>Gen.
+-lib <libname*>: Library names (not path) of the service/component implementations.
+        Names are separated by ';' or ':'. Default is the contribution name.
+-libdirs <directory*>: path separator separated list of directories, where libraries
+        containing the service/component implementations are located. Default is <root>
+        and <root>/lib.
+-includedirs <directory*>: path separator separated list of directories, service and
+        component header files are located. Default are <root>, <root>/services and
+        <root>/include.
+-d*: Optional. If provided, Trengen runs in debug mode. Default is -r.
+-v*: Optional. If provided, Trengen shows info logs.
+-rtdir <runtime_directory*>: specify the location of the Trentino Runtime. Optional
+        since Trengen tries to resolve the runtime from itself.
+-install_dir <contribution_installation_directory*>: Optional. Trengen generates a
+        Cmake file for the generated code. It requires the location where binaries
+        will be installed as result of a Cmake install. Default value is the 'META-INF'
+        of the <contribution_directory>.
+
+USAGE 2:
+trengen -gencppitf <path to properties file>.properties> -inc <header file name*> -outdir <path to output dir
+*>
+
+OPTIONS:
+-gencppitf <path to properties file>.tidl.properties: The tidl configuration file containing
+        the information about the interface to be generated.The tidl file is a java resource
+        file.It should contain an entry indicating the location of the interface to be used.
+        If the path is a directory, then all *.tidl.properties files in the given directory will be processed
+
+-inc    <header file name*> name of an optional header file to be included in the generated C++ header file.
+-outdir <path to output dir*>: The path to the output directory this parameter is
+        optional. The default value is the current directory.
+
+
+I:\Trentino\trentino\DEV\cpp_build>
+
+
+		Trengen outputs the generated code along with a cmake file under the [ContributionName]Gen folder at the same level with the contribution folder. The user should compile the generated code according to the provided CMake. As the result of the compilation of generated code the “sca-contribution.dll”, “sca-contribution.lib”, “sca-contribution.conf “ files are placed under the META-INF folder of the contribution. (For detailed sequence please see section :Compiling and Installing A Sample Contribution)
+
+]]>
+ </screen>
+</para>
+		<para>The validation includes a syntax and a semantic validation.
+		</para>
+		</section>
+		<section>
+			<title>Syntax validation</title>
+			<para>
+				The Syntax validation validates the contribution and its artifacts
+				(componentType files, composites, contribution documents, ...)
+				against specified xsd schemas provided by the SCA specification.
+				<itemizedlist>
+					<listitem>
+						<para>
+							<emphasis>*.componentType</emphasis>
+							files are validated against
+							sca-interface-cpp-1.1-cd06.xsd
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<emphasis>*.composite</emphasis>
+							files are validated against
+							sca-implementation-cpp-1.1-cd06.xsd,
+							sca-implementation-composite-1.1-cd06.xsd,
+							sca-interface-cpp-1.1-cd06.xsd, sca-interface-wsdl-1.1-cd06.xsd
+							and
+							sca-binding-sca-1.1-cd06.xsd.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<emphasis>sca-contribution.xml</emphasis>
+							is validated against
+							sca-contribution-cpp-1.1-cd06.xsd.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<emphasis>sca-definitions.xml</emphasis>
+							is validated
+							against
+							sca-definitions-1.1-cd06.xsd.
+						</para>
+					</listitem>
+				</itemizedlist>
+				To get the list of all syntax constraints that are validated by
+				Trengen, please see Appendix A.
+			</para>
+		</section>
+		<section>
+			<title>Semantic validation</title>
+			<para>Semantic validation takes place after and if syntax validation
+				was successful. It includes validation of the relationship between
+				artifacts, the consistency of the whole contribution as defined by
+				the SCA Specification
+			</para>
+		</section>
+		<section>
+			<title>Assumptions and limitations</title>
+			<para>
+				<itemizedlist>
+					<listitem>
+						<para>Trengen have to parse you provided source code to check that required dependency injection points (setter accessors) are 
+							implemented. Trentino only parses header files and no *.cpp files. It therefore assumes that at least the definition of your setters are 
+							in the header files to be parsed.
+						</para>
+					</listitem>
+					<listitem>
+						<para>TrenGen
+							validates/parses/uses only 1
+							contribution (given as a zip file
+							or a
+							directory).
+						</para>
+					</listitem>
+					<listitem>
+						<para>TrenGen does not
+							support domain-specific issues
+							(like
+							import, export,
+							domain-level
+							composite).
+						</para>
+					</listitem>
+					<listitem>
+						<para>TrenGen does not
+							support nor validate sca policies and intents, since they are currently not supported by Trentino.
+						</para>
+					</listitem>
+					<listitem>
+						<para> We assume that the composite files will be unique 
+						within the whole tree of the given sca validation 
+						directory (param of trengen) 					
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+						While finding the matching .componenttype file of a component,  if the component/implementation/@componentType  is not defined, we search the .componenttype file named according to the component/implementation/@class within the whole contribution tree.
+						</para>
+					</listitem>
+					<listitem>
+						<para> We have assumed the specification regarding the service interfaces(i.e ASM60005) are also valid for the callback interfaces. 
+						</para>
+					</listitem>
+					<listitem>
+						<para> Namespaces defined by extra xsds and annotations are not supported for now. For extensive property support it might be required. 
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+		</section>
+
+	</section>
+
+
+</chapter>

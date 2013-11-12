@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <service name="BasicCalculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculatorRemote::BasicCalculator" header="services/TrentinoExampleBasicCalculatorRemoteBasicCalculator.h" remotable="true"/>
+	    <binding.ipc uri="ipc:3178//BasicCalculatorImpl/BasicCalculator"/>
+	</service>
+</componentType>

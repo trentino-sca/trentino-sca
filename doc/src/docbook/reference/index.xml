@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book SYSTEM "docbook.dtd">
+<book xmlns="http://docbook.org/ns/docbook">
+	<title>Trentino - User Manual</title>
+	<info>
+	 <subtitle></subtitle>
+		<authorgroup>
+			<author>
+				<personname>
+					<firstname>Kwemou</firstname>
+					<surname>Emeric</surname>
+				</personname>
+
+			</author>
+			<author>
+				<personname>
+					<firstname>Sokolov</firstname>
+					<surname>Konstantin</surname>
+				</personname>
+
+			</author>
+			<author>
+				<personname>
+					<firstname>Erkmen</firstname>
+					<surname>Muge</surname>
+				</personname>
+
+			</author>
+			<author>
+				<personname>
+					<firstname>Höller</firstname>
+					<surname>Oliver</surname>
+				</personname>
+
+			</author>
+			<author>
+				<personname>
+					<firstname>Smirnov</firstname>
+					<surname>Alexander</surname>
+				</personname>
+
+			</author>
+			<author>
+				<personname>
+					<firstname>Tatli</firstname>
+					<surname>Ipek</surname>
+				</personname>
+
+			</author>
+		</authorgroup>
+		<legalnotice>
+		<para>Copyright (C) Siemens AG, 2010-2012 All Rights Reserved
+		</para>
+			<para>
+			Copies of this document may be made for your own use and for
+				distribution to others, provided that you do not charge any fee for
+				such
+				copies and further provided that each copy contains this
+				Copyright
+				Notice, whether distributed in print or electronically.
+			</para>
+		</legalnotice>
+		<releaseinfo>Trentino 0.7</releaseinfo>
+	</info>
+
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="introduction.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="whatsnew.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="console-howto.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="trengen.xml" />
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="binding.xml" />
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="tidl.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="service_discovery.xml" />
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="deployment.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appendix.xml" />
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appendixB.xml" />
+	<!--  xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="schema-appendix.xml" /-->
+	<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="glossary.xml" />
+
+</book>

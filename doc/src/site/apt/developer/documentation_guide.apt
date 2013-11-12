@@ -1,0 +1,32 @@
+                                    ------
+                                    Trentino Documentation Guide
+                                    ------
+                                    Emeric, Kwemou
+                                    ------
+                                    
+Trentino documentation guide
+
+
+
+* Overview
+ The Trentino overall documentation is a maven site (see {{{http://maven.apache.org/plugins/maven-site-plugin/}maven site plugin}}).
+ 
+ It contains developer and user documentation.
+ 
+* Prerequisites and installation
+
+ *
+ * 
+
+ *
+
+ * 
+
+ *
+ 
+* Developer documentation
+ 
+
+* User documentation
+ 
+  

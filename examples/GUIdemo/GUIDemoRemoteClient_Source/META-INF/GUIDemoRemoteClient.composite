@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="GUIDemoComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="GUIDemoNamespace">
+
+  <component name="GUIDemoImpl_one_to_many">
+    <implementation.cpp
+        class="Trentino::Example::GUIDemo::GUIDemoImpl"
+		header="TrentinoExampleGUIDemoImpl.h"
+        scope="composite"
+		library="GUIDemoRemoteClient"
+		eagerInit="true"/>
+    <property name="GUIDemoName" type="xsd:string">
+      <value>Client_1</value>
+    </property>
+    <reference name="GUIDemoLCD" multiplicity="1..n">
+      <binding.sca name="Ref1" uri="tcp://163.242.202.151:5342/GUIDemoLCDImpl_service1/GUIDemoLCD"/>
+      <binding.sca name="Ref2" uri="tcp://163.242.202.245:5342/GUIDemoLCDImpl_service1/GUIDemoLCD"/>
+    </reference>
+  </component>
+
+</composite>

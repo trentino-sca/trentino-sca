@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs id="FAQ" title="Frequently Asked Questions">
+	<part id="General">
+		<faq id="release">
+			<question>
+				What's the current release and what are the plans for
+				future releases?
+			</question>
+			<answer>
+				Current release version is 0.8. The roadmap of Trentino is driven by user needs. No planned roadmap is published.
+			</answer>
+		</faq>
+		<faq id="sca_standard_compatibility">
+			<question>
+				Is trentino fully SCA compatible
+			</question>
+			<answer>
+				Version 0.8 of trentino is not 100% SCA compatible.
+				Most of the assembly specification is supported (Service Component Architecture Client and Implementation Model for C++ Specification Version 1.1).
+				Not currently supported in the assembly model is:
+				
+				<ul>
+					<li>Long Running Request-Response Operations</li>
+				    <li>Asynchronous Programming</li>
+					<li>SDO Data Binding: Trentino does not implement any data binding</li>
+					<li>Web Service Binding. The support of web service is not planned for Trentino. Hopefully the Spec will not requires the implementation of a WS-Binding to be compliant in the near future </li>
+					<li>Trentino does not implement SCA Policy, but it is planned for future releases</li>
+				</ul>
+			</answer>
+			</faq>
+			<faq id="3">
+			<question>
+				Are there any deviation from the SCA Client and Implementation Model for C++ Specification Version 1.1?
+			</question>
+			<answer>
+				YES the following features have been added:
+				<ul>
+					<li>
+					 Support for lifecycle methods (init and destroy) as specified in the Client and Implementation Model for JAVA Specification Version 1.1.
+					</li>
+					<li>dependency injection: Dependencies (services and properties) can be injected directly by the runtime instead of been explicitly called by the users. This powerful feature is unique to Trentino and we wants to 
+					make it part of the SCA Client and Implementation model for C++ </li>
+				</ul>
+			</answer>
+		</faq>
+		<faq id="binding">
+		  <question>Which bindings (communication framework) are currently integrated?</question>
+		  <answer>Trentino has only one default binding currently implemented and tested in productive environment. The following other bindings are under development
+		  <ul>
+			  <li>Thrift Binding: A binding that support communicating between services using Apache Thrift communication framework</li>
+			  <li>IPC over shared memory binding: a communication framework to to communicate between processes using shared memory</li>
+			  <li>Bacnet Binding: a client side implementation of a binding to communicate between a controller and a Bacnet enabled device</li>
+		  </ul>
+		  </answer>
+		</faq>
+		<faq id="threading">
+		  <question>Is Trentino internally multi-Threaded</question>
+		  <answer>Yes: Trentino is designed thread safe and to allow concurrent access with minimal blocking to ressources. Critical parts are hidden to the end user or SPI developer</answer>
+		</faq>
+		<faq id="res">
+		  <question>What are the minimal requirements to a device hosting a Trentino runtime</question>
+		  <answer>Trentino requires an operating system to be installed. It is currently tested on Linux and Windows OS. It rely on a filesystem as well as a threading library to be installed.
+		   Current implementation of the runtime has an empty memory footprint of around 800 KB private memory on Windows.
+		  </answer>
+		</faq>
+		<faq id="SIL">
+		  <question>Can I use Trentino in a SIL constrained environment?</question>
+		  <answer>SIL X conformance is not a primary goal for the runtime. However the runtime can coexist with SIL constrained applications, and therefore used to implement non SIL constrained parts of embedded applications</answer>
+		</faq>
+
+    <faq id="linux">
+          <question>Why on some Linux distributions TrentinoRuntime library can't be unloaded from process?</question>
+      <answer>
+        In August 2009 RedHat corporation mentioned about unique symbols in
+        the Linux toolchain. This new ELF symbol binding helps to implement
+        correctly C++ in loadable modules. It means dlopen() can be
+        implemented correctly without violating the C++ spec.
+
+        The problem is that certain C++ constructs (static vars in inline
+        functions, static member variables in classes) create unique memory
+        objects. Note: only variables are affected. This works for normal code
+        given reasonable name resolution, which ELF of course has. But it runs
+        into problems if DSOs are dynamically loaded. In this case separate
+        lookup paths are created. Specifically, objects outside the chain of
+        objects used in the dlopen() call will not see definitions in those
+        loaded objects. Now imagine a static variable of an inline function
+        which is used only in two independently dlopen()-ed DSOs.
+
+        Something completely new had to be invented, the existing schemes are
+        of no use. Enter STB_GNU_UNIQUE.
+
+        As the name of the constant suggests, this is a new binding. It is
+        like STB_GLOBAL but there is one additional step in the resolution
+        process. STB_GNU_UNIQUE is a property of a definition, not a
+        reference. I.e., the lookup happens as before. But if, upon finding a
+        symbol definition, the binding happens to be STB_GNU_UNIQUE, then the
+        dynamic linker looks up the symbol by name in an internal table for
+        unique symbols. If there is no such symbol yet, it creates a record
+        and uses the definition of the just found symbol. If there is already
+        a definition previously found that definition will be used instead of
+        the just found definition.
+
+        The result is that if all definitions of the problematic symbols are
+        correctly marked with STB_GNU_UNIQUE there will for the lifetime of
+        the process be exactly one definition which is used. It's all pretty
+        simple. There are only a few details. An object with a used unique
+        symbol definition cannot be unloaded. Otherwise you might get strange
+        effects. Since STB_GNU_UNIQUE is a Linux extension the OS ABI
+        indicated in the ELF header must be ELFOSABI_LINUX.
+        
+        This problem is reproduced on Fedora Linux and it doesn't affect Ubuntu Linux.
+      </answer>
+      			</faq>
+			<faq id="4">
+      <question>What is the list of Linux distribution suuported by Trentino?</question>
+      <answer>
+        Fully supported and tested on: Ubuntu 8.04, Ubuntu 11, Debian 6
+        'dlopen/dlclose' issue is reproduced on: Fedora 12, Fedora 16, CentOS 6
+      </answer>
+    </faq>  
+  </part>
+</faqs>

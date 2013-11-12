@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "docbook.dtd">
+<chapter>
+	<title>Trentino Console HowTo</title>
+	<section>
+		<title>Overview</title>
+		<para>
+Trentino’s console is a separate executable tool that lets the user interact with the Trentino Runtime. The Runtime itself is not aware of the existence of the console and offers its functionality over a well- defined interface.  From the user’s point of view the runtime can be controlled by a set of commands offered by the console. On startup the console prints an intro message and changes to the command prompt:
+		<screen><computeroutput> 
+----------------------------------------------------------------------
+** TrentinoConsole, TRENTINO's deployment console
+** Copyright (C) Siemens AG, 2012. All rights reserved.
+** TRENTINO is released under the LGPL License
+----------------------------------------------------------------------
+Trentino> 
+</computeroutput></screen>
+</para>
+</section>
+<section>
+<title>Help command</title>
+<para>
+The <emphasis>help</emphasis> command can be used to retrieve a list of the supported commands along with a short description:
+<screen><computeroutput>
+Trentino> help
+Commands available in this console:
+    boot       - boot the Trentino runtime into the current process
+    shutdown   - unload the Trentino runtime from the current process
+    install    - install, deploy and run a contribution
+    remove     - remove an installed, deployed or running contribution
+    info       - retrieve information about installed entities from the runtime
+    quit, exit - quit from this console
+
+Try commands above with '-h' option for more information
+</computeroutput></screen>
+</para>
+</section>
+<section>
+<title>Install command</title>
+<para>
+Every command except for quit and exit can be called with the –h option to retrieve a more detailed usage description. 
+The first step for using the Trentino runtime consists in booting it with the help of the boot command.  Once the runtime is booted the install, remove and info commands can be used to interact with it. Using them before booting will issue the “management interface not available” error. The runtime can be unloaded from the current process by using the shutdown command. A graceful shutdown is also performed by using the quit or exit commands (there is no difference between quit and exit) that additionally terminate also the console itself.
+The install command is responsible for installing, deploying and running a contribution. The installation steps solely loads a contribution into memory without to perform SCA error and consistency checking. Errors issued during the installation process may concern only the non-existence of expected contribution dynamic libraries and configuration files. Wiring and consistency checking is performed in the deployment step. Finally, before the contribution is put in the Running state, all @eagerInit=”true” component implementations are instantiated. Currently all the three steps are executed automatically.
+The install command expects two arguments: a path to the contribution folder and a contribution base URI under which the contribution is to be installed into the domain. Example:
+<screen><computeroutput>
+Trentino> install  C:\conributions\someContribution some.contrib.uri
+</computeroutput></screen></para>
+</section>
+<section>
+<title>
+Remove command
+</title>
+<para>
+A contribution can be removed using the remove command. It reverts all the steps performed by the install command and completely removes the contribution from memory. remove expects a contribution base URI as argument.
+<screen><computeroutput>
+Trentino> remove some.contrib.uri
+</computeroutput></screen>
+</para>
+</section>
+<section>
+<title>Info command</title>
+<para>
+The info command is used to retrieve different information about SCA entities available in the runtime. 
+<screen  >
+<computeroutput>
+Trentino> info –h
+Retrieve the information about installed entities from the runtime.
+Usage:
+    info [-h] [-s] [-q(b|c|rsp)] URI
+    -h    show this message
+    -s    show entities status
+    -q    perform a request by using the following specifiers:
+      b   retrieve contributions
+      c   retrieve components
+      r   retrieve references
+      s   retrieve services
+URI may be one of the following type: contribution base URI, component,
+reference, service, property. To retrieve a list of all the domain-level
+components leave the URI empty. To retrieve as list of installed contributions
+leave the URI empty.
+</computeroutput>
+
+</screen>
+</para>
+<section>
+<title>Retrieving information about contributions</title>
+<para>
+info –qb will retrieve a list of all contribution available in the runtime
+<screen><computeroutput>
+Trentino> info –qb
+[contribution]: some.contrib.uri
+[contribution]: other/uri
+</computeroutput></screen>
+
+
+<emphasis>info –s –qb</emphasis> additionally shows the contribution states
+<screen><computeroutput>
+Trentino> info –s –qb
+[contribution]: some.contrib.uri (Running)
+[contribution]: other/uri (Running)
+</computeroutput></screen>
+It’s also possible to pass a contribution base uri to the info command in order to retrieve information about a specific contribution. Since it’s currently not possible to retrieve other information than the contribution’s state
+ info –qb some.contrib.uri is the same as –qb -s some.contrib.uri
+ <screen><computeroutput>
+ Trentino> info -qb some.contrib.uri
+[contribution]: some.contrib.uri (Running)
+ </computeroutput></screen>
+</para>
+</section>
+<section>
+<title>Retrieving information about available components</title>
+<para>
+<emphasis>info –qc</emphasis> will retrieve a list of all the domain-level components (i.e. components not contained in a composite used as implementation). Components are referenced by their <emphasis>structural URI.</emphasis>
+<screen><computeroutput>
+Trentino> info –qc
+[component]: BuilderComponent
+[component]: LoggerComponent
+[component]: GUIComponent
+</computeroutput></screen>
+<emphasis>info –qc some.contrib.uri</emphasis> will retrieve a list of all the components contained in the contribution with the given base URI.
+<screen><computeroutput>
+Trentino> info -qc some.contrib.uri
+[component]: BuilderComponent/BuilderImplComponent
+[component]: BuilderComponent/LinkerComponent
+[component]: BuilderComponent/CompilerComponent
+[component]: LoggerComponent/SmartLoggerComponent/SmartLogger
+[component]: LoggerComponent/LoggerImpl
+[component]: LoggerComponent/SmartLoggerComponent
+[component]: BuilderComponent
+[component]: LoggerComponent
+[component]: GUIComponent
+</computeroutput></screen>
+Notice the structural URI style: <emphasis role="italic">LoggerComponent/SmartLoggerComponent/SmartLogger</emphasis> for example means that SmartLogger is contained in a composite used as SmartLoggerComponent’s implementation while SmartLoggerComponent itself is contained in a composite used as LoggerComponent’s implementation. 
+The  -s option can be specified also for components to retrieve their states: <emphasis>info –s –qc some.contrib.uri</emphasis>
+</para>
+</section>
+<section>
+<title>Retrieving information about single components</title>
+<para>
+In order to retrieve information about a specific component, the component’s URI must be passed to the info command.
+The simplest case is as follows:
+<emphasis>info GUIComponent </emphasis>will do nothing except for showing the passed component URI as output. This can be used to check for the existence of a component: 
+<screen><computeroutput>
+Trentino> info GUIComponent
+[component]: GUIComponent
+Trentino> info nonExistent
+ERROR - Component with URI 'nonExistent' not found
+Trentino>
+</computeroutput></screen>
+<emphasis>info –s GUIComponent</emphasis> will additionaly show the component’s state
+<screen><computeroutput>
+Trentino> info -s GUIComponent
+[component]: GUIComponent (Resolved)
+</computeroutput></screen>
+The <emphasis>–q</emphasis> option can also be used with any combination of the <emphasis>s, r</emphasis> and <emphasis>q</emphasis>qualifiers. For example <emphasis>–qs, -qr, -qp, -qrs, -qrsp </emphasis>etc. Where <emphasis>s </emphasis>retrieves information about services, <emphasis>r</emphasis> about references and <emphasis>p </emphasis> about properties. 
+<screen><computeroutput>
+Trentino> info -qsr LoggerComponent/LoggerImpl
+[component]: LoggerComponent/LoggerImpl
+    [references]:
+        FileLogger
+        ConsoleLogger
+    [services]:
+        Log
+</computeroutput></screen>
+Additionally using the the <emphasis>–s</emphasis> options will retrieve also the state of the component as well as the states and wiring information of the services and references.
+<screen><computeroutput>
+Trentino> info -s -qrs BuilderComponent/CompilerComponent
+[component]: BuilderComponent/CompilerComponent (Resolved)
+    [references]:
+        Log (Resolved) -> LoggerComponent#service(Log) LoggerComponent#service(Log)
+    [services]:
+        ExecuteCompiler (Available)
+</computeroutput></screen>
+The output tells us that CompilerComponent’s reference with the name “Log” is wired twice to the “Log” service implemented by the LoggerComponent. Furthermore CompilerComponent offers an “ExecuteCompiler” service that is in Available state. 
+<screen><computeroutput>
+Trentino> info -qp Person1
+[component]: Person1
+    [properties]:
+        Name ( 'John Doe' )
+        Age ( '23' )
+        FavouriteNumbers ( '3' '9' '23' )
+</computeroutput></screen>
+The <emphasis>p</emphasis> qualifier shows all the available properties and their values.
+</para>
+</section>
+<section>
+<title>Retrieving information about single services and references</title>
+<para>
+In order to retrieve information about a specific service or reference, its structural URIs must be passed as argument.
+Example:
+<screen><computeroutput>
+Trentino> info -s LoggerComponent/LoggerImpl#reference(FileLogger)
+[references]:
+    FileLogger (Resolved) -> LoggerComponent/SmartLoggerComponent#service(FileLogger)
+Trentino> info  -s BuilderComponent/LinkerComponent#service(ExecuteLinker)
+[services]:
+    ExecuteLinker (Available)
+</computeroutput></screen>
+</para>
+</section>
+<section>
+<title>Retrieving information about single properties</title>
+<para>
+In order to retrieve information about a specific property, its structural URIs must be passed as argument.
+Example:
+<screen><computeroutput>
+Trentino> info Person1#property(Name)
+[properties]:
+    Name ( 'John Doe' )
+</computeroutput></screen>
+</para>
+</section>
+</section>
+ </chapter>

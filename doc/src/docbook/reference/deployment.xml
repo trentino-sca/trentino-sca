@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter SYSTEM "docbook.dtd">
+<chapter>
+	<title>configuration before contribution deployment</title>
+<section>
+<title>Editing sca-contribution.xml before deployment</title>
+<para>
+In real world applications, the contribution compilation, including validation and code generation often takes place in a non productive system. Many contributions can have common dependencies to a set of libraries. Those shared libraries are typically not in the contribution itself, but are in a separate folder.
+To enable Trentino runtime to find external dependencies to a contribution, the user must specify the DLL folder in sca-contribution.xml .
+Example:
+
+<programlisting language="xml" >
+<![CDATA[
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:ss="MyNamespace">
+   <deployable composite="ss:MyComposite"/>
+   <import.cpp name="dll-directory" location="../bin" />
+</contribution>
+]]>
+</programlisting>
+
+
+The tag import.cpp MUST have the name <emphasis role="bold">dll-directory</emphasis>. The required location can be relative to the contribution root folder or absolute.
+We recommend using a relative value since it is more portale
+
+</para>
+</section>
+<section>
+<title>Changing dll-directory at install time</title>
+<para>
+In extreme case, the dll-directory might be different from device to device. The user still have the possibility to set the dll-directory witout having to rebuild the contribution.
+
+In the META-INF directory, open the file sca-contribution.conf and add the following line at the end of the file:
+
+<programlisting language="text" >
+<![CDATA[
+dir=<absolute/or relative/ path to the/ dll directory >
+]]>
+</programlisting>
+The runtime will not load your contribution if the given directory does not exists.
+</para>
+</section>
+</chapter>

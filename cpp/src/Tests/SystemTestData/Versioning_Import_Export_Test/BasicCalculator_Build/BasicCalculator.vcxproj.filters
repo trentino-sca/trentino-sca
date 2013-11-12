@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\BasicCalculator_Source\TrentinoExampleBasicCalculatorCalculatorImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BasicCalculator_Source\TrentinoExampleBasicCalculatorCalculatorImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicCalculator_Source\services\TrentinoExampleBasicCalculatorCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\BasicCalculator_Source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\BasicCalculator_Source\CalculatorImpl.componentType">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\BasicCalculator_Source\META-INF\sca-contribution.xml">
+      <Filter>SCA Files</Filter>
+    </None>
+    <None Include="..\BasicCalculator_Source\META-INF\BasicCalculator.composite">
+      <Filter>SCA Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3849B123-00E4-4C1C-9D75-37F2C17B7BF7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ADBE1BB4-A0B3-405F-AA38-63B1687C8015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCA Files">
+      <UniqueIdentifier>{D667BAA2-0CC1-4DC2-80F7-248F00C3C7A0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

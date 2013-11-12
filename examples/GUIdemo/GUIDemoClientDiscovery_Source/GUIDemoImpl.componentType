@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <reference name="GUIDemoLCD" multiplicity="1..n">
+    <interface.cpp class="Trentino::Example::GUIDemo::GUIDemoLCD" header="services/TrentinoExampleGUIDemoLCD.h" remotable="true"/>
+	</reference>
+	<property name="GUIDemoName" type="xsd:string">GUIDemo_client</property>
+</componentType>

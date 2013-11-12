@@ -1,0 +1,4 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:sample="TrentinoNamespace">
+   <deployable composite="sample:local"/>
+   <deployable composite="sample:local2"/>
+</contribution>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\BasicCalculator_ContributionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\BasicCalculator_SCABindingHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\TrentinoGenModelLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\TrentinoGenProxiesWrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\TrentinoGenReflx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\BasicCalculator_ContributionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\BasicCalculator_SCABindingHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I:\Trentino\trentino\DEV\cpp\src\Tests\SystemTestData\ContributionInfoTestData\BasicCalculatorGen\TrentinoGenProxiesWrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\BasicCalculatorGen\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C5DA0326-0A94-4B3F-A614-452F4D2072C2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2056F884-0EAE-4A23-AC5A-14A1C7C5C397}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

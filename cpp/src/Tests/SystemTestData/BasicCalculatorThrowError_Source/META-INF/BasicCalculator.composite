@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="BasicCalculatorThrowErrorComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="BasicCalculatorThrowErrorNamespace">
+
+  <component name="CalculatorImpl">
+
+    <implementation.cpp
+        class="Trentino::Example::BasicCalculatorThrowError::CalculatorImpl"
+		header="TrentinoExampleBasicCalculatorCalculatorImpl.h"
+        scope="composite"
+		library="BasicCalculatorThrowError" 
+		eagerInit="true"/>
+    <service name="Calculator" >
+      <interface.cpp class="Trentino::Example::BasicCalculatorThrowError::Calculator" header="services/TrentinoExampleBasicCalculatorCalculator.h"/>
+    </service>
+	<reference name="Divider" multiplicity="1..1" autowire="false" target="DividerImpl/Divider">
+		<interface.cpp class="Trentino::Example::BasicCalculatorThrowError::Divider" header="./services/TrentinoExampleBasicCalculatorDivider.h"/>
+	</reference>
+  </component>
+
+  <component name="DividerImpl">
+    <implementation.cpp 
+        class="Trentino::Example::BasicCalculatorThrowError::DividerImpl"
+		header="TrentinoExampleBasicCalculatorDividerImpl.h"
+        scope="composite"
+		library="BasicCalculatorThrowError"
+		eagerInit="true"/>
+    <service name="Divider" >
+      <interface.cpp class="Trentino::Example::BasicCalculatorThrowError::Divider" header=".\services\TrentinoExampleBasicCalculatorDivider.h"/>
+    </service>
+  </component>
+</composite>
