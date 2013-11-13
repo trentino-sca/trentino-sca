@@ -94,20 +94,16 @@ namespace
          }
          else
          { // Single value injection
-            // Check if the wires list is not empty - it is possible for optional references
-            if (reference->wireableSupport().wires().size() != 0)
+            const RuntimeModel::ConstWireBasePtr wire = 
+               *(reference->wireableSupport().wires().begin());   
+            try
             {
-               const RuntimeModel::ConstWireBasePtr wire = 
-                  *(reference->wireableSupport().wires().begin());   
-               try
-               {
-               reference->invokeSetter(
+            reference->invokeSetter(
                instance, wire->proxy().get());
-               }
-               catch(...)
-               {
-                  throw;
-               }
+            }
+            catch(...)
+            {
+               throw;
             }
          }
 

@@ -1,63 +1,113 @@
-# *****************************************************************************
+# ***********************************************************************************
 # Trentino - A C++ based lightweight, non-invasive SCA runtime.
 # Copyright (C) Siemens AG, 2012
-# All Rights Reserved
+# All Rights Copy
+# http://trentino.sourceforge.net/TARGET_TRENTINO_DIR
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; opensl
+# version 2.1 of the License, or (at your option) any later version.
 #
-#   http://www.apache.org/licenses/LICENSE-2.0
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# *****************************************************************************
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+# ***********************************************************************************
 
-#source and header files
+cmake_minimum_required(VERSION 2.8.4)
+project(BindingThrift)
+
+set(TRENTINO_RUNTIME_DIR $ENV{TRENTINO_HOME})
+
+##############################################################################
+#                                Project Include
+##############################################################################
 
 
-SET(PN BindingThrift)
-FILE(GLOB ${PN}_HEADER_FILES *.h)
-FILE(GLOB ${PN}_SOURCE_FILES *.cpp)
 
+##############################################################################
+#                                CMAKE OPTIONS                               #
+##############################################################################
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
-FILE(GLOB ${PN}_PROTO_MESSAGES_FILES Protobuf/Messages/*.proto)
+##############################################################################
+#                               CUSTOM OPTIONS                               #
+##############################################################################
 
-set(${PN}_SOURCE_FILES ${${PN}_SOURCE_FILES})	
-set(${PN}_HEADER_FILES ${${PN}_HEADER_FILES})
+set (DEFAULT_INSTALL_PATH ${PROJECT_SOURCE_DIR}/../../../../Binaries)
 
-#libs
-set( ${PN}_THIRD_PARTY_LIBS
-     ${loggingLib}
-     Boost_SYSTEM_LIBRARY
-	 Thrift_LIBRARY
-	 )
-	 
-set( ${PN}_CUSTOM_LIBS 
-     Utils Runtime)
-	 
-set( ${PN}_SOURCE_FILES ${${PN}_SOURCE_FILES}
-								 ${${PN}_HEADER_FILES} ${${PN}_PROTO_MESSAGES_FILES})
-								 
-if(MSVC_IDE)
-	set(${PN}_SOURCE_FILES ${${PN}_SOURCE_FILES} ${${PN}_HEADER_FILES})	
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+   set (CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_PATH} CACHE STRING "Install path" FORCE)
 endif()
+		
+	if(MSVC90)
+		set(3rdpartyDirSuffix x86_windows/vc9)
+	elseif(MSVC10)
+		set(3rdpartyDirSuffix x86_windows/vc10)
+	elseif(CYGWIN)
+		set(3rdpartyDirSuffix x86_cygwin)
+	else(NOT WIN32)
+		set(3rdpartyDirSuffix x86_linux)
+	endif()
+set(TRENTINO_SOURCE_DIR ${PROJECT_SOURCE_DIR}/..)
+set(TRENTINO_THIRD_PARTY_DIR ../../../3rdparty/${3rdpartyDirSuffix} CACHE PATH  
+			"path to the directory containing third party artifacts" )
 
+set(TRENTINO_THIRD_PARTY_SRC_DIR ../../../3rdparty/src CACHE PATH  
+			"path to the directory containing third party source code" )		
+set (THRIFT_INCLUDE_DIR ${TRENTINO_THIRD_PARTY_SRC_DIR}/thrift-0.9.1/lib/cpp/src)
 
-include_directories( ${Boost_INCLUDE_DIRS}
-					 ${Log4cplus_INCLUDE_DIRS} 
-					 ${Thrift_INCLUDE_DIRS})				 
-
-add_library(${PN} SHARED ${${PN}_SOURCE_FILES})
-set_target_properties(${PN} PROPERTIES OUTPUT_NAME Trentino${PN})
-target_link_libraries(${PN} ${${PN}_CUSTOM_LIBS})
-MY_LINK_THIRD_PARTY_LIBRARIES(${PN} ${${PN}_THIRD_PARTY_LIBS} )
-
-#install(TARGETS ${PN} ${DLL_TARGET_KIND} DESTINATION ${TARGET_LIB_DIR} 
-#ARCHIVE DESTINATION ${TARGET_LIB_DIR})
+set (MYBoost_INCLUDE_DIRS ${TRENTINO_THIRD_PARTY_DIR}/boost_1_47/include)
+set (MYBoost_LIB_DIRS ${TRENTINO_THIRD_PARTY_DIR}/boost_1_47/lib/$(Configuration))
+			
 if(WIN32)
-	add_definitions(-DBINDINGTHRIFT_EXPORTS)
+	set(TRENTINO_WIN32_WINNT "0x0502" CACHE STRING 
+		"possible values: 0x0500 (Win 2000), 0x0501 (Win XP), 0x0600 (Win Vista), 0x0502 (Win Server 2003), 0x0601 (Win 7)")
 endif()
+
+option(TRENTINO_TESTING "build test projects?" ON)
+
+#Enable CTests testing
+if(TRENTINO_TESTING)
+    ENABLE_TESTING()
+endif()
+
+##############################################################################
+# 								COMPILER OPTIONS  							 #
+##############################################################################
+if(MSVC)
+	add_definitions(/W4)
+	add_definitions(/wd4251)
+	add_definitions(/wd4275)
+else()
+	add_definitions(-Wall -pedantic -Wno-variadic-macros -Wno-unknown-pragmas -Wno-long-long)
+endif()
+
+#add_definitions(-DUNICODE -D_UNICODE)
+add_definitions(-DBOOST_ALL_DYN_LINK)
+
+
+
+##############################################################################
+# 							   OUTPUT CONFIGURATION						     #
+##############################################################################
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/build/${CMAKE_SYSTEM_PROCESSOR}${CMAKE_SYSTEM_NAME})
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/build/${CMAKE_SYSTEM_PROCESSOR}${CMAKE_SYSTEM_NAME})
+
+##############################################################################
+#                           PROJECT SUBDIRECTORIES                           #
+##############################################################################
+add_subdirectory(server)
+add_subdirectory(thrift)
+if(WIN32)
+	add_definitions(-DTHRIFTBINDING_EXPORTS)
+endif()
+
+set(S_TARGET_ROOT_DIR ${TRENTINO_RUNTIME_DIR}/Bindings/Thrift)
+install(DIRECTORY META-INF DESTINATION ${S_TARGET_ROOT_DIR})
+install(DIRECTORY conf DESTINATION ${S_TARGET_ROOT_DIR})

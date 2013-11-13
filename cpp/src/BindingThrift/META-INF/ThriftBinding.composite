@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="ThriftBindingComposite" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="ThriftBindingNamespace">
+
+  <component name="binding.thrift">
+    <implementation.cpp
+        class="Trentino::ThriftBinding::ThriftBindingImpl"
+		header="TrentinoThriftBindingThriftBindingImpl.h"
+        scope="composite"
+		library="ThriftBinding" 
+		eagerInit="true"> 
+		<function name="onInit" init="true" />
+		<function name="onDestroy" destroy="true" />
+		<function name="set_root_path.setRootDir"/>
+		</implementation.cpp>
+		<property name="ConfigurationFile" type="xsd:string" value="conf\\ThriftBinding.conf"></property>
+  </component>
+</composite>

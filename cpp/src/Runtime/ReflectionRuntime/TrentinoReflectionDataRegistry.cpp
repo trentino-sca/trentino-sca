@@ -74,8 +74,12 @@ void DataRegistry::unregisterReflectObject(const Object::MetaData& data)
       if(iter->second == data.className)
          {
          ReflectObject::deleteRegisteredInstance(*this,iter->first);
+         iter = mRegisteredInstances.begin();
          }
+      else
+         {
          ++iter;
+         }
       }
    mReflectionObjects.erase(data.className);
 }

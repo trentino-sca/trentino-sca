@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentType xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+ <property name="ConfigurationFile" type="xsd:string"  mustSupply="true"/>
+    <service name="ThriftBinding">
+        <interface.cpp class="Trentino::ThriftBinding::ThriftBinding"
+                       header="include/ThriftBinding/TrentinoThriftBindingThriftBinding.h"
+                       remotable="false"/>
+    </service>
+</componentType>

@@ -74,7 +74,7 @@ namespace
    
       BOOST_FOREACH(const RuntimeModel::ConstComponentPtr& component, composite->components())
       {
-         if( (component->state() != RuntimeModel::Component::Resolved) && (component->state() != RuntimeModel::Component::OptionalUnresolved)){
+         if(component->state() != RuntimeModel::Component::Resolved){
             logWarn("Skipping component with unresolved state %s",component->scaComponent()->name().c_str());
             continue;
             }
