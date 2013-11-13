@@ -1,0 +1,5 @@
+<contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:ccp="ccpNamespace">
+   <deployable composite="ccp:ccp"/>
+   <import.cpp name="types" location="impl" />
+   <import.cpp name="services" location="services/gen-cpp" />
+</contribution>

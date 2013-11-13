@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<composite name="ccp" xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" targetNamespace="ccpNamespace">
+
+  <component name="BaServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::ba::BaServiceImpl"
+		header="types:BaServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="ChannelServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::channel::ChannelServiceImpl"
+		header="types:ChannelServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="ConfigureAndLoadServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::configureandload::ConfigureAndLoadServiceImpl"
+		header="types:ConfigureAndLoadServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="CSMLServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::csml::CSMLServiceImpl"
+		header="types:CSMLServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="DaliServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::dali::DaliServiceImpl"
+		header="types:DaliServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="DeviceServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::device::DeviceServiceImpl"
+		header="types:DeviceServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="DiagnosticServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::diagnostic::DiagnosticServiceImpl"
+		header="types:DiagnosticServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="DICPEventServiceImplComp">
+
+    <implementation.cpp
+        class="dicp::DICPEventServiceImpl"
+		header="types:DICPEventServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="DICPServiceImplComp">
+
+    <implementation.cpp
+        class="dicp::DICPServiceImpl"
+		header="types:DICPServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="OAMServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::oam::OAMServiceImpl"
+		header="types:OAMServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="PllinkServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::pllink::PllinkServiceImpl"
+		header="types:PllinkServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+  <component name="TxioServiceImplComp">
+
+    <implementation.cpp
+        class="siemens::bt::txio::TxioServiceImpl"
+		header="types:TxioServiceImpl.h"
+        scope="composite"
+		library="ccp" 
+		eagerInit="true"/>
+  </component>
+   
+
+</composite>
