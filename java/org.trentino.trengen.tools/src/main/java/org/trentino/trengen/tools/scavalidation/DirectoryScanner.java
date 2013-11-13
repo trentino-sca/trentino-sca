@@ -72,7 +72,7 @@ public class DirectoryScanner {
     	}
     	File f2 = new File(location,path.substring(index+1));
     	return f2.getAbsolutePath();
-    } 
+    }
 
 	private static File getLocationForImport(CPPImport f) {
 		if(f==null){
@@ -98,6 +98,17 @@ public class DirectoryScanner {
 		}
 
 		if(export==null){
+			//Then resolve the location as a path.
+			// First as an absolute path
+			File lf = new File(location);
+			if(lf.exists()){
+				return lf;
+			}
+			//otherwise, resolve it as a file relative to root directory
+			lf = new File(Trengen.getInstance().getContributionFolder(),location);
+			if(lf.exists()){
+				return lf;
+			}
 			return null;
 		}
 		return new File(export.getPath());

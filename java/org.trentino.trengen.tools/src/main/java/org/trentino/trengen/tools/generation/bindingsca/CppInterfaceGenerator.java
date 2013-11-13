@@ -24,16 +24,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.trentino.trengen.TrengenException;
 import org.trentino.trengen.ValidationException;
+import org.trentino.trengen.tools.bindingsca.TIDL2CppInterface;
+import org.trentino.trengen.tools.bindingsca.TIDLParseException;
 import org.trentino.trengen.tools.bindingsca.TIDLType;
 import org.trentino.trengen.tools.generation.TrengenGenerator;
 import org.trentino.trengen.tools.scavalidation.CommandLineOptions;
+import org.trentino.trengen.tools.scavalidation.DirectoryScanner;
 import org.trentino.trengen.tools.trengen.Trengen;
+import org.trentino.trengen.tools.trengen.TrengenCommand;
+import org.trentino.trengen.tools.trengen.Util;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -127,5 +134,102 @@ public class CppInterfaceGenerator extends TrengenGenerator {
 		}
 		return true;
 	}
+	/**
+	 * This function generates cpp interface file for sca binding
+	 * @throws TIDLParseException
+	 */
+	public static  void generateCPPInterface(String tidlFilePath, String include, String outDir) throws TIDLParseException {
+		logger.info("CPPInterface file is being generated... " + tidlFilePath + " directory is used during generation.");
+		File tdilFile = new File(tidlFilePath);
+		if(!(tdilFile.exists()))
+		{
+			logger.error(tidlFilePath + " does not exist! Please give correct path...");
+			return;
+		}
+		List<File> tidlPropertyFiles = new ArrayList<File>();
+		List<File> javaFiles = new ArrayList<File>();
+		if(tdilFile.isFile() && tidlFilePath.endsWith(".tidl.properties"))
+		{
+			tidlPropertyFiles.add(tdilFile);
+		}
+		else if(tdilFile.isFile() && tidlFilePath.endsWith(".java"))
+		{
+			javaFiles.add(tdilFile);
+		}
+		else
+		{
+			List<File> sp = new ArrayList<File>();
+			sp.add(tdilFile);
+			tidlPropertyFiles = DirectoryScanner.SearchArtifacts(sp, "tidl.properties");
+		}
+
+		if(tidlPropertyFiles.isEmpty() && javaFiles.isEmpty())
+		{
+			logger.error("No .tidl.properties file is found in " + tidlFilePath);
+			return;
+		}
+		for (File tidlFile : tidlPropertyFiles)
+		{
+			String pathToJavaFile = Util.readTidlPropertiesFile(tidlFile);
+			String pathToTidl = Util.getTidlFilePath(tidlFile, pathToJavaFile);
+
+			// an outdir is expected in TidlToCPPInterface converter. if it is
+			// null, use the current path.
+			if(outDir == null)
+			{
+				outDir = pathToTidl;
+			}
+
+			if(pathToTidl != null && pathToJavaFile != null)
+			{
+				pathToJavaFile = new File(pathToTidl, pathToJavaFile).getAbsolutePath();
+			}
+			else
+			{
+				logger.error("Path to Java file is null");
+				return;
+			}
+			logger.info("Path to java file " + pathToJavaFile);
+
+			File javaFile = new File(pathToJavaFile);
+			if(!javaFile.exists())
+			{
+				logger.error(pathToJavaFile + " does not exist! Please give correct path...");
+				return;
+			}
+
+			generateCPPInterfaceFromJavaFile(include, javaFile, tidlFile, outDir);
+
+		}
+
+		for (File javaFile : javaFiles)
+		{
+			generateCPPInterfaceFromJavaFile(include, javaFile, null, outDir);
+		}
+	}
+
+	private static  void generateCPPInterfaceFromJavaFile(String include, File javaFile, File tidl, String outDir) throws TIDLParseException {
+		// CPP interface generation
+		TIDL2CppInterface converter = new TIDL2CppInterface();
+
+		File outDirFile = null;
+		if(outDir == null)
+		{
+			outDir = javaFile.getParent();
+		}
+		outDirFile = new File(outDir);
+		List<String> includes = new ArrayList<String>();
+
+		if(include != null && !"".equals(include))
+		{
+			includes.add(include);
+		}
+
+		if(javaFile != null && outDirFile != null)
+		{
+			converter.createCppInterface(javaFile, tidl, outDirFile, includes);
+		}
+	}
+
 
 }

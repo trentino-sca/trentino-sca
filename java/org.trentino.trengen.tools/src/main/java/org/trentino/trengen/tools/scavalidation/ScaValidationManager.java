@@ -463,7 +463,7 @@ public class ScaValidationManager {
 			List<ClassModel> classes = headerFile.getClasses();
 			for (ClassModel classSingle : classes)
 			{
-				String classModelName = classSingle.getClazzName();
+				String classModelName = classSingle.getClassName();
 				if(classModelName.contains("::"))
 				{
 					int index = classModelName.lastIndexOf("::");

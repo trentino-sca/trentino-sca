@@ -39,7 +39,7 @@ import freemarker.template.TemplateException;
 public abstract class TrengenGenerator {
 	protected static final Logger	logger	= Logger.getLogger(TrengenGenerator.class);
 
-	private static Configuration	cfg;
+	protected static Configuration	cfg;
 	protected Context	          context;
 
 	public TrengenGenerator (Context context) {

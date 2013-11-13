@@ -50,8 +50,8 @@ import org.trentino.trengen.tools.trengen.Trengen;
 public class BindingIPCDescriptor implements BindingDescriptor {
 
 	protected static final Logger	        logger	                      = Logger.getLogger(BindingIPCDescriptor.class);
-	private static final String[]	BINGING_IPC_SCHEMES	=
-	                                                    { "ipc" };
+	private static final String[]	BINGING_SCA_SCHEMES	=
+	                                                    { "tcp" };
 
 	private ObjectFactory	      factory	            = new ObjectFactory();
 
@@ -197,7 +197,7 @@ public class BindingIPCDescriptor implements BindingDescriptor {
 		{
 			URI uri = new URI(target);
 			String scheme = uri.getScheme();
-			for (String aScheme : BINGING_IPC_SCHEMES)
+			for (String aScheme : BINGING_SCA_SCHEMES)
 			{
 				if(aScheme.equals(scheme))
 				{
@@ -277,7 +277,7 @@ public class BindingIPCDescriptor implements BindingDescriptor {
 	private void createComponentsFromURIList(List<Component> res, ComponentReferenceWrapper ref, List<String> targets) {
 		// Only one component implementation needed
 		CPPImplementation impl = new CPPImplementation();
-		impl.setHeader("TrentinoGenIpcBindingProxy.h");
+		impl.setHeader("TrentinoGenBindingProxy.h");
 		String clazz = getImplClassByRef(ref);
 		impl.setClazz(clazz);
 		impl.setAllowsPassByReference(false);

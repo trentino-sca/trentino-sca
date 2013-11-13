@@ -34,14 +34,15 @@ import org.trentino.trengen.TrengenException;
 public class BindingCodeGeneratorManager {
 
 	protected static final Logger	 logger	= Logger.getLogger(BindingCodeGeneratorManager.class);
-
+	private ClassLoader classLoader;
 	private BindingCodeGeneratorData	data;
 
 	/**
 	 * @param data
 	 */
-	public BindingCodeGeneratorManager (BindingCodeGeneratorData data) {
+	public BindingCodeGeneratorManager (BindingCodeGeneratorData data,	ClassLoader classLoader) {
 		this.data = data;
+		this.classLoader = classLoader;
 	}
 
 	/**
@@ -49,7 +50,7 @@ public class BindingCodeGeneratorManager {
 	 * @throws TrengenException
 	 */
 	public boolean generateBindingCode() throws TrengenException {
-		ServiceLoader<BindingCodeGenerator> generators = ServiceLoader.load(BindingCodeGenerator.class);
+		ServiceLoader<BindingCodeGenerator> generators = ServiceLoader.load(BindingCodeGenerator.class, classLoader);
 		for (BindingCodeGenerator generator : generators)
 		{
 			if(!generator.generate(data))

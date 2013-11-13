@@ -147,7 +147,7 @@ public class ConformanceManagerCppImplArtifactsEclipseCDT extends IConformanceMa
 			if(classModel ==null){
 				continue;
 			}
-			allClassesOfContribution.put(classModel.getNamespace() + "::" + classModel.getClazzName(), "");
+			allClassesOfContribution.put(classModel.getNamespace() + "::" + classModel.getClassName(), "");
 			// This part of code is required once we use Turcany parser since
 			// the included files needed to be explicitly resolved
 			// for (int j = 0; j < headerFile.getIncludedFile().size(); j++)

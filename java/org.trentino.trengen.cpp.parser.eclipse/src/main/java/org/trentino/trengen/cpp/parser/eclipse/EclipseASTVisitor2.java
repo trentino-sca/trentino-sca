@@ -156,7 +156,7 @@ public class EclipseASTVisitor2 extends ASTVisitor {
 	private void createMethod(ClassModel currentClassModel, ICPPMethod method) {
 
 		String name = method.getName();
-		if(currentClassModel.getClazzName().equals(name))
+		if(currentClassModel.getClassName().equals(name))
 		{
 			// The parser sometimes take a constructor as a function.
 			// function with the same name as the class are supposed to be constructor

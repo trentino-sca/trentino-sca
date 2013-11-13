@@ -18,7 +18,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // **********************************************************************************
-package org.trentino.trengen.tools.generation.bindingsca;
+package org.trentino.trengen.tools.generation.thrift;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -37,24 +37,21 @@ import org.trentino.trengen.sca.model.Component;
 import org.trentino.trengen.sca.model.ComponentReference;
 import org.trentino.trengen.sca.model.ComponentTypeReference;
 import org.trentino.trengen.sca.model.Contract;
+import org.trentino.trengen.sca.model.IPCBinding;
 import org.trentino.trengen.sca.model.Interface;
 import org.trentino.trengen.sca.model.ObjectFactory;
 import org.trentino.trengen.sca.model.PropertyValue;
-import org.trentino.trengen.sca.model.SCABinding;
 import org.trentino.trengen.tools.bindingframework.BindingDescriptor;
+import org.trentino.trengen.tools.generation.bindingsca.BindingSCADescriptor;
 import org.trentino.trengen.tools.generation.proxieswrappers.ReferenceServiceInterface;
 import org.trentino.trengen.tools.scavalidation.ComponentReferenceWrapper;
 import org.trentino.trengen.tools.scavalidation.ContributionVisitor;
 import org.trentino.trengen.tools.trengen.Trengen;
 
-/**
- * @author z002ttbb used to describe a given binding. helper class for the
- *         engine to query about binding specific informations
- */
-public class BindingSCADescriptor implements BindingDescriptor {
+public class Descriptor extends BindingSCADescriptor {
 
-	protected static final Logger	        logger	                      = Logger.getLogger(BindingSCADescriptor.class);
-	private static final String[]	BINGING_SCA_SCHEMES	=
+	protected static final Logger	        logger	                      = Logger.getLogger(Descriptor.class);
+	private static final String[]	BINGING_THRIFT_SCHEMES	=
 	                                                    { "tcp" };
 
 	private ObjectFactory	      factory	            = new ObjectFactory();
@@ -67,7 +64,7 @@ public class BindingSCADescriptor implements BindingDescriptor {
 	 */
 	@Override
 	public String getBindingId() {
-		return "binding.sca";
+		return "binding.thrift";
 	}
 
 	public boolean isRemote(ComponentReferenceWrapper contract) {
@@ -92,9 +89,7 @@ public class BindingSCADescriptor implements BindingDescriptor {
 		}
 		
 			ComponentReferenceWrapper wrapper = getCompRefWrapperByCompRef(componentReference);
-            if(wrapper==null){
-            	return false;
-            }
+
 			List<JAXBElement<? extends Binding>> bindings = wrapper.getBinding();
 			if(isRemote(bindings, ref))
 			{
@@ -174,12 +169,8 @@ public class BindingSCADescriptor implements BindingDescriptor {
 				continue;
 			}
 			Binding val = b.getValue();
-			if(val instanceof SCABinding)
+			if(val instanceof IPCBinding)
 			{
-				boolean res = isRemote(val.getUri(), ref);
-                if(!res){
-                	logger.warn("Wrong uri found for binding SCA: "+val.getUri());
-                }
 				return true;
 			}
 		}
@@ -207,7 +198,7 @@ public class BindingSCADescriptor implements BindingDescriptor {
 		{
 			URI uri = new URI(target);
 			String scheme = uri.getScheme();
-			for (String aScheme : BINGING_SCA_SCHEMES)
+			for (String aScheme : BINGING_THRIFT_SCHEMES)
 			{
 				if(aScheme.equals(scheme))
 				{
@@ -224,14 +215,7 @@ public class BindingSCADescriptor implements BindingDescriptor {
 		return false;
 	}
 
-	protected void fillPortAndURL(ReferenceServiceInterface refServiceInterface, String uri2) {
-	    URI uri = URI.create(uri2);
-	    String host = uri.getHost();
-	    int port = uri.getPort();
 
-	    refServiceInterface.setPort(port);
-	    refServiceInterface.setHost(host);
-    }
 	
 	/**
 	 * gets the name of the Implementation class.
@@ -260,12 +244,12 @@ public class BindingSCADescriptor implements BindingDescriptor {
 				continue;
 			}
 			Binding val = b.getValue();
-			if(val instanceof SCABinding)
+			if(val instanceof IPCBinding)
 			{
 				String uri = val.getUri();
 				if(uri == null)
 				{
-					throw new IllegalStateException("binding sca has no uri defined");
+					throw new IllegalStateException("binding ipc has no uri defined");
 				}
 				targets.add(uri);
 			}
@@ -287,13 +271,13 @@ public class BindingSCADescriptor implements BindingDescriptor {
 	private void createComponentsFromURIList(List<Component> res, ComponentReferenceWrapper ref, List<String> targets) {
 		// Only one component implementation needed
 		CPPImplementation impl = new CPPImplementation();
-		impl.setHeader("TrentinoGenBindingProxy.h");
+		impl.setHeader("TrentinoGenThriftBindingProxy.h");
 		String clazz = getImplClassByRef(ref);
 		impl.setClazz(clazz);
 		impl.setAllowsPassByReference(false);
 		impl.setLibrary("sca-contribution");
 		impl.setEagerInit(false);
-		impl.setPath("./META-INF");
+		impl.setPath("");
 		impl.setScope(CPPImplementationScope.COMPOSITE);
 		for (String target : targets)
 		{
@@ -308,22 +292,7 @@ public class BindingSCADescriptor implements BindingDescriptor {
 			prop.setMany(false);
 			prop.setType(new QName("string"));
 			prop.setName(BindingDescriptor.TRENTINO_INTERNAL_ADRESS_PROPERTY_DO_NOT_USE_THIS_NAME);
-			
-			/*
-			 * In order to handle default binding.sca without uri (for service discovery), we added this
-			 * fake target in  returnNumberOfTargets() @ReferenceTarget.cpp while checking multiplicity.
-			 * We did not add this fake target as a fake property to the fake component.
-			 * 
-			 * 
-			 * We did not want to disturb the whole binding code structure.
-			 * 
-			 * 17.05.2013 but than it turned out that discovery support at core relies on this fake value 
-			 * so we reverted back to assign this value
-			 */
-			//if (!target.equals("tcp://localhost:1234//dontUseThisName_FakeTarget"))
-			{
-				prop.setValue(target);
-			}
+			prop.setValue(target);
 			comp.getServiceOrReferenceOrProperty().add(prop);
 			res.add(comp);
 		}

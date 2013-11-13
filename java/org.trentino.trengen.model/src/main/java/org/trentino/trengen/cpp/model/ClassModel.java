@@ -34,7 +34,8 @@ public class ClassModel {
 	private List<String>	  baseClasses	= new ArrayList<String>();
   
 	private List<ClassModel>  baseClassesResolved = new ArrayList<ClassModel>();
-	public String getClazzName() {
+	private List<String> namespaceparts;
+	public String getClassName() {
 		return className;
 	}
 
@@ -89,5 +90,19 @@ public class ClassModel {
 	@Override
 	public String toString() {
 		return namespace + "::" + className;
+	}
+	
+	public List<String> getNamespaceparts(){
+		if(namespaceparts==null){
+			namespaceparts = new ArrayList<String>();
+			if(namespace==null){
+				return namespaceparts;
+				}
+			String[] parts = namespace.split("::");
+			for(String part: parts){
+				namespaceparts.add(part);
+			}
+		}
+		return namespaceparts;
 	}
 }

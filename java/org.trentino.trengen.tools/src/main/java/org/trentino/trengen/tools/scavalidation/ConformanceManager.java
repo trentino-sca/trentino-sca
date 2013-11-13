@@ -287,7 +287,7 @@ public class ConformanceManager {
 		{
 			// Find the second class in the second header
 			ClassModel classModel = headerFileOfSecond.getClasses().get(i);
-			String className = classModel.getClazzName();
+			String className = classModel.getClassName();
 			if(className.equals(secondClass.trim()))
 			{
 				baseClassesOfSecondClass = classModel.getBaseClasses();

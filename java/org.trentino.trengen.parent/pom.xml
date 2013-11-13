@@ -214,5 +214,6 @@
 		<!--module>../org.trentino.trengen.cpp.parser.tuscany/pom.xml</module-->
 		<module>../org.trentino.trengen.cpp.parser.eclipse/pom.xml</module>
 		<module>../org.trentino.trengen.tools/pom.xml</module>
+		<module>../org.trentino.trengen.thrift/pom.xml</module>
 	</modules>
 </project>

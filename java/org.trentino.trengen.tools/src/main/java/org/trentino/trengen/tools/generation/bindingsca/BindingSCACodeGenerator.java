@@ -203,7 +203,7 @@ public class BindingSCACodeGenerator extends TrengenGenerator implements Binding
 		return false;
 	}
 
-	private void fillPortAndURL(ReferenceServiceInterface refServiceInterface, String uri2) {
+	protected void fillPortAndURL(ReferenceServiceInterface refServiceInterface, String uri2) {
 		URI uri = URI.create(uri2);
 		String host = uri.getHost();
 		int port = uri.getPort();

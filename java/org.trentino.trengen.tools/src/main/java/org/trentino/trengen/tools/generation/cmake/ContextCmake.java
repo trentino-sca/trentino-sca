@@ -24,9 +24,15 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.trentino.trengen.sca.model.CPPImplementation;
+import org.trentino.trengen.sca.model.Component;
+import org.trentino.trengen.sca.model.Implementation;
 import org.trentino.trengen.tools.generation.Context;
 import org.trentino.trengen.tools.generation.modelloader.SCAModelToSCAMirrorModelConverter;
+import org.trentino.trengen.tools.scavalidation.ContributionTypeWrapper;
+import org.trentino.trengen.tools.scavalidation.ContributionVisitor;
 import org.trentino.trengen.tools.trengen.Trengen;
+import org.trentino.trengen.tools.trengen.Util;
 
 /**
  * contains input data needed by the generator
@@ -221,5 +227,59 @@ public class ContextCmake extends Context {
 			currentPrefix="";
 		}
 		
+	}
+	public static  void prepareContextCMake(String runtimeDir, String installPath, 
+			String libPath, String includeDirs, String libDirsExpanded,
+	        final ContextCmake contextCMake, File generationDirectory,
+	        ContributionTypeWrapper	contributionTypeWrapper) {
+		contextCMake.setTrentinoRuntimeDir(runtimeDir);
+		String generationProjName =contextCMake. getGenerationProjectNameFolder();
+		String generationProjNameUpperCase =contextCMake. getGenerationProjectNameFolderUpperCase();
+		String contributionDir = new File(contextCMake.contributionDir).getAbsolutePath();
+		// generated code CMAKE Default install path
+		if(installPath == null)
+		{
+			installPath = new File(contributionDir).getParentFile().getAbsolutePath();
+		}
+		contextCMake.setGenerationProjectName(generationProjName);
+		contextCMake.setDefaultInstallPath(installPath);
+		contextCMake.setInstallDir(new File(contributionDir).getName());
+		contextCMake.addLibs(libPath);
+		contextCMake.setGenerationProjectNameUpperCase(generationProjNameUpperCase);
+        ContributionVisitor contributionVisitor = new ContributionVisitor() {
+        	@Override
+        	public void visit(Component obj) {
+        	 Implementation impl =	obj.getImplementation().getValue();
+        	 if(impl instanceof CPPImplementation){
+        		 CPPImplementation cppImpl = (CPPImplementation) impl;
+        		 String library = cppImpl.getLibrary();
+        		 if(library==null ||"".equals(library) ||"sca-contribution".equals(library)){
+        			 return;
+        		 }
+				contextCMake.getLibraries().add(library);
+        		 String path =cppImpl.getPath();
+        		 if(path!=null){
+        			contextCMake.getLinkDirectories().add(path); 
+        		 }
+        		 
+        	 }
+        		
+        	}
+		};
+		contributionTypeWrapper.accept(contributionVisitor );		
+
+		contextCMake.setLinkDirectories(libDirsExpanded);
+		contextCMake.setIncludeDirs(includeDirs);
+
+		contextCMake.setOutputDir(generationDirectory);
+
+	}
+	
+	private  String getGenerationProjectNameFolder() {
+		return Trengen.getInstance().getApplicationNameLowerCase() + "Gen";
+	}
+
+	private  String getGenerationProjectNameFolderUpperCase() {
+		return Trengen.getInstance(). getApplicationNameUpperCase() + "GEN";
 	}
 }

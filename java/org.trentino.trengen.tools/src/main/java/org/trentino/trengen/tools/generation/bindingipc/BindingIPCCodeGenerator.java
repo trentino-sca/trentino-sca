@@ -48,10 +48,7 @@ import org.trentino.trengen.tools.bindingsca.TIDL2Protobuf;
 import org.trentino.trengen.tools.bindingsca.TIDLParseException;
 import org.trentino.trengen.tools.generation.TrengenGenerator;
 import org.trentino.trengen.tools.generation.bindingsca.ContextCppInterface;
-import org.trentino.trengen.tools.generation.bindingsca.ContextSCABinding;
 import org.trentino.trengen.tools.generation.bindingsca.CppTypeMapper;
-import org.trentino.trengen.tools.generation.bindingipc.ContextIPCBinding;
-import org.trentino.trengen.tools.generation.bindingsca.TIDLContextFunctionInterfaceFunctionMapper;
 import org.trentino.trengen.tools.generation.cmake.ContextCmake;
 import org.trentino.trengen.tools.generation.modelloader.SCAModelToSCAMirrorModelConverter;
 import org.trentino.trengen.tools.generation.proxieswrappers.ContextProxiesWrappers;
@@ -80,30 +77,8 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 		super(null);
 	}
 
-	public boolean findInterfaceFiles() 
-	{
-
-		logger.info("CPPInterface file is being generated... ");
-		for (ContextCppInterface ctx : remotableServicesContexts)
-		{
-			//converter.generate(ctx);
-			generalProxiesWrappersContext.addCppInterfaceFile(ctx.getFileName() + ".h");
-			//((ContextSCABinding) (this.context)).addContextProtoBuf(ctx);
-		}
-
-		for (ContextCppInterface ctx : remotableReferencesContexts)
-		{
-			//converter.generate(ctx);
-			generalProxiesWrappersContext.addCppInterfaceFile(ctx.getFileName() + ".h");
-			//((ContextSCABinding) (this.context)).addContextProtoBuf(ctx);
-		}
-
-		return true;
-	}
-	
 	@Override
-	public boolean generate(BindingCodeGeneratorData data) throws TrengenException 
-	{
+	public boolean generate(BindingCodeGeneratorData data) throws TrengenException {
 		this.data = data;
 		generalProxiesWrappersContext = data.getContextProxyWrapper();
 		remotableServices = new ArrayList<ReferenceServiceInterface>();
@@ -129,7 +104,7 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 
 		this.context.setOutputDir(generationDirectory);
 
-		if(!remotableServices.isEmpty() /*|| !remotableReferences.isEmpty()*/)
+		if(!remotableServices.isEmpty() || !remotableReferences.isEmpty())
 		{
 			generalProxiesWrappersContext.getDeclaredBindings().add("binding.ipc");
 		}
@@ -140,28 +115,12 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 			{
 				return false;
 			}
-		} 
-		catch (TIDLParseException e)
+		} catch (TIDLParseException e)
 		{
 			throw new TrengenException(e);
 		}
-		
-		if(!findInterfaceFiles())
-		{
-			return false;
-		}
-		
-		this.data = data;
 
-		// register the binding helper to Contribution
-		if(generalProxiesWrappersContext.hasRemotableServices())
-		{
-			for (ContextCppInterface ctx : ((ContextIPCBinding) context).getProtoBufContexts())
-			{
-				generalProxiesWrappersContext.registerBindingHelper(ctx);
-			}
-		}
-		
+		this.data = data;
 		if(!generate())
 		{
 			return false;
@@ -222,12 +181,11 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 		else
 		{
 			String memMapId = uriTemp.substring(0, index); 
-			//no host or port info is required
-//			if(memMapId.equals("") || memMapId.equals(null))
-//			{
-//				logger.error("uri( "+uri+" ) does not have a unique specifier. \n" );
-//				return false;
-//			}
+			if(memMapId.equals("") || memMapId.equals(null))
+			{
+				logger.error("uri( "+uri+" ) does not have a unique specifier. \n" );
+				return false;
+			}
 			String componentAndServiceStr = uriTemp.substring(index+2, uriTemp.length());
 			int index2 = componentAndServiceStr.indexOf("/");
 			if (index2 == -1)
@@ -266,7 +224,7 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 
 		// binding specific libraries
 
-		contextCmake.getLibraries().add("TrentinoBindingIPCServer");
+		contextCmake.getLibraries().add("TrentinoBindingIPC");
 		contextCmake.getLibraries().add("TrentinoBindingIPCClient");
 		contextCmake.getLibraries().add("TrentinoBindingCompactSoap");
 	}
@@ -450,8 +408,7 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 	}
 
 	@Override
-	public boolean generate() throws TrengenException 
-	{
+	public boolean generate() throws TrengenException {
 
 		Configuration config = configure();
 
@@ -460,59 +417,21 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 		{
 			outputDir.mkdirs();
 		}
-		try
+		
+		if(generalProxiesWrappersContext.hasRemotableServices()) // server
 		{
-			if(generalProxiesWrappersContext.hasRemotableServices()) // server
-			{
-				if (!createIPCHelperUtilFiles(config, outputDir, remotableServicesContexts))
-					return false;
-				
-				if (!createIPCBindingHelperFiles (config, outputDir, remotableServicesContexts ))
-					return false;
-	
-				for (ContextCppInterface ctx : ((ContextIPCBinding) context).getProtoBufContexts())
-				{
-					generalProxiesWrappersContext.registerBindingHelper(ctx);
-				}
-			}
-			if(!remotableReferences.isEmpty()) // client
-			{
-				if (!createIPCHelperUtilFiles(config, outputDir,remotableReferencesContexts))
-					return false;
-				
-				//create icp proxies
-					Template templateBindingProxyCpp = config.getTemplate("BindingIpcProxy_cpp.ftl");
-					Template templateBindingProxyHeader = config.getTemplate("BindingIpcProxy_h.ftl");
-	
-				
-				File ipcBindingProxyHeaderFile = new File(outputDir, "TrentinoGenIpcBindingProxy.h");
-				this.data.getContextReflection().getReflexIncludes().add(ipcBindingProxyHeaderFile.getName());
-				FileOutputStream fosBindingProxyHeader = new FileOutputStream(ipcBindingProxyHeaderFile);
-				FileOutputStream fosBindingProxyCpp = new FileOutputStream(new File(outputDir, "TrentinoGenIpcBindingProxy.cpp"));
-	
-				Map<String, java.lang.Object> rootForBindingProxy = new HashMap<String, java.lang.Object>();
-				rootForBindingProxy.put("context", generalProxiesWrappersContext);
-				rootForBindingProxy.put("remotableReferences", remotableReferencesContexts);
-				rootForBindingProxy.put("contextBiningIPC", context);
-				//rootForBindingProxy.put("hasBeanUtil", hasBeanUtil((ContextSCABinding) context));
-				TIDLContextFunctionInterfaceFunctionMapper functionMapper = new TIDLContextFunctionInterfaceFunctionMapper(
-				        ((ContextIPCBinding) (this.context)).getProtoBufContexts());
-				rootForBindingProxy.put("functionMapper", functionMapper);
-				doWrite(rootForBindingProxy, generalProxiesWrappersContext, templateBindingProxyHeader, fosBindingProxyHeader);
-				doWrite(rootForBindingProxy, generalProxiesWrappersContext, templateBindingProxyCpp, fosBindingProxyCpp);
-				logger.info("IPCP Binding proxies are generated for remote references.");
-				
+			if (!createIPCHelperUtilFiles(config, outputDir, remotableServicesContexts))
+				return false;
+			
+			if (!createIPCBindingHelperFiles (config, outputDir, remotableServicesContexts ))
+				return false;
 
-				
-			}
 		}
-		catch (FileNotFoundException e)
+		if(!remotableReferences.isEmpty()) // client
 		{
-			throw new TrengenException(e);
-		}
-		catch (IOException e)
-		{
-			throw new IllegalStateException("cannot create template");
+			if (!createIPCHelperUtilFiles(config, outputDir,remotableReferencesContexts))
+				return false;
+
 		}
 
 		return true;
@@ -525,22 +444,22 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 
 		try
 		{
-			templateIpcUtil = config.getTemplate("BindingIPCTypes.ftl");
-			templateIpcBeanUtilHeader = config.getTemplate("BindingIPCTypesConverter_h.ftl");
-			templateIpcBeanUtilimpl = config.getTemplate("BindingIPCTypesConverter_cpp.ftl");
+			templateIpcUtil = config.getTemplate("BindingIPCUtils.ftl");
+			templateIpcBeanUtilHeader = config.getTemplate("BindingIPCBeanUtils_h.ftl");
+			templateIpcBeanUtilimpl = config.getTemplate("BindingIPCBeanUtils_cpp.ftl");
 		} catch (IOException e)
 		{
 			logger.error("cannot create template.");
 			return false;
 		}
 
-		File ipcUtilHeaderFile = new File(outputDir, "TrentinoGenIPCTypes.h");
+		File ipcUtilHeaderFile = new File(outputDir, "TrentinoGenIPCUtils.h");
 		FileOutputStream fosIpcUtilHeader = null;
 		
-		File ipcBeanUtilHeaderFile = new File(outputDir, "TrentinoGenIPCTypesConverter.h");
+		File ipcBeanUtilHeaderFile = new File(outputDir, "TrentinoGenIPCBeanUtils.h");
 		FileOutputStream fosIpcBeanUtilHeader = null;
 		
-		File ipcBeanUtilImlpFile = new File(outputDir, "TrentinoGenIPCTypesConverter.cpp");
+		File ipcBeanUtilImlpFile = new File(outputDir, "TrentinoGenIPCBeanUtils.cpp");
 		FileOutputStream fosIpcBeanUtilImpl = null;
 		try
 		{
@@ -588,16 +507,16 @@ public class BindingIPCCodeGenerator extends TrengenGenerator implements Binding
 
 		try
 		{
-			templateIpcBindingHelperHeader = config.getTemplate("BindingIPCHelper_h.ftl");
-			templateIpcBindingHelperImpl = config.getTemplate("BindingIPCHelper_cpp.ftl");
+			templateIpcBindingHelperHeader = config.getTemplate("IPCBindingHelpers_h.ftl");
+			templateIpcBindingHelperImpl = config.getTemplate("IPCBindingHelpers_cpp.ftl");
 		} catch (IOException e)
 		{
 			logger.error("cannot create template.");
 			return false;
 		}
 
-		File ipcBindingHelperHeaderFile = new File(outputDir, "TrentinoGenIPCHelper.h");
-		File ipcBindingHelperImplFile = new File(outputDir, "TrentinoGenIPCHelper.cpp");
+		File ipcBindingHelperHeaderFile = new File(outputDir, "TrentinoGenIPCBindingHelpers.h");
+		File ipcBindingHelperImplFile = new File(outputDir, "TrentinoGenIPCBindingHelpers.cpp");
 		FileOutputStream fosIpcBindingHelperHeader = null;
 		FileOutputStream fosIpcBindingHelperImpl = null;
 		try

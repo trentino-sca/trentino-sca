@@ -17,6 +17,8 @@
    <include schemaLocation="sca-binding-ws-callback-1.1-cd04-rev1.xsd"/>
    <include schemaLocation="sca-binding-sca-1.1-cd06.xsd"/>
    <include schemaLocation="sca-binding-ipc.xsd"/>
+   <include schemaLocation="sca-binding-thrift.xsd"/>
+   
 
    <include schemaLocation="sca-definitions-1.1-cd06.xsd"/>
    <include schemaLocation="sca-policy-1.1-cd04.xsd"/>

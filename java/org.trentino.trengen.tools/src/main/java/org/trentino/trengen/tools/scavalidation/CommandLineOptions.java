@@ -27,7 +27,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -45,6 +44,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.trentino.trengen.ValidationException;
+import org.trentino.trengen.tools.trengen.CommandExecutionManager;
 
 /**
  * Command line options passed to a tool's main program. All command line
@@ -57,11 +57,15 @@ public class CommandLineOptions {
 
 	private Options options;
 
+	private ClassLoader classLoader;
+
 	/**
 	 * @param args
+	 * @param classLoader 
 	 * @throws ValidationException
 	 */
-	public CommandLineOptions(String... args) throws ValidationException {
+	public CommandLineOptions(String[] args, ClassLoader classLoader) throws ValidationException {
+		this.classLoader = classLoader;
 		options = createOptions();
 		set(args);
 	}
@@ -78,6 +82,7 @@ public class CommandLineOptions {
 	}
 
 	/**
+	 * @param classLoader 
 	 * 
 	 */
 	private Options createOptions() {
@@ -99,12 +104,8 @@ public class CommandLineOptions {
 				.withDescription("Read options from a configuration file")
 				.withLongOpt("config_file").create("cf"));
 		usage1.addOption(new Option("h", "help", false, "print this message"));
-		usage1.addOption(opt(
-				"gencppitf",
-				true,
-				"a directory, a path to .java or .tidl.properties file",
-				"generate C++ interface from a given interface definition file.\n The java file based model or a tidl configuration file containing "
-						+ "the path of the java based model. If the path is a directory, then all *.tidl.properties files in the given directory will be processed."));
+
+		addOptionsFromPlugins(usage1,options,classLoader);
 
 		options.addOption(opt(
 				"rootdir",
@@ -166,6 +167,7 @@ public class CommandLineOptions {
 		options.addOption(opt("generateCMake", true, "true|false",
 				"Generate CMake file, default to true"));
 
+
 		Option property = OptionBuilder
 				.withArgName("property=value")
 				.hasArgs(2)
@@ -175,11 +177,17 @@ public class CommandLineOptions {
 				.create("D");
 		options.addOption(property);
 
+
 		options.addOptionGroup(usage1);
 		return options;
 	}
 
-	private static Option opt(String name, boolean hasArg, String argName,
+	private void addOptionsFromPlugins(OptionGroup usage1, Options options2, ClassLoader classLoader) {
+		CommandExecutionManager cmdMngr = new CommandExecutionManager(classLoader);
+		cmdMngr.addOptions(usage1, options2);
+	}
+
+	public static Option opt(String name, boolean hasArg, String argName,
 			String desc) {
 		if (argName != null) {
 			return OptionBuilder.withArgName(argName).hasArg(hasArg)
@@ -297,6 +305,13 @@ public class CommandLineOptions {
 		}
 		return cmd.getOptionValue(key);
 		// return pairs.get(key);
+	}
+	
+	public boolean hasOption(String key){
+		if (key != null && key.startsWith("-")) {
+			key = key.substring(1);
+		}
+		return cmd.hasOption(key);
 	}
 
 	public void printUsage() {

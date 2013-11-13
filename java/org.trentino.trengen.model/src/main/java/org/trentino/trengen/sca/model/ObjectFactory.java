@@ -51,6 +51,7 @@ public class ObjectFactory {
     private final static QName _Intent_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "intent");
     private final static QName _Interface_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "interface");
     private final static QName _BindingIpc_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "binding.ipc");
+    private final static QName _BindingThrift_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "binding.thrift");
     private final static QName _Export_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "export");
     private final static QName _InterfaceCpp_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "interface.cpp");
     private final static QName _BindingType_QNAME = new QName("http://docs.oasis-open.org/ns/opencsa/sca/200912", "bindingType");
@@ -95,6 +96,14 @@ public class ObjectFactory {
      */
     public IPCBinding createIPCBinding() {
         return new IPCBinding();
+    }
+    
+    /**
+     * Create an instance of {@link ThriftBinding }
+     * 
+     */
+    public ThriftBinding createThriftBinding() {
+        return new ThriftBinding();
     }
 
     /**
@@ -669,6 +678,14 @@ public class ObjectFactory {
         return new JAXBElement<IPCBinding>(_BindingIpc_QNAME, IPCBinding.class, null, value);
     }
 
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ThriftBinding }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://docs.oasis-open.org/ns/opencsa/sca/200912", name = "binding.thrift", substitutionHeadNamespace = "http://docs.oasis-open.org/ns/opencsa/sca/200912", substitutionHeadName = "binding")
+    public JAXBElement<ThriftBinding> createBindingIpc(ThriftBinding value) {
+        return new JAXBElement<ThriftBinding>(_BindingThrift_QNAME, ThriftBinding.class, null, value);
+    }
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ExportType }{@code >}}
      * 

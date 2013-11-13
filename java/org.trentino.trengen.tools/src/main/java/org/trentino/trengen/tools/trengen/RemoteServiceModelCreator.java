@@ -303,24 +303,12 @@ public class RemoteServiceModelCreator {
 	 * @param crwrapper
 	 * @return
 	 */
-	private boolean isRemotable(ComponentReferenceWrapper contract) 
-	{
-		// muge (27.08.2012) remotability should be checked out based on an interface not based on one
-		//of the bindings supported by the reference
-		
-		return contract.getInterface().getValue().isRemotable();
-
-		//return bindingManager.isRemotable(contract);
+	private boolean isRemotable(ComponentReferenceWrapper contract) {
+		return bindingManager.isRemotable(contract);
 	}
 
-	private boolean isRemotable(ComponentTypeReference contract) 
-	{
-		// muge (27.08.2012) remotability should be checked out based on an interface not based on one
-		//of the bindings supported by the reference
-		
-		return contract.getInterface().getValue().isRemotable();
-
-		//return bindingManager.isRemotable(contract);
+	private boolean isRemotable(ComponentTypeReference contract) {
+		return bindingManager.isRemotable(contract);
 	};
 
 	/**

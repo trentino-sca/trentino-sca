@@ -87,7 +87,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 				if(!classMethod.isPureVirtual())
 				{
 					throw new ValidationException(ConformanceManagerConstants.CI_CPP80003_VIOLATED + " public member function '"
-					        + classMethod.getName() + "' is not pure virtual in the class" + classModel.getClazzName() + " in header file "
+					        + classMethod.getName() + "' is not pure virtual in the class" + classModel.getClassName() + " in header file "
 					        + parentHeaderFileName);
 				}
 			}
@@ -96,7 +96,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 		if(numberOfPublicMethods < 1)
 		{
 			logger.error(ConformanceManagerConstants.CI_CPP80003_VIOLATED + " There are not any public member functions in "
-			        + classModel.getClazzName() + " @" + parentHeaderFileName);
+			        + classModel.getClassName() + " @" + parentHeaderFileName);
 			return false;
 		}
 		return true;
@@ -427,7 +427,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			return false;
 		}
 
-		if(!isFirstClassBaseOfSecondClass(firstHeader, firstModel.getClazzName(), secondHeader, secondModel.getClazzName(),
+		if(!isFirstClassBaseOfSecondClass(firstHeader, firstModel.getClassName(), secondHeader, secondModel.getClassName(),
 		        headerFileWithFullPath2.fullPath))
 		{
 			return false;
@@ -521,7 +521,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			return false;
 		}
 
-		if(fullHeaderPathOfSecondInterface.equals(fullHeaderPathOfFirstInterface) && firstModel.getClazzName().equals(secondModel.getClazzName()))
+		if(fullHeaderPathOfSecondInterface.equals(fullHeaderPathOfFirstInterface) && firstModel.getClassName().equals(secondModel.getClassName()))
 		{
 			return true;
 		}
@@ -565,7 +565,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			return false;
 		}
 
-		if(firstHeader.getName().equals(secondHeader.getName()) && firstModel.getClazzName().equals(secondModel.getClazzName()))
+		if(firstHeader.getName().equals(secondHeader.getName()) && firstModel.getClassName().equals(secondModel.getClassName()))
 		{
 			return true;
 		}
@@ -618,7 +618,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			else
 			{
 				interfaceToCheck.setCallbackClass(headerFile.getClasses().get(0).getNamespace() + "::"
-				        + headerFile.getClasses().get(0).getClazzName());
+				        + headerFile.getClasses().get(0).getClassName());
 			}
 		}
 
@@ -939,7 +939,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			boolean exists = false;
 			for (int i = 0; i < size; i++)
 			{
-				String classNameInHeader = headerFile.getClasses().get(i).getClazzName();
+				String classNameInHeader = headerFile.getClasses().get(i).getClassName();
 
 				// search for the classes in the headerFile with the className
 				if(classNameInHeader.equals(className))
@@ -1222,7 +1222,7 @@ public abstract class IConformanceManagerCppImpArtifacts {
 			}
 			else
 			{
-				cppInterface.setClazz(headerFile.getClasses().get(0).getNamespace() + "::" + headerFile.getClasses().get(0).getClazzName());
+				cppInterface.setClazz(headerFile.getClasses().get(0).getNamespace() + "::" + headerFile.getClasses().get(0).getClassName());
 			}
 		}
 

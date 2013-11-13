@@ -24,10 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import javax.xml.bind.JAXBElement;
-
 import org.apache.log4j.Logger;
-import org.trentino.trengen.sca.model.Binding;
 import org.trentino.trengen.sca.model.Component;
 import org.trentino.trengen.sca.model.ComponentTypeReference;
 import org.trentino.trengen.tools.scavalidation.ComponentReferenceWrapper;
@@ -38,38 +35,24 @@ import org.trentino.trengen.tools.scavalidation.ComponentReferenceWrapper;
 public class BindingManager {
 
 	private static final String	  BINDING_SCA	= "binding.sca";
-	private static final String	  BINDING_IPC	= "binding.ipc";
 	protected static final Logger	logger	  = Logger.getLogger(BindingManager.class);
 
 	/**
 	 * @param contract
 	 * @return
 	 */
-	public boolean isRemotable(ComponentReferenceWrapper contract) 
-	{
-		ServiceLoader<BindingCodeGenerator> generators = ServiceLoader.load(BindingCodeGenerator.class);
-		
-		for (BindingCodeGenerator generator : generators)
-		{
-			BindingDescriptor desc = generator.getBindingDescriptor();
-			return desc.isRemote(contract);
+	public boolean isRemotable(ComponentReferenceWrapper contract) {
 
-		}
-		return false;
-		//BindingDescriptor defaultDescriptor = getDefaultBindingDescriptor();
-		//return defaultDescriptor.isRemote(contract);
+		BindingDescriptor defaultDescriptor = getDefaultBindingDescriptor();
+		return defaultDescriptor.isRemote(contract);
 	}
-	
-	// obsolete not used any more: contract should be checked for remotability agains all available generators
+
 	private BindingDescriptor getDefaultBindingDescriptor() {
 		ServiceLoader<BindingCodeGenerator> generators = ServiceLoader.load(BindingCodeGenerator.class);
-		
 		for (BindingCodeGenerator generator : generators)
 		{
 			BindingDescriptor desc = generator.getBindingDescriptor();
-			
-			String nedir = generator.getBindingDescriptor().getBindingId();
-			if(BINDING_SCA.equals(desc.getBindingId()) || BINDING_IPC.equals(desc.getBindingId()))
+			if(BINDING_SCA.equals(desc.getBindingId()))
 			{
 				return desc;
 			}
@@ -81,20 +64,9 @@ public class BindingManager {
 	 * @param contract
 	 * @return
 	 */
-	public boolean isRemotable(ComponentTypeReference contract) 
-	{
-		ServiceLoader<BindingCodeGenerator> generators = ServiceLoader.load(BindingCodeGenerator.class);
-		
-		for (BindingCodeGenerator generator : generators)
-		{
-			BindingDescriptor desc = generator.getBindingDescriptor();
-			return desc.isRemote(contract);
-
-		}
-		return false;
-		
-		//BindingDescriptor defaultDescriptor = getDefaultBindingDescriptor();
-		//return defaultDescriptor.isRemote(contract);
+	public boolean isRemotable(ComponentTypeReference contract) {
+		BindingDescriptor defaultDescriptor = getDefaultBindingDescriptor();
+		return defaultDescriptor.isRemote(contract);
 	}
 
 	/**

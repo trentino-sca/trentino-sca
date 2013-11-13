@@ -22,6 +22,10 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
 
 /**
  * @author z002ttbb
@@ -83,5 +87,27 @@ public class Util {
     	}
     	return upper;
     }
+
+	public static ClassLoader getPluginClassLoader(String pluginsDir) throws MalformedURLException {
+			File dependencyDirectory = (pluginsDir!=null) ? new File(pluginsDir): new File("pluggins");
+			if(!dependencyDirectory.exists()){
+				return Thread.currentThread().getContextClassLoader();
+			}
+			File[] files = dependencyDirectory.listFiles();
+			ArrayList<URL> urls = new ArrayList<URL>();
+			for (File file: files) {
+			    if (file.getName().endsWith(".jar") || file.isDirectory()) {
+			    urls.add(file.toURI().toURL());
+			    }
+			}
+			
+		 URL[] urlArray = new URL[urls.size()];
+		 int i=0;
+		 for(URL url : urls){
+			 urlArray[i++]=url;
+		 }
+         URLClassLoader classLoader = new URLClassLoader(urlArray, Thread.currentThread().getContextClassLoader());
+         return classLoader;
+	}
 
 }

@@ -27,25 +27,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.trentino.trengen.TrengenException;
 import org.trentino.trengen.ValidationException;
-import org.trentino.trengen.sca.model.CPPImplementation;
 import org.trentino.trengen.sca.model.CPPInterface;
 import org.trentino.trengen.sca.model.Component;
 import org.trentino.trengen.sca.model.ComponentReference;
 import org.trentino.trengen.sca.model.ComponentType;
-import org.trentino.trengen.sca.model.Implementation;
 import org.trentino.trengen.tools.bindingframework.BindingCodeGeneratorData;
 import org.trentino.trengen.tools.bindingframework.BindingCodeGeneratorManager;
-import org.trentino.trengen.tools.bindingsca.TIDL2CppInterface;
 import org.trentino.trengen.tools.bindingsca.TIDLParseException;
 import org.trentino.trengen.tools.configuration.ConfigLoader;
 import org.trentino.trengen.tools.generation.CPPModelProvider;
+import org.trentino.trengen.tools.generation.bindingsca.CppInterfaceGenerator;
 import org.trentino.trengen.tools.generation.cmake.CMakeGenerator;
 import org.trentino.trengen.tools.generation.cmake.ContextCmake;
 import org.trentino.trengen.tools.generation.configfile.ConfigFileGenerator;
@@ -60,7 +57,6 @@ import org.trentino.trengen.tools.scavalidation.ComponentWrapper;
 import org.trentino.trengen.tools.scavalidation.ConformanceManagerCppImplArtifactsEclipseCDT;
 import org.trentino.trengen.tools.scavalidation.ContributionTypeWrapper;
 import org.trentino.trengen.tools.scavalidation.ContributionVisitor;
-import org.trentino.trengen.tools.scavalidation.DirectoryScanner;
 import org.trentino.trengen.tools.scavalidation.IConformanceManagerCppImpArtifacts;
 import org.trentino.trengen.tools.scavalidation.ScaValidationManager;
 import org.trentino.trengen.tools.scavalidation.utils.UnZipUtil;
@@ -83,8 +79,7 @@ public class Trengen {
 	
 	private static Trengen instance;
 	private  Throwable lastException;
-	private static final String regex = "(\\d)+\\.(\\d)+\\.(\\d)+(\\.\\w+)?";
-	private static final Pattern pattern = Pattern.compile(regex);
+	private ClassLoader classLoader;
 	
 	public static void initInstance(String... args) throws Exception{
 		if(args ==null){
@@ -108,32 +103,6 @@ public class Trengen {
 		return contributionFolder;
 	}
 
-	private  String getGenerationProjectNameFolder() {
-		return getApplicationNameLowerCase() + GEN;
-	}
-
-	private  String getGenerationProjectNameFolderUpperCase() {
-		return getApplicationNameUpperCase() + "GEN";
-	}
-
-	private  String getApplicationNameLowerCase() {
-		String appName = contributionFolder.getAbsolutePath();
-		int lastSlash = appName.lastIndexOf("\\");
-		appName = appName.substring(lastSlash + 1);
-
-		return appName;
-	}
-
-	public  String getApplicationNameUpperCase() {
-		String appName = getApplicationNameLowerCase();
-
-		String upperAppName = "";
-		for (int i = 0; i < appName.length(); i++)
-		{
-			upperAppName += Util.toUpper(appName.charAt(i));
-		}
-		return upperAppName;
-	}
 
 	public  void setScaValidationFolder(File aFolder) {
 		if(scaValidationFolder != null)
@@ -145,10 +114,13 @@ public class Trengen {
 	}
 
 	public Trengen (String[] args) throws Exception {
-		options = new CommandLineOptions(args);
+        classLoader = Util.getPluginClassLoader(System.getProperty("plugins"));
+		options = new CommandLineOptions(args, classLoader);
 	}
+	
 
 	public static void main(String[] args) {
+		
 		try
 		{
 			 initInstance(args);
@@ -189,7 +161,6 @@ public class Trengen {
 	    if(enEx){
 	    	System.exit(1);
 	    }
-    	
     }
 
 	/**
@@ -265,14 +236,8 @@ public class Trengen {
 
 	// -----------------------------------
 	private  boolean doMain(String[] args) throws Exception {
-		
-
-
-		 
-
 		// Check and access the input SCA composite directory
-		String tidlFile = (String) options.getOption("gencppitf");
-		String inc = (String) options.getOption("inc");
+
 		String contributionPath = (String) options.getOption("cont");
 		String help = (String) options.getOption("h");
 		if(help==null){
@@ -360,11 +325,11 @@ public class Trengen {
 
 		}
 
-		if(tidlFile != null)
-		{
-			generateCPPInterface(tidlFile, inc);
+		CommandExecutionManager manager = new CommandExecutionManager(classLoader);
+		if(manager.execute(options)){
 			return true;
 		}
+
 		
 		// check runtime directory
 		if(runtimeDir != null && runtimeDir.trim().length() > 0)
@@ -463,8 +428,11 @@ public class Trengen {
 		ContextProxiesWrappers contextProxyWrapper = new ContextProxiesWrappers(converter, contributionName);
 		contextProxyWrapper.setOutputDir(generationDirectory);
 		ContextCmake contextCMake = new ContextCmake(converter);
+		contextCMake.setContributionDir(contributionFolder.getAbsolutePath());
 		ContextReflection contextReflection = new ContextReflection(converter);
-		prepareContextCMake(runtimeDir, installPath, libPath, includeDirs, libDirs, contextCMake, generationDirectory);
+		ContextCmake.prepareContextCMake(runtimeDir, installPath, libPath, includeDirs,
+				libDirs, contextCMake, generationDirectory,
+				contributionTypeWrapper);
 
 		BindingCodeGeneratorData data = new BindingCodeGeneratorData(contributionTypeWrapper, contextProxyWrapper, contextCMake, generationDirectory,
 		        contributionName);
@@ -476,8 +444,8 @@ public class Trengen {
 		// project
 		// generateCPPInterface(Trengen.getScaValidationFolder().getAbsolutePath());
 
-		BindingCodeGeneratorManager manager = new BindingCodeGeneratorManager(data);
-		if(!manager.generateBindingCode())
+		BindingCodeGeneratorManager cgMngr = new BindingCodeGeneratorManager(data,classLoader);
+		if(!cgMngr.generateBindingCode())
 		{
 			throw new IllegalStateException("Error during binding code generate. see error description in previous output");
 		}
@@ -509,9 +477,9 @@ public class Trengen {
 		logger.info("sca-contribution.conf generated");
 	}
 
+	
 	private  void generateProxyAndWrappers(ContextProxiesWrappers contextProxyWrapper) throws TrengenException {
 		logger.info("TrentinoGenProxiesWrappers.cpp is being generated...");
-
 		ProxyGenerator generatorProxyWrapper = new ProxyGenerator(contextProxyWrapper);
 		generatorProxyWrapper.generate();
 	}
@@ -534,148 +502,9 @@ public class Trengen {
 		generatorCMake.generate();
 	}
 
-	private  void prepareContextCMake(String runtimeDir, String installPath, String libPath, String includeDirs, String libDirsExpanded,
-	        final ContextCmake contextCMake, File generationDirectory) {
-		contextCMake.setTrentinoRuntimeDir(runtimeDir);
-		String generationProjName = getGenerationProjectNameFolder();
-		String generationProjNameUpperCase = getGenerationProjectNameFolderUpperCase();
-		String contributionDir = contributionFolder.getAbsolutePath();
-		// generated code CMAKE Default install path
-		if(installPath == null)
-		{
-			installPath = new File(contributionDir).getParentFile().getAbsolutePath();
-		}
-		contextCMake.setGenerationProjectName(generationProjName);
-		contextCMake.setDefaultInstallPath(installPath);
-		contextCMake.setInstallDir(new File(contributionDir).getName());
-		contextCMake.setContributionDir(contributionDir);
-		contextCMake.addLibs(libPath);
-		contextCMake.setGenerationProjectNameUpperCase(generationProjNameUpperCase);
-        ContributionVisitor contributionVisitor = new ContributionVisitor() {
-        	@Override
-        	public void visit(Component obj) {
-        	 Implementation impl =	obj.getImplementation().getValue();
-        	 if(impl instanceof CPPImplementation){
-        		 CPPImplementation cppImpl = (CPPImplementation) impl;
-        		 String library = cppImpl.getLibrary();
-        		 if(library==null ||"".equals(library) ||"sca-contribution".equals(library)){
-        			 return;
-        		 }
-				contextCMake.getLibraries().add(library);
-        		 String path =cppImpl.getPath();
-        		 if(path!=null){
-        			contextCMake.getLinkDirectories().add(path); 
-        		 }
-        		 
-        	 }
-        		
-        	}
-		};
-		contributionTypeWrapper.accept(contributionVisitor );		
 
-		contextCMake.setLinkDirectories(libDirsExpanded);
-		contextCMake.setIncludeDirs(includeDirs);
 
-		contextCMake.setOutputDir(generationDirectory);
-
-	}
-
-	/**
-	 * This function generates cpp interface file for sca binding
-	 * @throws TIDLParseException
-	 */
-	private  void generateCPPInterface(String tidlFilePath, String include) throws TIDLParseException {
-		logger.info("CPPInterface file is being generated... " + tidlFilePath + " directory is used during generation.");
-		File tdilFile = new File(tidlFilePath);
-		if(!(tdilFile.exists()))
-		{
-			logger.error(tidlFilePath + " does not exist! Please give correct path...");
-			return;
-		}
-		List<File> tidlPropertyFiles = new ArrayList<File>();
-		List<File> javaFiles = new ArrayList<File>();
-		if(tdilFile.isFile() && tidlFilePath.endsWith(".tidl.properties"))
-		{
-			tidlPropertyFiles.add(tdilFile);
-		}
-		else if(tdilFile.isFile() && tidlFilePath.endsWith(".java"))
-		{
-			javaFiles.add(tdilFile);
-		}
-		else
-		{
-			List<File> sp = new ArrayList<File>();
-			sp.add(tdilFile);
-			tidlPropertyFiles = DirectoryScanner.SearchArtifacts(sp, "tidl.properties");
-		}
-
-		if(tidlPropertyFiles.isEmpty() && javaFiles.isEmpty())
-		{
-			logger.error("No .tidl.properties file is found in " + tidlFilePath);
-			return;
-		}
-		for (File tidlFile : tidlPropertyFiles)
-		{
-			String pathToJavaFile = Util.readTidlPropertiesFile(tidlFile);
-			String pathToTidl = Util.getTidlFilePath(tidlFile, pathToJavaFile);
-
-			// an outdir is expected in TidlToCPPInterface converter. if it is
-			// null, use the current path.
-			if(outDir == null)
-			{
-				outDir = pathToTidl;
-			}
-
-			if(pathToTidl != null && pathToJavaFile != null)
-			{
-				pathToJavaFile = new File(pathToTidl, pathToJavaFile).getAbsolutePath();
-			}
-			else
-			{
-				logger.error("Path to Java file is null");
-				return;
-			}
-			logger.info("Path to java file " + pathToJavaFile);
-
-			File javaFile = new File(pathToJavaFile);
-			if(!javaFile.exists())
-			{
-				logger.error(pathToJavaFile + " does not exist! Please give correct path...");
-				return;
-			}
-
-			generateCPPInterfaceFromJavaFile(include, javaFile, tidlFile);
-
-		}
-
-		for (File javaFile : javaFiles)
-		{
-			generateCPPInterfaceFromJavaFile(include, javaFile, null);
-		}
-	}
-
-	private  void generateCPPInterfaceFromJavaFile(String include, File javaFile, File tidl) throws TIDLParseException {
-		// CPP interface generation
-		TIDL2CppInterface converter = new TIDL2CppInterface();
-
-		File outDirFile = null;
-		if(outDir == null)
-		{
-			outDir = javaFile.getParent();
-		}
-		outDirFile = new File(outDir);
-		List<String> includes = new ArrayList<String>();
-
-		if(include != null && !"".equals(include))
-		{
-			includes.add(include);
-		}
-
-		if(javaFile != null && outDirFile != null)
-		{
-			converter.createCppInterface(javaFile, tidl, outDirFile, includes);
-		}
-	}
+	
 
 
 	/**
@@ -760,4 +589,23 @@ public class Trengen {
     	return lastException;
     }
 
+
+	
+	public  String getApplicationNameLowerCase() {
+		String appName = contributionFolder.getAbsolutePath();
+		int lastSlash = appName.lastIndexOf("\\");
+		appName = appName.substring(lastSlash + 1);
+		return appName;
+	}
+
+	public  String getApplicationNameUpperCase() {
+		String appName = getApplicationNameLowerCase();
+
+		String upperAppName = "";
+		for (int i = 0; i < appName.length(); i++)
+		{
+			upperAppName += Util.toUpper(appName.charAt(i));
+		}
+		return upperAppName;
+	}
 }
